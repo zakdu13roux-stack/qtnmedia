@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | Candidature Parcoursup</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">Portfolio</div>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#accueil" class="nav-link">Accueil</a></li>
+                <li><a href="#apropos" class="nav-link">Présentation</a></li>
+                <li><a href="#projets" class="nav-link">Réalisations</a></li>
+                <li><a href="#competences" class="nav-link">Compétences</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Section Accueil -->
+    <section id="accueil" class="hero">
+        <div class="hero-content">
+            <h1>Bonjour !</h1>
+            <p>Vous trouverez ici la présentation de mes réalisations</p>
+            <a href="#projets" class="cta-button">Découvrir mes projets</a>
+        </div>
+    </section>
+
+    <!-- Section Présentation -->
+    <section id="apropos" class="about">
+        <div class="container">
+            <h2>À propos</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Elève de terminale, je suis passionné par différents domaines de l'art dont le cinéma et le graphisme, l'informatique étant un bon outil pour exprimer mes idées grâce à la création de contenu interactif comme ce site de portfolio.</p>
+                    <p>Je suis déterminé à progresser et à me spécialiser dans ces domaines pour trouver celui qui me correspond le mieux.</p>
+                </div>
+                <div class="about-image">
+                    <div class="image-placeholder">
+                        <img src="assets/icons/smile.svg" alt="Icône" class="icon-img">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Réalisations -->
+    <section id="projets" class="projects">
+        <div class="container">
+            <h2>Mes Réalisations</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-image">
+                        <span class="emoji-icon">🎬</span>
+                    </div>
+                    <h3>Projet Court-Métrages ALC</h3>
+                    <p class="project-date">2024</p>
+                    <p>Création de court-métrages du scénario au montage pour le festival Au Long-Court.</p>
+                    <div class="project-tags">
+                        <span class="tag">Scénarios</span>
+
+                        <span class="tag">Tournage</span>
+                        <span class="tag">Montage</span>
+                    </div>
+                    <p>Vous pouvez accéder au rendu final du court métrage que j'ai tourné et monté avec un petit groupe en cliquant ci-dessous.</p>
+                    <a href="project-alc.html" class="video-button">Découvrir le projet</a>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="assets/icons/trending-up.svg" alt="Jeu Interactif Web" class="icon-img">
+                    </div>
+                    <h3>Jeu RPG en groupe</h3>
+                    <p class="project-date">2026</p>
+                    <p>Codage d'un jeu 2D de type RPG en groupe de 3 en tant que projet de terminale en NSI.</p>
+                    <div class="project-tags">
+                        <img src="assets/icons/python.webp" alt="Python" class="tag-image">
+                        <span class="tag">SQL</span>
+                        <span class="tag">Github</span>
+                    </div>
+                    <p>Vous pouvez accéder à la page dédiée au jeu ci-dessous.</p> 
+                    <a href="project-rpg-game.html" class="video-button">Découvrir le projet</a>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="assets/icons/database.svg" alt="Système de Gestion" class="icon-img">
+                    </div>
+                    <h3>Dessins et Projets artistiques</h3>
+                    <p class="project-date">2023-2026</p>
+                    <p>Retrouvez ici mes créations artistiques et projets personnels dans le domaine du dessin et du graphisme.</p>
+                    <div class="project-tags">
+                        <span class="tag">Clip Studio Paint</span>
+                        <span class="tag">Dessin Traditionnel</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="assets/icons/message-square.svg" alt="Intelligence Artificielle" class="icon-img">
+                    </div>
+                    <h3></h3>
+                    <p class="project-date">2024</p>
+                    <p></p>
+                    <div class="project-tags">
+                        <img src="assets/icons/python.webp" alt="Python" class="tag-image">
+                        <span class="tag">TensorFlow</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="assets/icons/clock.svg" alt="Plateforme Collaborative" class="icon-img">
+                    </div>
+                    <h3></h3>
+                    <p class="project-date">2024</p>
+                    <p></p>
+                    <div class="project-tags">
+                        <span class="tag">WebSocket</span>
+                        <span class="tag">Node.js</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Compétences -->
+    <section id="competences" class="competences">
+        <div class="container">
+            <h2>Compétences Développées</h2>
+            <div class="competences-grid">
+                <div class="competence-category">
+                    <h3>Programmation</h3>
+                    <ul>
+                        <li>Python</li>
+                        <li>JavaScript</li>
+                        <li>HTML / CSS</li>
+                    </ul>
+                </div>
+
+                <div class="competence-category">
+                    <h3>Bases de Données</h3>
+                    <ul>
+                        <li>SQL</li>
+                    </ul>
+                </div>
+
+                <div class="competence-category">
+                    <h3>Cinéma</h3>
+                    <ul>
+                        <li>Création de Scénarios</li>
+                        <li>Tournage</li>
+                        <li>Montage, VFX</li>
+                        <li>Logiciels : Premiere Pro, DaVinci Resolve, After Effects</li>
+                    </ul>
+                </div>
+
+                <div class="competence-category">
+                    <h3>Graphisme</h3>
+                    <ul>
+                        <li>Dessin traditionel</li>
+                        <li>Dessin numérique : Photoshop, Clip Studio Paint</li>
+                    </ul>
+                </div>
+
+                <div class="competence-category">
+                    <h3>Engagements et compétences variés</h3>
+                    <ul>
+                        <li>Eco-délégué au lycée</li>
+                        <li>Travail en équipe</li>
+                        <li>Communication</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 qtnmedia. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

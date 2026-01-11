@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jeu RPG en Python | Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">Portfolio</div>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html#accueil" class="nav-link">Accueil</a></li>
+                <li><a href="index.html#apropos" class="nav-link">Présentation</a></li>
+                <li><a href="index.html#projets" class="nav-link">Réalisations</a></li>
+                <li><a href="index.html#competences" class="nav-link">Compétences</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Section Détail du Projet -->
+    <section class="project-detail">
+        <div class="container">
+            <!-- En-tête du projet -->
+            <div class="project-header">
+                <a href="index.html#projets" class="back-link">← Retour aux projets</a>
+                <h1>Jeu RPG 2D en Python</h1>
+                <div class="project-meta">
+                    <p class="project-date">2026 - Projet de Terminale NSI</p>
+                    <div class="project-tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">SQL</span>
+                        <span class="tag">Github</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Description -->
+            <div class="project-section">
+                <h2>À propos du projet</h2>
+                <p>Ce projet est un jeu RPG 2D développé en Python en groupe de 3 pour le cours de Numérique et Sciences Informatiques (NSI) de terminale. Le jeu combine des mécaniques classiques de RPG avec une base de données SQL pour la gestion des données des joueurs et du monde du jeu.</p>
+            </div>
+
+            <!-- Visuels et Explications -->
+            <div class="project-section">
+                <h2>Visuels et Fonctionnalités</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">🎮</div>
+                        <h3>Gameplay</h3>
+                        <p>Exploration d'un monde 2D avec système de combat au tour par tour et gestion d'équipe de personnages</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">💾</div>
+                        <h3>Base de Données</h3>
+                        <p>Utilisation de SQL pour stocker les données des joueurs, des monsres et de la progression</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🤝</div>
+                        <h3>Collaboration</h3>
+                        <p>Travail en équipe via GitHub avec gestion de versions et organisation des tâches</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📊</div>
+                        <h3>Statistiques</h3>
+                        <p>Système complet de progression avec niveaux, expérience et amélioration de statistiques</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Extraits de Code -->
+            <div class="project-section">
+                <h2>Extraits de Code</h2>
+                
+                <div class="code-block">
+                    <h3>Système de Combat</h3>
+                    <pre><code>class Combat:
+    def __init__(self, joueur, ennemi):
+        self.joueur = joueur
+        self.ennemi = ennemi
+        self.tour_joueur = True
+    
+    def attaquer(self, degats):
+        if self.tour_joueur:
+            self.ennemi.pv -= degats
+            self.tour_joueur = False
+        else:
+            self.joueur.pv -= self.ennemi.attaque()
+            self.tour_joueur = True
+    
+    def est_termine(self):
+        return self.joueur.pv <= 0 or self.ennemi.pv <= 0</code></pre>
+                </div>
+
+                <div class="code-block">
+                    <h3>Gestion de la Base de Données</h3>
+                    <pre><code>import sqlite3
+
+class BDD:
+    def __init__(self):
+        self.connexion = sqlite3.connect('rpg_game.db')
+        self.curseur = self.connexion.cursor()
+    
+    def sauvegarder_joueur(self, joueur):
+        self.curseur.execute("""
+            INSERT INTO joueurs (nom, niveau, exp, pv)
+            VALUES (?, ?, ?, ?)
+        """, (joueur.nom, joueur.niveau, joueur.exp, joueur.pv))
+        self.connexion.commit()</code></pre>
+                </div>
+
+                <div class="code-block">
+                    <h3>Système de Personnages</h3>
+                    <pre><code>class Personnage:
+    def __init__(self, nom, classe, niveau=1):
+        self.nom = nom
+        self.classe = classe
+        self.niveau = niveau
+        self.pv_max = 100 * niveau
+        self.pv = self.pv_max
+        self.attaque = 10 + (5 * niveau)
+        self.defense = 5 + (2 * niveau)
+        self.exp = 0
+    
+    def gagner_exp(self, montant):
+        self.exp += montant
+        if self.exp >= 100 * self.niveau:
+            self.monter_niveau()</code></pre>
+                </div>
+            </div>
+
+            <!-- Téléchargement -->
+            <div class="project-section download-section">
+                <h2>Télécharger le Projet</h2>
+                <p>Vous pouvez accéder au code source du projet sur notre dépôt GitHub ou télécharger une copie locale.</p>
+                <div class="download-buttons">
+                    <a href="#" class="download-button github-btn">
+                        <i class="fas fa-github"></i> Voir sur GitHub
+                    </a>
+                    <a href="#" class="download-button download-btn">
+                        <i class="fas fa-download"></i> Télécharger le ZIP
+                    </a>
+                </div>
+                <div class="requirements">
+                    <h3>Prérequis</h3>
+                    <ul>
+                        <li>Python 3.8 ou supérieur</li>
+                        <li>Bibliothèque Pygame (pour l'affichage graphique)</li>
+                        <li>SQLite3 (généralement inclus avec Python)</li>
+                    </ul>
+                    <h3>Installation</h3>
+                    <pre><code>pip install pygame
+python main.py</code></pre>
+                </div>
+            </div>
+
+            <!-- Apprentissages -->
+            <div class="project-section">
+                <h2>Apprentissages Clés</h2>
+                <ul class="learnings-list">
+                    <li><strong>Programmation Orientée Objet :</strong> Conception de classes pour les personnages, ennemis et systèmes de jeu</li>
+                    <li><strong>Gestion de Bases de Données :</strong> Requêtes SQL pour persister et récupérer les données de progression</li>
+                    <li><strong>Travail en Équipe :</strong> Collaboration via Git et résolution de conflits de fusion</li>
+                    <li><strong>Gestion de Projet :</strong> Planification et distribution des tâches</li>
+                </ul>
+            </div>
+
+            <!-- Retour -->
+            <div class="project-footer">
+                <a href="index.html#projets" class="cta-button">Retour à mes projets</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 qtnmedia. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
