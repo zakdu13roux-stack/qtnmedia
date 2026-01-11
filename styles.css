@@ -251,7 +251,7 @@ body {
 }
 
 .project-card:nth-child(1) .project-image {
-    background: linear-gradient(135deg, rgba(6, 182, 212, 0.3), rgba(34, 197, 94, 0.3));
+    background: url('assets/images/caméra%20qui%20filme.jpg') center/cover no-repeat;
     color: #06b6d4;
 }
 
