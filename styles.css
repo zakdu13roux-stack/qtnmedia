@@ -506,6 +506,18 @@ body {
     animation: pulse-scale 1s ease-in-out forwards;
 }
 
+.project-tags .tag-image:nth-child(1).animate-in-out {
+    animation: spin-bounce-out 0.4s ease-in forwards !important;
+}
+
+.project-tags .tag-image:nth-child(2).animate-in-out {
+    animation: float-rotate-out 0.4s ease-in forwards !important;
+}
+
+.project-tags .tag-image:nth-child(3).animate-in-out {
+    animation: pulse-scale-out 0.4s ease-in forwards !important;
+}
+
 @keyframes spin-bounce {
     0% {
         transform: translateX(-150px) rotate(-45deg);
@@ -552,6 +564,54 @@ body {
         transform: translateY(0);
         opacity: 1;
     }
+}
+
+@keyframes slideOutDown {
+    0% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(80px);
+        opacity: 0;
+    }
+}
+
+@keyframes spin-bounce-out {
+    0% {
+        transform: translateX(0) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(-150px) rotate(-45deg);
+        opacity: 0;
+    }
+}
+
+@keyframes float-rotate-out {
+    0% {
+        transform: translateY(0) translateX(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-150px) translateX(30px);
+        opacity: 0;
+    }
+}
+
+@keyframes pulse-scale-out {
+    0% {
+        transform: translateX(0) scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(150px) scale(0.5);
+        opacity: 0;
+    }
+}
+
+.project-card.animate-card-out {
+    animation: slideOutDown 0.4s ease-in forwards;
 }
 
 .video-button {

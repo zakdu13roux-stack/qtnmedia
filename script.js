@@ -42,9 +42,11 @@ const observer = new IntersectionObserver(entries => {
         } else {
             // Retirer les classes quand la carte sort de l'écran
             entry.target.classList.remove('animate-card');
+            entry.target.classList.remove('animate-card-out');
             const tagImages = entry.target.querySelectorAll('.tag-image');
             tagImages.forEach(img => {
                 img.classList.remove('animate-in');
+                img.classList.remove('animate-in-out');
             });
         }
     });
