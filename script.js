@@ -23,7 +23,12 @@ const observerOptions = {
 const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
-            entry.target.style.animation = 'fadeInUp 0.6s ease forwards';
+            // Ajouter l'animation de la carte elle-même
+            if (entry.target.classList.contains('project-card')) {
+                entry.target.classList.add('animate-card');
+            } else {
+                entry.target.style.animation = 'fadeInUp 0.6s ease forwards';
+            }
             
             // Animer les images des tags avec délai
             const tagImages = entry.target.querySelectorAll('.tag-image');
@@ -36,6 +41,7 @@ const observer = new IntersectionObserver(entries => {
             });
         } else {
             // Retirer les classes quand la carte sort de l'écran
+            entry.target.classList.remove('animate-card');
             const tagImages = entry.target.querySelectorAll('.tag-image');
             tagImages.forEach(img => {
                 img.classList.remove('animate-in');
