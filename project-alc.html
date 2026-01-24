@@ -5,6 +5,181 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Projet ALC - Court-Métrages | Portfolio</title>
     <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
+    <style>
+        @keyframes slideFromSide {
+            0% {
+                opacity: 0;
+                transform: translateX(-120vw) scale(0.8) rotate(-5deg);
+            }
+            70% {
+                opacity: 1;
+                transform: translateX(15px) scale(1.05) rotate(1deg);
+            }
+            85% {
+                transform: translateX(-5px) scale(0.98) rotate(-0.5deg);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0) scale(1) rotate(0deg);
+            }
+        }
+        
+        @keyframes floatBounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-8px);
+            }
+        }
+        
+        .animated-title {
+            animation: slideFromSide 1.8s cubic-bezier(0.16, 1, 0.3, 1) forwards,
+                       floatBounce 3s ease-in-out 1.8s infinite;
+            opacity: 0;
+            font-family: 'Permanent Marker', cursive;
+            font-size: 3.5rem;
+            letter-spacing: 2px;
+            color: #ffffff !important;
+            font-weight: 400;
+            will-change: transform, opacity;
+            background: none !important;
+            -webkit-background-clip: unset !important;
+            -webkit-text-fill-color: #ffffff !important;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2) !important;
+            background-clip: unset !important;
+        }
+        
+        @media (max-width: 768px) {
+            .animated-title {
+                font-size: 2rem;
+            }
+        }
+        
+        /* Custom hero background matching project card */
+        .project-hero {
+            background: linear-gradient(135deg, rgba(6, 182, 212, 0.5), rgba(34, 197, 94, 0.5)) !important;
+            background-color: #1e293b !important;
+        }
+        
+        .project-hero::before {
+            background-image: 
+                radial-gradient(circle at 20% 50%, rgba(6, 182, 212, 0.4) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(34, 197, 94, 0.4) 0%, transparent 50%) !important;
+        }
+        
+        .project-hero p {
+            color: #e2e8f0 !important;
+            font-weight: 600 !important;
+            font-size: 1.4rem !important;
+        }
+        
+        .back-button {
+            background: rgba(6, 182, 212, 0.2) !important;
+            color: #ffffff !important;
+            border: 2px solid rgba(6, 182, 212, 0.5) !important;
+            padding: 0.8rem 1.5rem !important;
+            border-radius: 8px !important;
+            font-weight: 600 !important;
+            transition: all 0.3s ease !important;
+            backdrop-filter: blur(10px) !important;
+        }
+        
+        .back-button:hover {
+            background: rgba(6, 182, 212, 0.4) !important;
+            border-color: rgba(6, 182, 212, 0.8) !important;
+            transform: translateX(-5px) !important;
+            box-shadow: 0 5px 15px rgba(6, 182, 212, 0.3) !important;
+        }
+        
+        /* Darker background for sections */
+        .video-section, .creation-steps, .gallery-section, .technical-details {
+            background: rgba(15, 23, 42, 0.04) !important;
+        }
+        
+        /* Larger text sizes */
+        .video-description p, .step-card p, .gallery-intro, .detail-item p {
+            font-size: 1.1rem !important;
+            line-height: 1.7 !important;
+        }
+        
+        .video-description p {
+            font-size: 1.3rem !important;
+        }
+        
+        .video-section h2, .creation-steps h2, .gallery-section h2, .technical-details h2 {
+            font-size: 2.5rem !important;
+        }
+        
+        .step-card h3, .detail-item h3 {
+            font-size: 1.4rem !important;
+        }
+        
+        /* Text and titles with cyan-green gradient */
+        .video-section h2, .creation-steps h2, .gallery-section h2, .technical-details h2 {
+            background: linear-gradient(135deg, #0891b2, #16a34a) !important;
+            -webkit-background-clip: text !important;
+            -webkit-text-fill-color: transparent !important;
+            background-clip: text !important;
+        }
+        
+        .step-number {
+            background: linear-gradient(135deg, #0891b2, #16a34a) !important;
+            -webkit-background-clip: text !important;
+            -webkit-text-fill-color: transparent !important;
+            background-clip: text !important;
+            font-weight: 800 !important;
+        }
+        
+        .step-card h3 {
+            background: linear-gradient(135deg, #0891b2, #16a34a) !important;
+            -webkit-background-clip: text !important;
+            -webkit-text-fill-color: transparent !important;
+            background-clip: text !important;
+        }
+        
+        .tag {
+            background: rgba(8, 145, 178, 0.15) !important;
+            color: #0891b2 !important;
+            border: 1px solid rgba(8, 145, 178, 0.4) !important;
+        }
+        
+        .detail-item h3 {
+            background: linear-gradient(135deg, #0891b2, #16a34a) !important;
+            -webkit-background-clip: text !important;
+            -webkit-text-fill-color: transparent !important;
+            background-clip: text !important;
+            font-weight: 600 !important;
+        }
+        
+        .video-container {
+            border: 2px solid rgba(8, 145, 178, 0.3) !important;
+            border-radius: 12px !important;
+        }
+        
+        .step-card {
+            border: 1px solid rgba(8, 145, 178, 0.25) !important;
+            transition: all 0.3s ease !important;
+        }
+        
+        .step-card:hover {
+            border-color: rgba(8, 145, 178, 0.5) !important;
+            box-shadow: 0 5px 15px rgba(8, 145, 178, 0.15) !important;
+            transform: translateY(-3px) !important;
+        }
+        
+        .detail-item {
+            border: 1px solid rgba(22, 163, 74, 0.25) !important;
+            transition: all 0.3s ease !important;
+        }
+        
+        .detail-item:hover {
+            border-color: rgba(22, 163, 74, 0.5) !important;
+            box-shadow: 0 5px 15px rgba(22, 163, 74, 0.15) !important;
+            transform: translateY(-3px) !important;
+        }
+    </style>
 </head>
 <body>
     <!-- Navigation -->
@@ -29,7 +204,7 @@
     <section class="project-hero">
         <div class="hero-content">
             <a href="index.html#projets" class="back-button">← Retour aux projets</a>
-            <h1>Projet Court-Métrages ALC</h1>
+            <h1 class="animated-title">Ici t'attend l'extraoridinaire</h1>
             <p>Festival Au Long-Court 2024</p>
         </div>
     </section>
@@ -45,7 +220,10 @@
                 </video>
             </div>
             <div class="video-description">
-                <p>Création de court-métrages du scénario au montage pour le festival Au Long-Court. Ce projet combine la réalisation, le tournage et le montage professionnel.</p>
+                <p>Création de court-métrages du scénario au montage pour le festival Au Long-Court. 
+                    Ce projet combine la réalisation, le tournage et le montage avec d'ancien professionnels
+                     du cinéma ou des personnes ayant un diplôme dans le domaine. Le but est d'initier chaque 
+                     participant peut importe leur niveau de départ au monde du cinéma dans tous ses aspects.</p>
             </div>
         </div>
     </section>
@@ -55,20 +233,12 @@
         <div class="container">
             <h2>Les Étapes de Création</h2>
             <div class="steps-grid">
-                <div class="step-card">
-                    <div class="step-number">01</div>
-                    <h3>Scénario & Préproduction</h3>
-                    <p>Développement de l'idée, écriture du scénario, création du storyboard et planification des tournages.</p>
-                    <div class="step-tags">
-                        <span class="tag">Écriture</span>
-                        <span class="tag">Planning</span>
-                    </div>
-                </div>
 
                 <div class="step-card">
-                    <div class="step-number">02</div>
-                    <h3>Production & Tournage</h3>
-                    <p>Tournage sur le terrain avec gestion de l'équipe, direction d'acteurs et capture des plans prévus.</p>
+                    <div class="step-number">01</div>
+                    <h3>Initiation à tous les domaines</h3>
+                    <p>Apprentissage des techniques et règles de base du cinéma, de l'écriture de scénarios, du tournage
+                         et du montage.</p>
                     <div class="step-tags">
                         <span class="tag">Réalisation</span>
                         <span class="tag">Équipe</span>
@@ -76,8 +246,21 @@
                 </div>
 
                 <div class="step-card">
+                    <div class="step-number">02</div>
+                    <h3>Scénario & Préproduction</h3>
+                    <p>Développement des idées à partir du thème du Festival: "Ici t'attends l'extraordinaire", 
+                        écriture de scénarios, sélection des plus réalisables sous nos différents contraintes.</p>
+                    <div class="step-tags">
+                        <span class="tag">Écriture</span>
+                        <span class="tag">Planning</span>
+                    </div>
+                </div>
+
+
+
+                <div class="step-card">
                     <div class="step-number">03</div>
-                    <h3>Post-Production & Montage</h3>
+                    <h3>Post-Production, Montage & Mixage</h3>
                     <p>Montage vidéo, étalonnage des couleurs, ajout des effets spéciaux et synchronisation audio.</p>
                     <div class="step-tags">
                         <span class="tag">Montage</span>
@@ -87,7 +270,7 @@
 
                 <div class="step-card">
                     <div class="step-number">04</div>
-                    <h3>Son & Mixage</h3>
+                    <h3>Projection</h3>
                     <p>Création de la bande sonore, bruitages, musique originale et mixage professionnel.</p>
                     <div class="step-tags">
                         <span class="tag">Audio</span>
