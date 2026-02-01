@@ -5,6 +5,151 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jeu RPG en Python | Portfolio</title>
     <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <style>
+        @keyframes pixelSlide {
+            0% {
+                opacity: 0;
+                transform: translateX(-120vw) scale(0.8);
+            }
+            70% {
+                opacity: 1;
+                transform: translateX(15px) scale(1.05);
+            }
+            85% {
+                transform: translateX(-5px) scale(0.98);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0) scale(1);
+            }
+        }
+        
+        @keyframes floatBounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-8px);
+            }
+        }
+        
+        .animated-title {
+            animation: pixelSlide 1.8s cubic-bezier(0.16, 1, 0.3, 1) forwards,
+                       floatBounce 3s ease-in-out 1.8s infinite;
+            opacity: 0;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 2.5rem;
+            letter-spacing: 2px;
+            color: #ffffff !important;
+            font-weight: 400;
+            will-change: transform, opacity;
+            background: none !important;
+            -webkit-background-clip: unset !important;
+            -webkit-text-fill-color: #ffffff !important;
+            text-shadow: 0 4px 12px rgba(99, 102, 241, 0.5) !important;
+            background-clip: unset !important;
+        }
+        
+        @media (max-width: 768px) {
+            .animated-title {
+                font-size: 1.2rem;
+            }
+        }
+        
+        /* Custom hero background matching project card */
+        .project-hero {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.5), rgba(59, 130, 246, 0.5)) !important;
+            background-color: #1e293b !important;
+        }
+        
+        .project-hero::before {
+            background-image: 
+                radial-gradient(circle at 20% 50%, rgba(99, 102, 241, 0.4) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(59, 130, 246, 0.4) 0%, transparent 50%) !important;
+        }
+        
+        .project-hero p {
+            color: #e2e8f0 !important;
+            font-weight: 600 !important;
+            font-size: 1.4rem !important;
+        }
+        
+        .back-button {
+            background: rgba(99, 102, 241, 0.2) !important;
+            color: #ffffff !important;
+            border: 2px solid rgba(99, 102, 241, 0.5) !important;
+            padding: 0.8rem 1.5rem !important;
+            border-radius: 8px !important;
+            font-weight: 600 !important;
+            transition: all 0.3s ease !important;
+            backdrop-filter: blur(10px) !important;
+        }
+        
+        .back-button:hover {
+            background: rgba(99, 102, 241, 0.4) !important;
+            border-color: rgba(99, 102, 241, 0.8) !important;
+            transform: translateX(-5px) !important;
+            box-shadow: 0 5px 15px rgba(99, 102, 241, 0.3) !important;
+        }
+        
+        /* Darker background for sections */
+        .project-section {
+            background: rgba(15, 23, 42, 0.04) !important;
+        }
+        
+        /* Feature cards styling */
+        .feature-card {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(59, 130, 246, 0.1)) !important;
+            border: 2px solid rgba(99, 102, 241, 0.2) !important;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.2) !important;
+            border-color: rgba(99, 102, 241, 0.4) !important;
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            filter: drop-shadow(0 0 10px rgba(99, 102, 241, 0.5));
+        }
+        
+        /* Code blocks */
+        .code-block {
+            background: rgba(99, 102, 241, 0.05) !important;
+            border-left: 4px solid #6366f1 !important;
+        }
+        
+        .code-block pre {
+            background: rgba(15, 23, 42, 0.9) !important;
+        }
+        
+        /* Download buttons */
+        .download-button {
+            background: linear-gradient(135deg, #6366f1, #3b82f6) !important;
+        }
+        
+        .download-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(99, 102, 241, 0.3) !important;
+        }
+        
+        .requirements {
+            background: rgba(99, 102, 241, 0.05) !important;
+            border: 2px solid rgba(99, 102, 241, 0.2) !important;
+        }
+        
+        /* CTA Button */
+        .cta-button {
+            background: linear-gradient(135deg, #6366f1, #3b82f6) !important;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(99, 102, 241, 0.3) !important;
+        }
+    </style>
 </head>
 <body>
     <!-- Navigation -->
@@ -26,58 +171,55 @@
     </nav>
 
     <!-- Section Détail du Projet -->
-    <section class="project-detail">
+    <section class="project-hero">
         <div class="container">
-            <!-- En-tête du projet -->
-            <div class="project-header">
-                <a href="index.html#projets" class="back-link">← Retour aux projets</a>
-                <h1>Jeu RPG 2D en Python</h1>
-                <div class="project-meta">
-                    <p class="project-date">2026 - Projet de Terminale NSI</p>
-                    <div class="project-tags">
-                        <span class="tag">Python</span>
-                        <span class="tag">SQL</span>
-                        <span class="tag">Github</span>
-                    </div>
+            <a href="index.html#projets" class="back-button">← Retour aux projets</a>
+            <h1 class="animated-title">Jeu RPG 2D en Python</h1>
+            <p>Projet de Terminale NSI - 2026</p>
+        </div>
+    </section>
+
+    <!-- Description -->
+    <section class="project-section">
+        <div class="container">
+            <h2>À propos du projet</h2>
+            <p>Ce projet est un jeu RPG 2D développé en Python en groupe de 3 pour le cours de Numérique et Sciences Informatiques (NSI) de terminale. Le jeu combine des mécaniques classiques de RPG avec une base de données SQL pour la gestion des données des joueurs et du monde du jeu. Nous avions une limite d'un mois et demi pour le concevoir, le coder et préparer une présentation de 10 minutes évaluée qui comporte: un cahier des charges du projet, une analyse fonctionnelle et une présentation sur un support de type PowerPoint.</p>
+        </div>
+    </section>
+
+    <!-- Visuels et Explications -->
+    <section class="project-section">
+        <div class="container">
+            <h2>Visuels et Fonctionnalités</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🎮</div>
+                    <h3>Gameplay</h3>
+                    <p>Monde 2D avec système de combat au tour par tour, Amélioration des statistiques du personnage et difficulté progressive</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💾</div>
+                    <h3>Base de Données</h3>
+                    <p>Utilisation de SQL pour stocker les données des joueurs, des monsres, des armes et de la progression avec un identifiant unique par joueur.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🤝</div>
+                    <h3>Collaboration</h3>
+                    <p>Travail en équipe via GitHub avec gestion de versions et organisation des tâches</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Statistiques</h3>
+                    <p>Système complet de progression avec niveaux, expérience et amélioration de statistiques</p>
                 </div>
             </div>
+        </div>
+    </section>
 
-            <!-- Description -->
-            <div class="project-section">
-                <h2>À propos du projet</h2>
-                <p>Ce projet est un jeu RPG 2D développé en Python en groupe de 3 pour le cours de Numérique et Sciences Informatiques (NSI) de terminale. Le jeu combine des mécaniques classiques de RPG avec une base de données SQL pour la gestion des données des joueurs et du monde du jeu.</p>
-            </div>
-
-            <!-- Visuels et Explications -->
-            <div class="project-section">
-                <h2>Visuels et Fonctionnalités</h2>
-                <div class="features-grid">
-                    <div class="feature-card">
-                        <div class="feature-icon">🎮</div>
-                        <h3>Gameplay</h3>
-                        <p>Exploration d'un monde 2D avec système de combat au tour par tour et gestion d'équipe de personnages</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">💾</div>
-                        <h3>Base de Données</h3>
-                        <p>Utilisation de SQL pour stocker les données des joueurs, des monsres et de la progression</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">🤝</div>
-                        <h3>Collaboration</h3>
-                        <p>Travail en équipe via GitHub avec gestion de versions et organisation des tâches</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">📊</div>
-                        <h3>Statistiques</h3>
-                        <p>Système complet de progression avec niveaux, expérience et amélioration de statistiques</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Extraits de Code -->
-            <div class="project-section">
-                <h2>Extraits de Code</h2>
+    <!-- Extraits de Code -->
+    <section class="project-section">
+        <div class="container">
+            <h2>Extraits de Code</h2>
                 
                 <div class="code-block">
                     <h3>Système de Combat</h3>
@@ -134,48 +276,53 @@ class BDD:
         if self.exp >= 100 * self.niveau:
             self.monter_niveau()</code></pre>
                 </div>
-            </div>
+        </div>
+    </section>
 
-            <!-- Téléchargement -->
-            <div class="project-section download-section">
-                <h2>Télécharger le Projet</h2>
-                <p>Vous pouvez accéder au code source du projet sur notre dépôt GitHub ou télécharger une copie locale.</p>
-                <div class="download-buttons">
-                    <a href="#" class="download-button github-btn">
-                        <i class="fas fa-github"></i> Voir sur GitHub
-                    </a>
-                    <a href="#" class="download-button download-btn">
-                        <i class="fas fa-download"></i> Télécharger le ZIP
-                    </a>
-                </div>
-                <div class="requirements">
-                    <h3>Prérequis</h3>
-                    <ul>
-                        <li>Python 3.8 ou supérieur</li>
-                        <li>Bibliothèque Pygame (pour l'affichage graphique)</li>
-                        <li>SQLite3 (généralement inclus avec Python)</li>
-                    </ul>
-                    <h3>Installation</h3>
-                    <pre><code>pip install pygame
-python main.py</code></pre>
-                </div>
+    <!-- Téléchargement -->
+    <section class="project-section download-section">
+        <div class="container">
+            <h2>Télécharger le Projet</h2>
+            <p>Vous pouvez accéder au code source du projet sur notre dépôt GitHub ou télécharger une copie locale.</p>
+            <div class="download-buttons">
+                <a href="#" class="download-button github-btn">
+                    <i class="fas fa-github"></i> Voir sur GitHub
+                </a>
+                <a href="#" class="download-button download-btn">
+                    <i class="fas fa-download"></i> Télécharger le ZIP
+                </a>
             </div>
-
-            <!-- Apprentissages -->
-            <div class="project-section">
-                <h2>Apprentissages Clés</h2>
-                <ul class="learnings-list">
-                    <li><strong>Programmation Orientée Objet :</strong> Conception de classes pour les personnages, ennemis et systèmes de jeu</li>
-                    <li><strong>Gestion de Bases de Données :</strong> Requêtes SQL pour persister et récupérer les données de progression</li>
-                    <li><strong>Travail en Équipe :</strong> Collaboration via Git et résolution de conflits de fusion</li>
-                    <li><strong>Gestion de Projet :</strong> Planification et distribution des tâches</li>
+            <div class="requirements">
+                <h3>Prérequis</h3>
+                <ul>
+                    <li>Python 3.8 ou supérieur</li>
+                    <li>Bibliothèque Pygame (pour l'affichage graphique)</li>
+                    <li>SQLite3 (généralement inclus avec Python)</li>
                 </ul>
+                <h3>Installation</h3>
+                <pre><code>pip install pygame
+python main.py</code></pre>
             </div>
+        </div>
+    </section>
 
-            <!-- Retour -->
-            <div class="project-footer">
-                <a href="index.html#projets" class="cta-button">Retour à mes projets</a>
-            </div>
+    <!-- Apprentissages -->
+    <section class="project-section">
+        <div class="container">
+            <h2>Apprentissages Clés</h2>
+            <ul class="learnings-list">
+                <li><strong>Programmation Orientée Objet :</strong> Conception de classes pour les personnages, ennemis et systèmes de jeu</li>
+                <li><strong>Gestion de Bases de Données :</strong> Requêtes SQL pour persister et récupérer les données de progression</li>
+                <li><strong>Travail en Équipe :</strong> Collaboration via Git et résolution de conflits de fusion</li>
+                <li><strong>Gestion de Projet :</strong> Planification et distribution des tâches</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Retour -->
+    <section class="project-footer">
+        <div class="container">
+            <a href="index.html#projets" class="cta-button">Retour à mes projets</a>
         </div>
     </section>
 
