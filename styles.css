@@ -318,7 +318,9 @@ body {
 }
 
 .project-card:nth-child(2) .project-image {
-    background: url('assets/images/Map%2001_02_2026%2017_48_57.png') center/cover no-repeat;
+    background: url('assets/images/Map%2001_02_2026%2017_48_57.png') center/contain no-repeat;
+    background-color: rgba(99, 102, 241, 0.08);
+    height: 400px;
     color: #6366f1;
 }
 
