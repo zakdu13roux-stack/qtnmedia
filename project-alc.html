@@ -195,35 +195,30 @@
         .photo-box {
             width: 100%;
             max-width: 720px;
-            height: 320px;
-            border: 1px solid rgba(8, 145, 178, 0.12) !important;
+            height: auto; /* let image determine height so it's fully visible */
+            border: none !important;
             border-radius: 10px;
             overflow: hidden;
             display: block;
-            background: rgba(15, 23, 42, 0.04);
-            padding: 0;
+            background: transparent; /* fond retiré */
+            padding: 6px;
             color: #cbd5e1;
             position: relative;
         }
 
         .photo-box img {
             width: 100%;
-            height: 100%;
-            object-fit: cover;
+            height: auto; /* show full image */
+            object-fit: contain;
             display: block;
         }
 
         /* On medium+ screens arrange as two columns when there are multiple images */
         @media (min-width: 760px) {
-            .step-photos { align-items: flex-start; }
-            .step-photos .photo-box { width: calc(50% - 6px); max-width: none; }
-            /* Stagger the second photo slightly downwards for the quinconce effect */
-            .step-photos .photo-box:nth-child(2) {
-                transform: translateY(24px);
-            }
-            .step-photos .photo-box { transition: transform 0.28s ease; }
-            /* Reserve space at the bottom so staggered images don't overlap following content (buttons, links) */
-            .step-photos { margin-bottom: 28px; }
+            .step-photos { align-items: stretch; }
+            /* Stack images vertically: each photo-box takes full width */
+            .step-photos .photo-box { width: 100%; max-width: none; transform: none; }
+            .step-photos { margin-bottom: 28px; gap: 12px; flex-direction: column; }
         }
 
         @media (max-width: 640px) {
@@ -238,6 +233,60 @@
             color: #94a3b8;
             font-style: italic;
             padding: 12px 0;
+        }
+        /* Gallery grid: stylish 10-photo layout */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 16px;
+            margin-top: 18px;
+            align-items: start;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr); /* 6 equal columns */
+            gap: 10px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Flexible columns */
+            gap: 10px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* 2 columns */
+            gap: 10px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            background: #111316;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: auto; /* Preserve aspect ratio */
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Define varying sizes for the patchwork effect */
+        .gallery-item:nth-child(1) {
+            grid-column: span 2; /* Full row */
+        }
+
+        .gallery-item:nth-child(3) {
+            grid-row: span 2; /* Taller image */
+        }
+
+        .gallery-item:nth-child(5) {
+            grid-column: span 2; /* Full row */
         }
     </style>
 </head>
@@ -305,10 +354,10 @@
                     </div>
                     <div class="step-photos">
                         <div class="photo-box">
-                            <img src="assets/images/Gros Pied Tournage.jpg" alt="Initiation au tournage">
+                            <img src="assets/images/initiation_1.jpg" alt="Initiation au tournage">
                         </div>
                         <div class="photo-box">
-                            <img src="assets/images/caméra qui filme.jpg" alt="Initiation - coulisses">
+                            <img src="assets/images/initiation_2.jpg" alt="Initiation - coulisses">
                         </div>
                     </div>
                 </div>
@@ -324,10 +373,10 @@
                     </div>
                     <div class="step-photos">
                         <div class="photo-box">
-                            <img src="assets/images/caméra qui filme.jpg" alt="Scénario et préproduction">
+                            <img src="assets/images/scénarios_1.jpg" alt="Scénario et préproduction">
                         </div>
                         <div class="photo-box">
-                            <img src="assets/images/Map 01_02_2026 17_48_57.png" alt="Préprod - plan">
+                            <img src="assets/images/scénarios_2.jpg" alt="Préprod - plan">
                         </div>
                     </div>
                     <a href="scenarios-alc-2024.html" class="step-button">
@@ -338,27 +387,42 @@
                         Scénarios finaux choisis pour le festival</a>
                 </div>
 
-
-
                 <div class="step-card">
                     <div class="step-number">03</div>
-                    <h3>Post-Production, Montage & Mixage</h3>
-                    <p>Montage vidéo, étalonnage des couleurs, ajout des effets spéciaux et synchronisation audio.</p>
-                    <div class="step-tags">
-                                                <img src="assets/icons/DaVinci.webp" alt="DaVinci Resolve" class="tag-image">
-                    </div>
+                    <h3>Tournage</h3>
+                    <p>Tournage entier d'un scénario en petite équipe, condensé en un week-end.</p>
                     <div class="step-photos">
                         <div class="photo-box">
-                            <img src="assets/images/Map 01_02_2026 17_48_57.png" alt="Post-production montage">
+                            <img src="assets/images/tournage_1.jpg" alt="Tournage">
                         </div>
                         <div class="photo-box">
-                            <img src="assets/images/Gros Pied Tournage.jpg" alt="Montage - tournage">
+                            <img src="assets/images/tournage_2.jpg" alt="Tournage">
+                        </div>
+                        <div class="step-tags">
+                            <img src="assets/icons/Camera.png" alt="Camera" class="tag-image">
                         </div>
                     </div>
                 </div>
 
                 <div class="step-card">
                     <div class="step-number">04</div>
+                    <h3>Post-Production, Montage & Mixage</h3>
+                    <p>Montage vidéo, étalonnage des couleurs, ajout des effets spéciaux et synchronisation audio.</p>
+                    <div class="step-photos">
+                        <div class="photo-box">
+                            <img src="assets/images/montage_1.jpg" alt="Post-production montage">
+                        </div>
+                        <div class="photo-box">
+                            <img src="assets/images/montage_2.jpg" alt="Montage - tournage">
+                        </div>
+                        <div class="step-tags">
+                            <img src="assets/icons/DaVinci.webp" alt="DaVinci Resolve" class="tag-image">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">05</div>
                     <h3>Projection</h3>
                     <p>Les Films sous leurs formes finales sont projettés sur grand écran dans la salle des fêtes d'Artannes sur Indre, puis plus trad au cinéma "Le Générique" de Montbazon</p>
                     <div class="step-tags">
@@ -367,10 +431,10 @@
                     </div>
                     <div class="step-photos">
                         <div class="photo-box">
-                            <img src="assets/images/Gros Pied Tournage.jpg" alt="Projection finale">
+                            <img src="assets/images/gallery_1.jpg" alt="Projection finale">
                         </div>
                         <div class="photo-box">
-                            <img src="assets/images/Map 01_02_2026 17_48_57.png" alt="Projection - affiche">
+                            <img src="assets/images/gallery_2.jpg" alt="Projection - affiche">
                         </div>
                     </div>
                 </div>
@@ -384,7 +448,15 @@
             <h2>Galerie Photos</h2>
             <p class="gallery-intro">Les moments clés du tournage et de la production</p>
             <div class="gallery-grid">
-                <p class="gallery-note">Les photos sont réparties dans les étapes ci-dessus. Rendez-vous dans chaque étape pour voir les images.</p>
+                <div class="gallery-item"><img src="assets/images/gallery_1jpg.jpg" alt="Photo 1"></div>
+                <div class="gallery-item"><img src="assets/images/gallery_2.jpg" alt="Photo 2"></div>
+                <div class="gallery-item"><img src="assets/images/gallery_8.jpg" alt="Photo 8"></div>
+                <div class="gallery-item"><img src="assets/images/gallery_3.jpg" alt="Photo 3"></div>
+                <div class="gallery-item"><img src="assets/images/gallery_4.jpg" alt="Photo 4"></div>
+                <div class="gallery-item"><img src="assets/images/gallery_5.jpg" alt="Photo 5"></div>
+                <div class="gallery-item"><img src="assets/images/gallery_6.jpg" alt="Photo 6"></div>
+                <div class="gallery-item"><img src="assets/images/gallery_7.jpg" alt="Photo 7"></div>
+                <div class="gallery-item"><img src="assets/images/gallery_9.jpg" alt="Photo 9"></div>
             </div>
         </div>
     </section>
