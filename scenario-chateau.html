@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>La gloire du chateau de ma mere - Scenario</title>
+  <style>
+    :root {
+      --paper: #fbf8f2;
+      --ink: #111;
+      --muted: #4a4a4a;
+      --accent: #2b2b2b;
+      --rule: #d8d2c6;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Courier Prime", "Courier New", "Liberation Mono", monospace;
+      font-size: 12pt;
+      line-height: 1.6;
+    }
+
+    .page {
+      max-width: 8.5in;
+      margin: 0 auto;
+      padding: 1in 1.1in 1in 1.1in;
+      border-left: 1px solid var(--rule);
+      border-right: 1px solid var(--rule);
+      min-height: 11in;
+      background: linear-gradient(180deg, #fffdf8 0%, #f8f2e7 100%);
+    }
+
+    .title-page {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: 10in;
+      text-align: center;
+    }
+
+    .title-page h1 {
+      font-size: 28pt;
+      letter-spacing: 0.5px;
+      margin: 0 0 0.4in 0;
+      text-transform: uppercase;
+    }
+
+    .title-page .authors {
+      font-size: 12pt;
+      color: var(--muted);
+    }
+
+    .divider {
+      margin: 0.6in 0 0.2in 0;
+      border-top: 1px solid var(--rule);
+    }
+
+    .section-label {
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      margin: 0.4in 0 0.15in 0;
+      color: var(--accent);
+    }
+
+    .scene {
+      margin-bottom: 0.25in;
+    }
+
+    .slugline {
+      font-weight: 700;
+      text-transform: uppercase;
+      margin: 0.15in 0 0.1in 0;
+    }
+
+    .action {
+      margin: 0 0 0.12in 0;
+    }
+
+    .dialogue-block {
+      margin: 0.08in 0 0.15in 0;
+    }
+
+    .character {
+      margin-left: 2.2in;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .parenthetical {
+      margin-left: 1.8in;
+      color: var(--muted);
+    }
+
+    .dialogue {
+      margin-left: 1.2in;
+      margin-right: 1.2in;
+    }
+
+    .center-note {
+      text-align: center;
+      margin: 0.2in 0;
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    @media print {
+      body {
+        background: #fff;
+      }
+      .page {
+        border: none;
+        min-height: auto;
+        padding: 1in;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="title-page">
+      <h1>La gloire du chateau de ma mere</h1>
+      <div class="authors">De Mathieu Vanelsuwe, Ludovic Radeau, Quentin Roux et Jean-Jacques Panzani</div>
+      <div class="divider"></div>
+      <div class="center-note">Scenario</div>
+    </section>
+
+    <div class="section-label">Intro</div>
+    <p class="action">Arthur, un ado a la derive.</p>
+
+    <div class="section-label">Acte 1</div>
+
+    <article class="scene">
+      <div class="slugline">S1 - EXT. JOUR - DEVANT UNE MAISON BOURGEOISE</div>
+      <p class="action">De nos jours, plan sur une maison bourgeoise entouree d'un beau jardin, suggerant une famille aisee (les Pinon).</p>
+    </article>
+
+    <article class="scene">
+      <div class="slugline">S2 - INT. JOUR - CHAMBRE D'ARTHUR</div>
+      <p class="action">Arthur est installe devant sa console, le regard concentre et hebete. Il joue a un jeu d'aventure medieval (Zelda, Assassin's Creed...). Sa chambre est une chambre d'ado classique. Sont toujours presents sur une etagere les vestiges de ses premieres passions d'enfant : des figurines de chevaliers et le chateau fort Playmobil. Dans un coin de la piece trainent des feuilles volantes de ses cours, completement desorganisees, signe que ca ne l'interesse pas.</p>
+      <p class="action">Sa mere entre dans la chambre. Elle est decidee a lui parler. Elle ne prete plus attention a l'air amorphe et desabuse de son fils. Il passe son temps a jouer et ne s'interesse a rien d'autre. Il n'a meme pas obtenu son brevet des colleges. Malgre le desaccord avec son mari, qui aimerait l'envoyer dans une institution militaire, elle propose a Arthur d'integrer un lycee qui propose une methode originale qui devrait lui plaire mais surtout lui convenir. Elle s'assoit sur son lit et le regarde en souriant.</p>
+
+      <div class="dialogue-block">
+        <div class="character">MAMAN</div>
+        <div class="dialogue">Arthur, je peux te parler ?...(aucune reponse) Je sais que c'est complique pour toi a l'ecole en ce moment, alors on a pense t'envoyer dans une ecole ou nous pensons que tu te sentiras beaucoup mieux et a ta place ! Regarde (une brochure) "un enseignement adapte pour des eleves extraordinaires". Et ce cadre, t'en as toujours reve, non !?</div>
+      </div>
+
+      <p class="action">Il ne la regarde pas, les yeux toujours rives sur son ecran. Le pere arrive et se met dans l'encadrement de la porte.</p>
+
+      <div class="dialogue-block">
+        <div class="character">PAPA</div>
+        <div class="dialogue">ON A PENSE !? Tu veux dire TU..., TU AS PENSE ! Toi et tes idees debiles d'educations positives. Ce n'est certainement pas ce qu'il lui faut. Cet enfant a besoin de rigueur et de discipline. Certainement pas d'etre eleve avec des originaux ! Tu lui sers deja assez de modele !</div>
+      </div>
+
+      <p class="action">En entendant ces mots, Arthur lance un regard noir sur son pere. Il prend la brochure et jette un rapide coup d'oeil.</p>
+
+      <div class="dialogue-block">
+        <div class="character">ARTHUR</div>
+        <div class="dialogue">Oui, pourquoi pas ...</div>
+      </div>
+
+      <p class="action">Le visage de la mere s'illumine. Elle est contente d'avoir convaincu son fils et d'avoir rabattu le caquet de son mari. Elle referme la porte derriere elle.</p>
+
+      <div class="dialogue-block">
+        <div class="character">ARTHUR</div>
+        <div class="dialogue">Pfff, n'importe quoi ...</div>
+      </div>
+
+      <div class="center-note">Arrivee au lycee / chateau medieval</div>
+    </article>
+
+    <article class="scene">
+      <div class="slugline">S3 - EXT. JOUR - DEVANT LE CHATEAU (LYCEE)</div>
+      <p class="action">Les parents d'Arthur le deposent devant la herse (ou pont-levis) d'un chateau. Ils l'embrassent avec beaucoup de tendresse. Arthur semble toujours aussi incomprehensif.</p>
+
+      <div class="dialogue-block">
+        <div class="character">MAMAN</div>
+        <div class="dialogue">Je t'aime, mon bebe ! (Elle pleure)</div>
+      </div>
+
+      <div class="dialogue-block">
+        <div class="character">PAPA</div>
+        <div class="dialogue">Allez viens la ! (Il lui ouvre ses bras tout en gardant un air sceptique)</div>
+      </div>
+
+      <p class="action">Il s'avance vers l'entree, se retrouve au milieu d'autres eleves arrivant eux aussi. Un eleve a la coupe au bol et aussi desabuse que lui attire son attention. Des hommes en armure barrent le passage de leur lance. Une immense affiche montrant un telephone barre est collee a cote d'eux. Arthur se retourne vers ses parents. Son incomprehension devient de l'apprehension. Sa mere ferme les yeux. Les gardes ecartent leur lance pour laisser entrer les eleves.</p>
+    </article>
+
+    <article class="scene">
+      <div class="slugline">S4 - INT. JOUR - SALLE DE RECEPTION DU CHATEAU</div>
+      <p class="action">Un brouhaha s'eleve dans la salle principale du chateau. Les eleves s'observent entre eux. Il n'y a que des garcons. Plusieurs coups de maillet retentissent. Un homme a l'air severe se tient debout depuis une chaire situee en hauteur.</p>
+
+      <div class="dialogue-block">
+        <div class="character">LE SEIGNEUR DU CHATEAU</div>
+        <div class="dialogue">Silence ! Je suis Josserand de Marmoutier, seigneur du Bahut. Vous etes ici dans mon domaine et c'est desormais a moi que vous devrez allegeance. Ici, les regles sont les miennes. Ici, il n'y a plus de monde exterieur. Ici, vous etes tous mes ecuyers et si vous respectez correctement mon enseignement, vous vivrez l'extraordinaire. Je ferai de vous des Chevaliers.</div>
+      </div>
+
+      <p class="action">Arthur echange des regards interloques avec ses voisins. Il reconnait parmi eux le garcon a la coupe au bol. Ils sont invites a se diriger vers la salle des costumes afin qu'on leur remette leur nouvelle tenue.</p>
+    </article>
+
+    <article class="scene">
+      <div class="slugline">S5 - INT. NUIT - DORTOIR</div>
+      <p class="action">Arthur est allonge sur une paillasse sommaire recouverte d'un drap et entouree d'un cadre en bois. Une simple couverture le protege du froid. Sa coupe de cheveux a change. On entend en fond sonore des grelottements et des toussotements. Il parle a voix basse a son voisin a cote de qui il etait lors de la reception d'accueil.</p>
+
+      <div class="dialogue-block">
+        <div class="character">LANCE</div>
+        <div class="dialogue">Ca va, pas trop froid ? (ironique)</div>
+      </div>
+      <div class="dialogue-block">
+        <div class="character">ARTHUR</div>
+        <div class="dialogue">Si, je me les gele</div>
+      </div>
+      <div class="dialogue-block">
+        <div class="character">LANCE</div>
+        <div class="dialogue">T'es nouveaux, tu t'y feras</div>
+      </div>
+      <div class="dialogue-block">
+        <div class="character">ARTHUR</div>
+        <div class="dialogue">Ouais, pas sur</div>
+      </div>
+      <div class="dialogue-block">
+        <div class="character">LANCE</div>
+        <div class="dialogue">T'auras pas forcement le choix, tu t'appelles comment ?</div>
+      </div>
+      <div class="dialogue-block">
+        <div class="character">ARTHUR</div>
+        <div class="dialogue">Arthur, et toi ?</div>
+      </div>
+      <div class="dialogue-block">
+        <div class="character">LANCE</div>
+        <div class="dialogue">Lance.</div>
+      </div>
+      <div class="dialogue-block">
+        <div class="character">ARTHUR</div>
+        <div class="dialogue">T'as l'air de bien connaitre ce monde de dingues !</div>
+      </div>
+      <div class="dialogue-block">
+        <div class="character">LANCE</div>
+        <div class="dialogue">Oh oui !!</div>
+      </div>
+      <div class="dialogue-block">
+        <div class="character">ARTHUR</div>
+        <div class="dialogue">Et la coupe de cheveux, c'est un choix ? t'avais deja la meme quand je suis arrive...</div>
+      </div>
+      <div class="dialogue-block">
+        <div class="character">LANCE</div>
+        <div class="dialogue">Oh non ca, c'est mes parents. Ils ont toujours ete portes sur le delire medieval. L'annee derniere, on a meme fait une croisiere sur un drakkar.</div>
+      </div>
+      <div class="dialogue-block">
+        <div class="character">ARTHUR</div>
+        <div class="dialogue">Ah ouais carrement !?</div>
+      </div>
+      <div class="dialogue-block">
+        <div class="character">LANCE</div>
+        <div class="dialogue">Oui mais t'inquiete, les cheveux on s'habitue. Et puis tant que je joue leur jeu a la con, ils me prennent pas la tete.</div>
+      </div>
+      <div class="dialogue-block">
+        <div class="character">ARTHUR</div>
+        <div class="dialogue">Moi c'etait mon delire a la base, j'ai toujours aime cette epoque mais de la a y vivre, je commence un peu a regretter</div>
+      </div>
+      <div class="dialogue-block">
+        <div class="character">LANCE</div>
+        <div class="dialogue">Ah oui je vois, on t'a envoye ici pour te faire plaisir, paye le cadeau empoisonne</div>
+      </div>
+      <div class="dialogue-block">
+        <div class="character">ARTHUR</div>
+        <div class="dialogue">C'est un peu ca ouais, ils essayent de faire les parents qui evoluent avec leur temps et puis surtout ... ici, t'attends l'extraordinaire (imitant le seigneur)</div>
+      </div>
+      <div class="dialogue-block">
+        <div class="character">LANCE</div>
+        <div class="dialogue">Chacun sa croix, man ! c'est l'expression preferee de mon pere.</div>
+      </div>
+      <div class="dialogue-block">
+        <div class="character">ARTHUR</div>
+        <div class="dialogue">Le mien, c'est rigueur et discipline !</div>
+      </div>
+      <div class="dialogue-block">
+        <div class="character">LANCE</div>
+        <div class="dialogue">Ah ouais on doit bien se marrer chez toi !! Au fait, mes parents ont ete jusqu'au bout du delire. Mon vrai prenom c'est pas Lance mais Lancelot... Mais tu comprendras que je peux pas tout accepter 😉</div>
+      </div>
+
+      <p class="action">Une voix lointaine les enjoint d'arreter les messes basses. Extinction des feux. Une lourde porte se ferme en grincant.</p>
+    </article>
+
+    <div class="section-label">Acte 2</div>
+
+    <article class="scene">
+      <div class="slugline">S6 - INT. JOUR - SALLE DE CLASSE</div>
+      <p class="action">Arthur est assis par terre au milieu de ses camarades. Tous sont en tenue d'ecuyer (apprenti chevalier). Devant eux se tient le seigneur, portant un chapeau et vetu d'une longue robe de velours. Des formules mathematiques sont ecrites sur des grandes feuilles de papyrus. Il leur parle tantot en latin tantot en francais. Arthur et ses compagnons tentent difficilement de prendre des notes avec des plumes.</p>
+
+      <div class="dialogue-block">
+        <div class="character">LE SEIGNEUR</div>
+        <div class="dialogue">Corpus quodvis immersum in liquore verticali sursum sentienti, trusum aequale ponderi solidi liquoris emoti.</div>
+      </div>
+
+      <p class="action">Un boulet de 120 kg lance par un trebuchet atterrit dans les douves du chateau. Considerant la masse volumique de l'eau douce et le volume total des douves, calculez en pouce la hausse du niveau des douves.</p>
+
+      <div class="dialogue-block">
+        <div class="character">ARTHUR</div>
+        <div class="parenthetical">(a Lance)</div>
+        <div class="dialogue">Le mec est tare !</div>
+      </div>
+      <div class="dialogue-block">
+        <div class="character">LANCE</div>
+        <div class="dialogue">Je suis grave largue...</div>
+      </div>
+
+      <div class="dialogue-block">
+        <div class="character">LE SEIGNEUR</div>
+        <div class="parenthetical">(les pointant du regard)</div>
+        <div class="dialogue">Dites-moi, jeunes damoiseaux, ca vous tenterait de tester le chevalet ? On pourrait mesurer le nombre de pouces que vous allez gagner en vous ecarteleant ?</div>
+      </div>
+    </article>
+
+    <article class="scene">
+      <div class="slugline">S7 - INT. JOUR - ESCALIER DU DONJON</div>
+      <p class="action">Des eleves montent une a une les marches du donjon avec d'enormes sacs de jute sur le dos. La douleur se lit sur leur visage. Ils sont terrasses de fatigue. Lance trebuche. Arthur l'aide a se relever.</p>
+
+      <div class="dialogue-block">
+        <div class="character">LANCE</div>
+        <div class="dialogue">J'en peux plus, mec !</div>
+      </div>
+      <div class="dialogue-block">
+        <div class="character">ARTHUR</div>
+        <div class="dialogue">Releve-toi, boursemolle !</div>
+      </div>
+      <div class="dialogue-block">
+        <div class="character">LANCE</div>
+        <div class="dialogue">Ca te plait en fait !?</div>
+      </div>
+      <div class="dialogue-block">
+        <div class="character">ARTHUR</div>
+        <div class="dialogue">Non, mais c'est drole quoi... on dirait Rocky qui rentre dans le cercle des poetes disparus.</div>
+      </div>
+      <div class="dialogue-block">
+        <div class="character">LANCE</div>
+        <div class="dialogue">C'est quoi ce cercle ?</div>
+      </div>
+      <div class="dialogue-block">
+        <div class="character">ARTHUR</div>
+        <div class="dialogue">Laisse tomber, c'est pas ton epoque</div>
+      </div>
+    </article>
+
+    <article class="scene">
+      <div class="slugline">S8 - EXT. JOUR - COUR DU CHATEAU</div>
+      <p class="action">Arthur, Lance et d'autres eleves se lavent a l'eau froide. Ils sont frigorifies. Lance est a bout. Arthur resiste. Au fur et a mesure des sequences, on voit de moins en moins d'eleves...</p>
+
+      <div class="dialogue-block">
+        <div class="character">ARTHUR</div>
+        <div class="dialogue">Tu savais que l'eau froide renforce le systeme immunitaire ? C'est comme une purification !</div>
+      </div>
+      <div class="dialogue-block">
+        <div class="character">LANCE</div>
+        <div class="dialogue">Arrete, tu prends trop la confiance, mec ! Et me ressers pas tes vieux tutos du monde des vivants !</div>
+      </div>
+      <div class="dialogue-block">
+        <div class="character">ARTHUR</div>
+        <div class="dialogue">D'abord, c'est le seigneur qui nous l'a enseigne. Ensuite, je ne me suis jamais senti aussi vivant qu'ici.</div>
+      </div>
+      <div class="dialogue-block">
+        <div class="character">LANCE</div>
+        <div class="dialogue">Tu me fais peur... t'es carrement envoute ! Il a jamais aussi bien porte son nom, celui-la !</div>
+      </div>
+    </article>
+
+    <article class="scene">
+      <div class="slugline">S9 - EXT. JOUR - COUR DU CHATEAU</div>
+      <p class="action">Le jour du maniement de l'epee. Arthur s'entraine avec un camarade avec des epees (en bois ou en plastique). Les deux sont aussi temeraires l'un que l'autre. Ils se battent presque avec le sourire (genre film cape et d'epee) quand soudain un cri de douleur surgit derriere eux. Lance semble s'etre blesse assez gravement. Les combats s'arretent. Deux ecuyers plus ages arrivent en trottinant avec une civiere de fortune. Ils repassent, impassibles, avec le jeune corps ensanglante devant Arthur. Leur regard se croise. Les deux sont abasourdis.</p>
+    </article>
+
+    <div class="section-label">Acte 3</div>
+
+    <article class="scene">
+      <div class="slugline">S10 - INT. JOUR - DORTOIR</div>
+      <p class="action">Les mois ont passe. La plupart des eleves restant sont en train de s'habiller avant d'aller prendre le petit dejeuner. Quelques-uns peinent a se reveiller, accables de fatigue, d'autres ont clairement pris le pli, comme Arthur. Un autre ecuyer a pris la place de Lance sur la paillasse a cote. Soudain retentit le son puissant d'un cor (type generique Kamelott). Le seigneur arrive en courant, ordonne a tout le monde de se mettre en tenue de combat et d'aller chercher les armes. Le chateau est attaque. Branle-bas de combat...</p>
+
+      <div class="dialogue-block">
+        <div class="character">LE SEIGNEUR</div>
+        <div class="dialogue">Preparez-vous ! Le chateau est attaque ! Aux armes !</div>
+      </div>
+      <div class="dialogue-block">
+        <div class="character">ARTHUR</div>
+        <div class="dialogue">Que se passe-t-il, mon seigneur ?</div>
+      </div>
+      <div class="dialogue-block">
+        <div class="character">LE SEIGNEUR</div>
+        <div class="dialogue">Une horde est au pied du chateau ! Depechons !</div>
+      </div>
+    </article>
+
+    <article class="scene">
+      <div class="slugline">S11 - EXT. JOUR - REMPARTS</div>
+      <p class="action">Les eleves sont alignes avec differentes armes. Ils portent des casques. Les professeurs verifient les equipements et parlent aux eleves avec un langage martial. Les eleves preparent fleches, boulets, lances et autres seaux remplis d'huile bouillante. Certains se cachent derriere les meurtrieres, d'autres sont en appui entre les creneaux.</p>
+      <p class="action">En contrebas, une foule de manifestants arbore des pancartes et scande des slogans en faveur d'une education regulee, digne et accessible a tous. "Nos enfants ne sont pas des jouets !" "La dime a nos enfants" "Retourne chez Kamelott". Au milieu, on reconnait Lance criant et portant haut et fort une pancarte avec son unique bras restant : "Mais qu'est-ce qu'il y a de si extraordinaire ?".</p>
+      <p class="action">Arthur, qui a enfin trouve sa place apres tous ces mois de lutte et de sacrifice, se sent agresse par ces assaillants. Il se leve, regarde ses camarades et de son air le plus fier crie :</p>
+
+      <div class="dialogue-block">
+        <div class="character">ARTHUR</div>
+        <div class="dialogue">A l'attaque !</div>
+      </div>
+    </article>
+
+    <article class="scene">
+      <div class="slugline">S12 - INT. JOUR - CHAPELLE DU CHATEAU</div>
+      <p class="action">Arthur est agenouille tete baissee devant l'autel de la chapelle. Le seigneur place son epee sur l'epaule d'Arthur et apres une formule de circonstance rappelant son acte de bravoure, le fait chevalier.</p>
+
+      <div class="dialogue-block">
+        <div class="character">LE SEIGNEUR</div>
+        <div class="dialogue">Tu ne renieras jamais les enseignements qui t'ont ete prodigues.</div>
+        <div class="dialogue">Tu respecteras tous les faibles et t'en constitueras le defenseur.</div>
+        <div class="dialogue">Tu ne fuiras jamais devant l'ennemi.</div>
+        <div class="dialogue">Tu combattras les infideles avec acharnement.</div>
+        <div class="dialogue">Tu ne mentiras jamais et tu seras fidele a ta parole.</div>
+        <div class="dialogue">Tu seras toujours le champion du droit et du bien contre l'injustice et le mal.</div>
+        <div class="dialogue">Dans l'adversite, tu resteras digne.</div>
+      </div>
+
+      <p class="action">Arthur, au nom de notre maitre a tous, je te fais chevalier.</p>
+      <p class="action">Arthur se releve fier et digne puis se retourne. Ses camarades l'acclament. Pour la premiere fois, il se sent extraordinaire.</p>
+    </article>
+
+    <div class="section-label">Epilogue</div>
+
+    <article class="scene">
+      <div class="slugline">S13 - EXT. JOUR - DEVANT LE CHATEAU</div>
+      <p class="action">Le sejour est termine. Il sort du chateau, vetu de sa nouvelle tenue de chevalier. Il a reussi et il est fier de l'exhiber. Il regarde droit vers l'horizon et se sent enfin pret a affronter le monde.</p>
+      <p class="action">Un bus passe, roule dans une enorme flaque d'eau et l'eclabousse. Trempe jusqu'a l'os, il se met a courir derriere le bus en hurlant un cri de guerre. Il se fait rapidement distancer et s'arrete sur la chaussee. Une voiture freine violemment derriere lui et un automobiliste l'insulte puis lui crie d'aller parader ailleurs dans sa tenue de Village People !</p>
+      <p class="action">Une autre voiture lui fait des appels de phare. Ce sont ses parents qui sont venus le chercher.</p>
+    </article>
+
+    <article class="scene">
+      <div class="slugline">S14 - INT. JOUR - SALLE D'ATTENTE D'UN LYCEE</div>
+      <p class="action">Une galerie de personnages attend dans cette salle. Plusieurs sont deguises ou plutot portent leur costume d'apparat. Arthur est habille en chevalier. On distingue une Lara Croft, un moine Shaolin, une Black Widow. Mais aussi des personnes en tenue "normale", certains ayant meme ose le costume 3 pieces.</p>
+      <p class="action">Arthur apercoit Lance (en jean basket). Arthur tend la main droite a Lance et oublie que son ancien camarade ne peut plus lui repondre. Une gene s'installe faisant renaitre les souvenirs des annees passees. Lance casse le malaise ambiant.</p>
+
+      <div class="dialogue-block">
+        <div class="character">LANCE</div>
+        <div class="dialogue">Je vois que t'es devenu chevalier...</div>
+      </div>
+      <div class="dialogue-block">
+        <div class="character">ARTHUR</div>
+        <div class="dialogue">Le chemin m'a plu</div>
+      </div>
+      <div class="dialogue-block">
+        <div class="character">LANCE</div>
+        <div class="dialogue">D'autres ont l'air d'avoir vecu une aventure aussi extraordinaire...</div>
+      </div>
+      <div class="dialogue-block">
+        <div class="character">ARTHUR</div>
+        <div class="dialogue">Et toi ?</div>
+      </div>
+      <div class="dialogue-block">
+        <div class="character">LANCE</div>
+        <div class="dialogue">Moi aussi, j'ai fait mon chemin. Mais tu vois, il nous a tous mene au meme endroit.</div>
+      </div>
+      <div class="dialogue-block">
+        <div class="character">ARTHUR</div>
+        <div class="dialogue">Dans l'adversite, tu resteras digne !</div>
+      </div>
+      <div class="dialogue-block">
+        <div class="character">LANCE</div>
+        <div class="dialogue">Oh putain, il t'ont vraiment bourre le crane !</div>
+      </div>
+
+      <div class="dialogue-block">
+        <div class="character">LE PROVISEUR</div>
+        <div class="dialogue">Bonjour a tous. Eh bien, nous vla encore avec une belle brochette de heros, cette annee ! (ton ironique) Nous recherchons 3 surveillants pour cette nouvelle annee scolaire. Monsieur Pinon ?</div>
+      </div>
+
+      <p class="action">(Arthur se leve)</p>
+
+      <div class="dialogue-block">
+        <div class="character">ARTHUR</div>
+        <div class="dialogue">A vos ordres, mon seigneur !</div>
+      </div>
+
+      <div class="dialogue-block">
+        <div class="character">LE PROVISEUR</div>
+        <div class="dialogue">Suivez-moi, s'il vous plait...</div>
+      </div>
+    </article>
+  </main>
+</body>
+</html>
