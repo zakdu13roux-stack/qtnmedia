@@ -139,12 +139,6 @@
             background-clip: text !important;
         }
         
-        .tag {
-            background: rgba(8, 145, 178, 0.15) !important;
-            color: #0891b2 !important;
-            border: 1px solid rgba(8, 145, 178, 0.4) !important;
-        }
-        
         .detail-item h3 {
             background: linear-gradient(135deg, #0891b2, #16a34a) !important;
             -webkit-background-clip: text !important;
@@ -313,7 +307,7 @@
     <section class="project-hero">
         <div class="hero-content">
             <a href="index.html#projets" class="back-button">← Retour aux projets</a>
-            <h1 class="animated-title">Ici t'attend l'extraoridnaire</h1>
+            <h1 class="animated-title">Ici t'attend l'extraordinaire</h1>
             <p>Festival Au Long-Court 2024</p>
         </div>
     </section>
@@ -321,19 +315,20 @@
     <!-- Vidéo Section -->
     <section class="video-section">
         <div class="container">
-            <h2>La Vidéo</h2>
-            <div class="video-container">
-                <video controls width="100%" class="project-video">
-                    <source src="assets/videos/Gros_pied.mp4" type="video/mp4">
-                    Votre navigateur ne supporte pas la vidéo HTML5.
-                </video>
-            </div>
+              <h2>En Résumé :</h2>
             <div class="video-description">
-                <p>Création de court-métrages du scénario au montage pour le festival Au Long-Court. 
+                <p>Ce projet porte su la création de court-métrages du scénario au montage pour le festival Au Long-Court, et avec l'aide de l'association Les tontons-filmeurs. 
                     Ce projet combine la réalisation, le tournage et le montage avec d'ancien professionnels
                      du cinéma ou des personnes ayant un diplôme dans le domaine. Le but est d'initier chaque 
                      participant peut importe leur niveau de départ au monde du cinéma dans tous ses aspects.</p>
-            </div>
+                </div>          
+            <h2>Mon Court-métrage :</h2>
+        <div class="video-container">
+            <video controls width="100%" class="project-video">
+                <source src="assets/videos/Gros_pied.mp4" type="video/mp4">
+                    Votre navigateur ne supporte pas la vidéo HTML5.
+            </video>
+        </div>
         </div>
     </section>
 
@@ -344,14 +339,11 @@
             <div class="steps-grid">
 
                 <div class="step-card">
+                    <img src="assets/icons/initiation_icon.png" alt="Initiation" class="tag-in-card-top-left">
                     <div class="step-number">01</div>
                     <h3>Initiation à tous les domaines</h3>
                     <p>Apprentissage des techniques et règles de base du cinéma, de l'écriture de scénarios, du tournage
                          et du montage.</p>
-                    <div class="step-tags">
-                        <span class="tag">Réalisation</span>
-                        <span class="tag">Équipe</span>
-                    </div>
                     <div class="step-photos">
                         <div class="photo-box">
                             <img src="assets/images/initiation_1.jpg" alt="Initiation au tournage">
@@ -363,14 +355,11 @@
                 </div>
 
                 <div class="step-card">
+                    <img src="assets/icons/Scenario.png" alt="Scenario" class="tag-in-card-top-left">
                     <div class="step-number">02</div>
                     <h3>Scénario & Préproduction</h3>
-                    <p>Développement des idées à partir du thème du Festival: "Ici t'attends l'extraordinaire", 
+                    <p>Développement des idées à partir du thème du Festival: "Ici t'attend l'extraordinaire", 
                         écriture de scénarios, sélection des plus réalisables sous nos différents contraintes.</p>
-                    <div class="step-tags">
-                        <span class="tag">Écriture</span>
-                        <span class="tag">Planning</span>
-                    </div>
                     <div class="step-photos">
                         <div class="photo-box">
                             <img src="assets/images/scénarios_1.jpg" alt="Scénario et préproduction">
@@ -388,6 +377,7 @@
                 </div>
 
                 <div class="step-card">
+                    <img src="assets/icons/Camera.png" alt="Camera" class="tag-in-card-top-left">
                     <div class="step-number">03</div>
                     <h3>Tournage</h3>
                     <p>Tournage entier d'un scénario en petite équipe, condensé en un week-end.</p>
@@ -398,13 +388,11 @@
                         <div class="photo-box">
                             <img src="assets/images/tournage_2.jpg" alt="Tournage">
                         </div>
-                        <div class="step-tags">
-                            <img src="assets/icons/Camera.png" alt="Camera" class="tag-image">
-                        </div>
                     </div>
                 </div>
 
                 <div class="step-card">
+                    <img src="assets/icons/DaVinci.webp" alt="DaVinci Resolve" class="tag-in-card-top-left">
                     <div class="step-number">04</div>
                     <h3>Post-Production, Montage & Mixage</h3>
                     <p>Montage vidéo, étalonnage des couleurs, ajout des effets spéciaux et synchronisation audio.</p>
@@ -415,13 +403,11 @@
                         <div class="photo-box">
                             <img src="assets/images/montage_2.jpg" alt="Montage - tournage">
                         </div>
-                        <div class="step-tags">
-                            <img src="assets/icons/DaVinci.webp" alt="DaVinci Resolve" class="tag-image">
-                        </div>
                     </div>
                 </div>
 
                 <div class="step-card">
+                    <img src="assets/icons/Projection_icon.png" alt="Projection" class="tag-in-card-top-left">
                     <div class="step-number">05</div>
                     <h3>Projection</h3>
                     <p>Les Films sous leurs formes finales sont projettés sur grand écran dans la salle des fêtes d'Artannes sur Indre, puis plus trad au cinéma "Le Générique" de Montbazon</p>
@@ -431,13 +417,50 @@
                     </div>
                     <div class="step-photos">
                         <div class="photo-box">
-                            <img src="assets/images/gallery_1.jpg" alt="Projection finale">
-                        </div>
-                        <div class="photo-box">
-                            <img src="assets/images/gallery_2.jpg" alt="Projection - affiche">
+                            <img src="assets/images/projection_1.jpg" alt="Projection finale">
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="video-section">
+        <div class="container">
+            <h2>Les autres courts-métrages</h2>
+            <div class="video-description">
+                <p>Voici les autres courts-métrages réalisés par les autres groupes de participants au festival, 
+                    tous tournés et montés dans les mêmes conditions que le mien. Ils ont été projetés lors de la même séance que mon court-métrage.</p>
+            </div>
+            <h2>La Soupe</h2>
+            <div class="video-container">
+                <video controls width="100%" class="project-video">
+                    <source src="assets/videos/La_soupe.mp4" type="video/mp4" alt="La soupe - court métrage">
+                    Votre navigateur ne supporte pas la vidéo HTML5.
+                </video>
+            </div>
+            <h2>Ange Bleu</h2>
+            <div class="video-container">
+                <video controls width="100%" class="project-video">
+                <source src="assets/videos/Ange_Bleu.mp4" type="video/mp4" alt="Ange Bleu - court métrage">
+                    Votre navigateur ne supporte pas la vidéo HTML5.
+                </video>
+        </div>
+    </section>
+
+    <section class="video-section">
+        <div class="container">
+            <h2>Le Making Of</h2>
+            <div class="video-container">
+                <video controls width="100%" class="project-video">
+                    <source src="assets/videos/Making_of_alc.mp4" type="video/mp4">
+                    Votre navigateur ne supporte pas la vidéo HTML5.
+                </video>
+            </div>
+            <div class="video-description">
+                <p>Les Encadrants des Tontons-Filmeurs ont également créé ce making-of pour retracer la parcours
+                    des ateliers des quelques mois du projet. Il a été diffusé lors de la séance en suivant les 
+                    3 courts métrages.</p>
             </div>
         </div>
     </section>
