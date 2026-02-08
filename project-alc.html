@@ -49,6 +49,7 @@
             -webkit-text-fill-color: #ffffff !important;
             text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2) !important;
             background-clip: unset !important;
+            text-transform: none !important;
         }
         
         @media (max-width: 768px) {
@@ -130,6 +131,7 @@
             -webkit-text-fill-color: transparent !important;
             background-clip: text !important;
             font-weight: 800 !important;
+            text-transform: none !important;
         }
         
         .step-card h3 {
@@ -138,6 +140,10 @@
             -webkit-text-fill-color: transparent !important;
             background-clip: text !important;
         }
+        .step-card h3, .detail-item h3 {
+            font-size: 1.4rem !important;
+            text-transform: none !important;
+        }
         
         .detail-item h3 {
             background: linear-gradient(135deg, #0891b2, #16a34a) !important;
@@ -145,6 +151,10 @@
             -webkit-text-fill-color: transparent !important;
             background-clip: text !important;
             font-weight: 600 !important;
+            text-transform: none !important;
+        }
+        body {
+            text-transform: none !important;
         }
         
         .video-container {
@@ -317,12 +327,12 @@
         <div class="container">
               <h2>En Résumé :</h2>
             <div class="video-description">
-                <p>Ce projet porte su la création de court-métrages du scénario au montage pour le festival Au Long-Court, et avec l'aide de l'association Les tontons-filmeurs. 
-                    Ce projet combine la réalisation, le tournage et le montage avec d'ancien professionnels
+                <p>Ce projet porte sur la création de court-métrages du scénario au montage pour le festival Au Long-Court, et avec l'aide de l'association Les tontons-filmeurs. 
+                    Il combine la réalisation, le tournage et le montage avec d'ancien professionnels
                      du cinéma ou des personnes ayant un diplôme dans le domaine. Le but est d'initier chaque 
                      participant peut importe leur niveau de départ au monde du cinéma dans tous ses aspects.</p>
-                </div>          
-            <h2>Mon Court-métrage :</h2>
+            </div>          
+              <h2>Mon Court-métrage :</h2>
         <div class="video-container">
             <video controls width="100%" class="project-video">
                 <source src="assets/videos/Gros_pied.mp4" type="video/mp4">
@@ -338,25 +348,10 @@
             <h2>Les Étapes de Création</h2>
             <div class="steps-grid">
 
-                <div class="step-card">
-                    <img src="assets/icons/initiation_icon.png" alt="Initiation" class="tag-in-card-top-left">
-                    <div class="step-number">01</div>
-                    <h3>Initiation à tous les domaines</h3>
-                    <p>Apprentissage des techniques et règles de base du cinéma, de l'écriture de scénarios, du tournage
-                         et du montage.</p>
-                    <div class="step-photos">
-                        <div class="photo-box">
-                            <img src="assets/images/initiation_1.jpg" alt="Initiation au tournage">
-                        </div>
-                        <div class="photo-box">
-                            <img src="assets/images/initiation_2.jpg" alt="Initiation - coulisses">
-                        </div>
-                    </div>
-                </div>
 
                 <div class="step-card">
                     <img src="assets/icons/Scenario.png" alt="Scenario" class="tag-in-card-top-left">
-                    <div class="step-number">02</div>
+                    <div class="step-number">01</div>
                     <h3>Scénario & Préproduction</h3>
                     <p>Développement des idées à partir du thème du Festival: "Ici t'attend l'extraordinaire", 
                         écriture de scénarios, sélection des plus réalisables sous nos différents contraintes.</p>
@@ -374,6 +369,22 @@
                     <a href="scenarios-alc-2024.html" class="step-button">
                         <img src="assets/icons/Scenario.png" alt="Icône scénario" class="step-button-icon">
                         Scénarios finaux choisis pour le festival</a>
+                </div>
+
+                <div class="step-card">
+                    <img src="assets/icons/initiation_icon.png" alt="Initiation" class="tag-in-card-top-left">
+                    <div class="step-number">02</div>
+                    <h3>Initiation au Tournage & Montage</h3>
+                    <p>Apprentissage des techniques et règles de base du cinéma, du cadrage, du tournage
+                         et du montage.</p>
+                    <div class="step-photos">
+                        <div class="photo-box">
+                            <img src="assets/images/initiation_1.jpg" alt="Initiation au tournage">
+                        </div>
+                        <div class="photo-box">
+                            <img src="assets/images/initiation_2.jpg" alt="Initiation - coulisses">
+                        </div>
+                    </div>
                 </div>
 
                 <div class="step-card">
@@ -410,7 +421,7 @@
                     <img src="assets/icons/Projection_icon.png" alt="Projection" class="tag-in-card-top-left">
                     <div class="step-number">05</div>
                     <h3>Projection</h3>
-                    <p>Les Films sous leurs formes finales sont projettés sur grand écran dans la salle des fêtes d'Artannes sur Indre, puis plus trad au cinéma "Le Générique" de Montbazon</p>
+                    <p>Les films sous leurs formes finales sont projetés sur grand écran dans la salle des fêtes d'Artannes sur Indre, puis plus tard au cinéma "Le Générique" de Montbazon.</p>
                     <div class="step-tags">
                         <span class="tag">Événement</span>
                         <span class="tag">Festival</span>
@@ -430,7 +441,7 @@
             <h2>Les autres courts-métrages</h2>
             <div class="video-description">
                 <p>Voici les autres courts-métrages réalisés par les autres groupes de participants au festival, 
-                    tous tournés et montés dans les mêmes conditions que le mien. Ils ont été projetés lors de la même séance que mon court-métrage.</p>
+                    tous tournés et montés dans les mêmes conditions que le mien. Ils ont été projetés lors de la même séance.</p>
             </div>
             <h2>La Soupe</h2>
             <div class="video-container">
@@ -450,7 +461,7 @@
 
     <section class="video-section">
         <div class="container">
-            <h2>Le Making Of</h2>
+            <h2>Le Making-Of</h2>
             <div class="video-container">
                 <video controls width="100%" class="project-video">
                     <source src="assets/videos/Making_of_alc.mp4" type="video/mp4">
@@ -503,7 +514,7 @@
                 </div>
                 <div class="detail-item">
                     <h3>Rôles</h3>
-                    <p>Réalisateur, Monteur</p>
+                    <p>Scénariste, Cadreur, Perchman, Scripte, Monteur</p>
                 </div>
             </div>
         </div>
