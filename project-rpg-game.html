@@ -114,6 +114,16 @@
             font-size: 3rem;
             filter: drop-shadow(0 0 10px rgba(99, 102, 241, 0.5));
         }
+        .feature-icon img {
+            width: 130px;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+            transform: none;
+        }
+        .feature-icon img.arcade-icon {
+            width: 100px;
+        }
         
         /* Code blocks */
         .code-block {
@@ -183,7 +193,16 @@
     <section class="project-section">
         <div class="container">
             <h2>À propos du projet</h2>
-            <p>Ce projet est un jeu RPG 2D développé en Python en groupe de 3 pour le cours de Numérique et Sciences Informatiques (NSI) de terminale. Le jeu combine des mécaniques classiques de RPG avec une base de données SQL pour la gestion des données des joueurs et du monde du jeu. Nous avions une limite d'un mois et demi pour le concevoir, le coder et préparer une présentation de 10 minutes évaluée qui comporte: un cahier des charges du projet, une analyse fonctionnelle et une présentation sur un support de type PowerPoint.</p>
+            <div class="project-logo">
+                <img src="assets/images/TitleScreen.png" alt="Title Screen Logo" style="max-width:500px;display:block;height:auto;border-radius:8px;margin:0.75rem auto;">
+            </div>
+            <p>Ce projet est un jeu RPG 2D développé en Python en groupe de 3 pour le cours 
+                de Numérique et Sciences Informatiques (NSI) de terminale. Le jeu combine 
+                des mécaniques classiques de RPG avec une base de données SQL pour la gestion 
+                des données des joueurs et du monde du jeu. Nous avions une limite d'un mois et
+                 demi pour le concevoir, le coder et préparer une présentation de 10 minutes
+                  évaluée qui comporte: un cahier des charges du projet, une analyse 
+                  fonctionnelle et une présentation sur Canva.</p>
         </div>
     </section>
 
@@ -193,17 +212,23 @@
             <h2>Visuels et Fonctionnalités</h2>
             <div class="features-grid">
                 <div class="feature-card">
-                    <div class="feature-icon">🎮</div>
+                    <div class="feature-icon">
+                        <img class="arcade-icon" src="assets/icons/Arcade_python.png" alt="Arcade Python" />
+                    </div>
                     <h3>Gameplay</h3>
                     <p>Monde 2D avec système de combat au tour par tour, Amélioration des statistiques du personnage et difficulté progressive</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">💾</div>
+                    <div class="feature-icon">
+                        <img class="sql-icon" src="assets/icons/SQL.png" alt="SQL">
+                    </div>
                     <h3>Base de Données</h3>
                     <p>Utilisation de SQL pour stocker les données des joueurs, des monsres, des armes et de la progression avec un identifiant unique par joueur.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">🤝</div>
+                    <div class="feature-icon">
+                        <img class="github-icon" src="assets/icons/GitHub-Logo.png" alt="GitHub">
+                    </div>
                     <h3>Collaboration</h3>
                     <p>Travail en équipe via GitHub avec gestion de versions et organisation des tâches</p>
                 </div>
@@ -293,12 +318,16 @@ class BDD:
                 <h3>Prérequis</h3>
                 <ul>
                     <li>Python 3.8 ou supérieur</li>
-                    <li>Bibliothèque Pygame (pour l'affichage graphique)</li>
-                    <li>SQLite3 (généralement inclus avec Python)</li>
+                    <li>Bibliothèque Python Arcade (pour l'affichage graphique)</li>
+                    <li>MySQL (pour la gestion de la base de données)</li>
                 </ul>
-                <h3>Installation</h3>
-                <pre><code>pip install pygame
-python main.py</code></pre>
+                <h3>Installation dans l'invite de commandes :</h3>
+                <pre><code>pip install arcade
+pip install mysql-connector-python </code></pre>
+                <h3>Pour lancer le jeu :</h3>
+                <pre><code>Exécutez le script check_db.py pour initialiser 
+la base de données
+Lancez Main.py pour démarrer le jeu.</code></pre>
             </div>
         </div>
     </section>
