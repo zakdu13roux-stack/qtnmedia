@@ -159,6 +159,58 @@
             transform: translateY(-3px);
             box-shadow: 0 10px 25px rgba(99, 102, 241, 0.3) !important;
         }
+        
+        /* Responsive Images */
+        .project-logo img {
+            max-width: 100%;
+            width: 100%;
+            height: auto !important;
+        }
+        
+        @media (max-width: 768px) {
+            .project-logo img {
+                max-width: 90%;
+            }
+            
+            .feature-icon img {
+                width: 80px !important;
+            }
+            
+            .feature-icon img.arcade-icon {
+                width: 70px !important;
+            }
+            
+            .project-hero p {
+                font-size: 1rem !important;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr !important;
+            }
+            
+            .download-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .download-button, .cta-button {
+                width: 100%;
+                max-width: 300px;
+            }
+            
+            .code-block {
+                overflow-x: auto;
+            }
+            
+            .code-block pre {
+                font-size: 0.7rem;
+                overflow-x: auto;
+            }
+            
+            .code-block h3 {
+                font-size: 1.1rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -194,7 +246,7 @@
         <div class="container">
             <h2>À propos du projet</h2>
             <div class="project-logo">
-                <img src="assets/images/TitleScreen.png" alt="Title Screen Logo" style="max-width:500px;display:block;height:auto;border-radius:8px;margin:0.75rem auto;">
+                <img src="assets/images/TitleScreen.png" alt="Title Screen Logo">
             </div>
             <p>Ce projet est un jeu RPG 2D développé en Python en groupe de 3 pour le cours 
                 de Numérique et Sciences Informatiques (NSI) de terminale. Le jeu combine 
