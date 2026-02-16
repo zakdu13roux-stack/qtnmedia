@@ -211,6 +211,68 @@
                 font-size: 1.1rem;
             }
         }
+
+        /* Gallery Section */
+        .gallery-section {
+            padding: 10px 0;
+            background: rgba(15, 23, 42, 0.04);
+        }
+
+        .gallery-section h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 0.25rem;
+            background: linear-gradient(135deg, #6366f1, #3b82f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .gallery-intro {
+            text-align: center;
+            color: #94a3b8;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3px;
+            grid-auto-rows: auto;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            background: transparent;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 768px) {
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .gallery-item video {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
     </style>
 </head>
 <body>
@@ -299,59 +361,328 @@
             <h2>Extraits de Code</h2>
                 
                 <div class="code-block">
-                    <h3>Système de Combat</h3>
-                    <pre><code>class Combat:
-    def __init__(self, joueur, ennemi):
-        self.joueur = joueur
-        self.ennemi = ennemi
-        self.tour_joueur = True
+                    <h3>Gestion de la Base de Données</h3>
+                    <pre><code>class checkDB :
+
+import mysql.connector
+import os
+
+def createDB():
+    """
+    Supprime la base de données si elle existe, puis la recrée avec les tables.
+    """
+    mydb = mysql.connector.connect(
+      host="localhost",
+      user="root",
+    )
+
+    mycursor = mydb.cursor()
+
+    mycursor.execute("SHOW DATABASES")
+
+
+    dbPresent = False
+    for base in mycursor:
+        if base[0] == "testosterone":
+            dbPresent = True
+
+
+    if dbPresent:
+        mycursor.execute("DROP DATABASE testosterone")
+        print("Base de données supprimée.")
     
-    def attaquer(self, degats):
-        if self.tour_joueur:
-            self.ennemi.pv -= degats
-            self.tour_joueur = False
-        else:
-            self.joueur.pv -= self.ennemi.attaque()
-            self.tour_joueur = True
     
-    def est_termine(self):
-        return self.joueur.pv <= 0 or self.ennemi.pv <= 0</code></pre>
+    mycursor.execute("CREATE DATABASE testosterone")
+    print("Base de données créée.")
+    mydb = mysql.connector.connect(
+      host="localhost",
+      user="root",
+      database="testosterone"
+    )
+    mycursor = mydb.cursor()
+
+    with open(os.path.join(os.path.dirname(__file__), 'testosterone.sql'), 'r', encoding='utf-8') as f:
+        sql = f.read()
+        try:
+            # Diviser les requêtes par point-virgule et les exécuter une par une
+            for query in sql.split(';'):
+                query = query.strip()
+                if query:
+                    mycursor.execute(query)
+            print("Tables créées avec succès.")
+        except mysql.connector.Error as e:
+            print(f"Erreur lors de l'exécution du script SQL : {e}")
+            return False
+    
+    mydb.commit()
+    return False
+
+if __name__ == '__main__':
+    result = createDB()
+    print("Terminé.")</code></pre>
                 </div>
 
                 <div class="code-block">
-                    <h3>Gestion de la Base de Données</h3>
-                    <pre><code>import sqlite3
-
-class BDD:
-    def __init__(self):
-        self.connexion = sqlite3.connect('rpg_game.db')
-        self.curseur = self.connexion.cursor()
-    
-    def sauvegarder_joueur(self, joueur):
-        self.curseur.execute("""
-            INSERT INTO joueurs (nom, niveau, exp, pv)
-            VALUES (?, ?, ?, ?)
-        """, (joueur.nom, joueur.niveau, joueur.exp, joueur.pv))
-        self.connexion.commit()</code></pre>
+                    <h3>Zones de Combat</h3>
+                    <pre><code>class FightScene :
+           for i in range(self.nbEnemies):
+            if self.AllEnemy.GetAllEnnemies()[i][0] == "Singe":
+                self.ennemies[i] = [self.AllEnemy.ennemies[i],
+                                    arcade.Sprite(os.path.join(os.path.dirname(__file__), "..", "Images", "banana.png"), scale=0.5),
+                                    False]
+            elif self.AllEnemy.GetAllEnnemies()[i][0] == "Araignee":
+                self.ennemies[i] = [self.AllEnemy.ennemies[i],
+                                    arcade.Sprite(os.path.join(os.path.dirname(__file__), "..", "Images", "spider.png"), scale=0.06),
+                                    False]
+            elif self.AllEnemy.GetAllEnnemies()[i][0] == "Gorille":
+                self.ennemies[i] = [self.AllEnemy.ennemies[i],
+                                    arcade.Sprite(os.path.join(os.path.dirname(__file__), "..", "Images", "gorilla.png"), scale=0.4),
+                                    False]
+            elif self.AllEnemy.GetAllEnnemies()[i][0] == "Oazo":
+                self.ennemies[i] = [self.AllEnemy.ennemies[i],
+                                    arcade.Sprite(os.path.join(os.path.dirname(__file__), "..", "Images", "ouaso.png"), scale=0.4),
+                                    False]
+            elif self.AllEnemy.GetAllEnnemies()[i][0] == "Gro-oazo":
+                self.ennemies[i] = [self.AllEnemy.ennemies[i],
+                                    arcade.Sprite(os.path.join(os.path.dirname(__file__), "..", "Images", "groazo.png"), scale=0.6),
+                                    False]
+            elif self.AllEnemy.GetAllEnnemies()[i][0] == "Ours":
+                self.ennemies[i] = [self.AllEnemy.ennemies[i],
+                                    arcade.Sprite(os.path.join(os.path.dirname(__file__), "..", "Images", "ours.png"), scale=0.4),
+                                    False]</code></pre>
                 </div>
 
                 <div class="code-block">
                     <h3>Système de Personnages</h3>
-                    <pre><code>class Personnage:
-    def __init__(self, nom, classe, niveau=1):
-        self.nom = nom
-        self.classe = classe
-        self.niveau = niveau
-        self.pv_max = 100 * niveau
-        self.pv = self.pv_max
-        self.attaque = 10 + (5 * niveau)
-        self.defense = 5 + (2 * niveau)
-        self.exp = 0
-    
-    def gagner_exp(self, montant):
-        self.exp += montant
-        if self.exp >= 100 * self.niveau:
-            self.monter_niveau()</code></pre>
+                    <pre><code>class PlayerStats :
+    """
+Description:
+    Accès et mise à jour des statistiques du joueur dans la base.
+Entrées:
+    Aucune.
+Sorties:
+    Aucune.
+"""
+
+import mysql.connector
+import uuid
+import os
+import ast
+
+db = mysql.connector.connect(
+  host="localhost",
+  user="root",
+  database="testosterone"
+)
+cursor = db.cursor()
+
+
+def get_computer_uuid(curseur):
+    """
+    Description:
+        Récupère ou génère l'UUID unique de la machine.
+    Entrées:
+        curseur: curseur de la base de données.
+    Sorties:
+        str: UUID du joueur.
+    """
+    UUID_FILE = "game_uuid.txt"
+    if os.path.exists(UUID_FILE):
+        with open(UUID_FILE, "r") as f:
+            return f.read().strip()
+    else:
+        Ids = curseur.execute("Select playerID From players")
+        new_uuid = str(uuid.uuid4())
+        if Ids != None:
+            while new_uuid in Ids:
+                new_uuid = str(uuid.uuid4())
+        with open(UUID_FILE, "w") as f:
+            f.write(new_uuid)
+        return new_uuid
+
+uuid = get_computer_uuid(cursor)
+
+
+def OG(curseur,id):
+    """
+    Description:
+        Vérifie l'existence du joueur et l'enregistre si besoin.
+    Entrées:
+        curseur: curseur de la base de données.
+        id: UUID du joueur.
+    Sorties:
+        Aucune.
+    """
+    curseur.execute(f"Select PlayerID From players Where PlayerID = '{id}'")
+    if curseur.fetchall() == []:
+        SignIn(curseur,id)
+        print("Player inserted in database.")
+    else:
+        print("Player already in database.")
+
+def SignIn(curseur, id):
+    """
+    Description:
+        Enregistre un nouveau joueur dans la base.
+    Entrées:
+        curseur: curseur de la base de données.
+        id: UUID du joueur.
+    Sorties:
+        Aucune.
+    """
+    Nom = str()
+    MDP = str()
+    while len(Nom)<1 or len(Nom)>10:
+        Nom = str(input("Quel nom choisissez vous? (Entre 1 et 10 characters) "))
+    while len(MDP)<5 or len(MDP)>30:
+        MDP = str(input("Votre mot de passe?🤫 (Entre 5 et 30 characters) "))
+    curseur.execute(f"Insert Into players (PlayerID,Name,MDP) Values ('{id}','{Nom}','{MDP}')")
+    db.commit()
+
+def GetLife():
+    """
+    Description:
+        Donne la vie actuelle du joueur.
+    Entrées:
+        Aucune.
+    Sorties:
+        int: points de vie.
+    """
+    cursor.execute(f"Select Vie From players Where PlayerID = '{uuid}'")
+    return cursor.fetchall()[0][0]
+def AddLife(vie):
+    """
+    Description:
+        Ajoute de la vie au joueur en base.
+    Entrées:
+        vie: quantité de vie à ajouter.
+    Sorties:
+        Aucune.
+    """
+    cursor.execute(f"Update players Set Vie = Vie+{vie} Where PlayerID = '{uuid}'")
+    db.commit()
+
+def GetAtk():
+    """
+    Description:
+        Donne l'attaque de base du joueur.
+    Entrées:
+        Aucune.
+    Sorties:
+        int: valeur d'attaque.
+    """
+    cursor.execute(f"Select AtkDeBase From players Where PlayerID = '{uuid}'")
+    return cursor.fetchall()[0][0]
+def AddAtk(dg):
+    """
+    Description:
+        Ajoute de l'attaque au joueur en base.
+    Entrées:
+        dg: quantité d'attaque à ajouter.
+    Sorties:
+        Aucune.
+    """
+    cursor.execute(f"Update players Set AtkDeBase = AtkDeBase+{dg} Where PlayerID = '{uuid}'")
+    db.commit()
+	
+	++
+	
+	
+def GetArgent():
+    """
+    Description:
+        Donne l'argent du joueur.
+    Entrées:
+        Aucune.
+    Sorties:
+        int: argent du joueur.
+    """
+    cursor.execute(f"Select Argent From players Where PlayerID = '{uuid}'")
+    return cursor.fetchall()[0][0]
+def AddArgent(arg):
+    """
+    Description:
+        Ajoute de l'argent au joueur en base.
+    Entrées:
+        arg: quantité d'argent.
+    Sorties:
+        Aucune.
+    """
+    cursor.execute(f"Update players Set Argent = Argent+{arg} Where PlayerID = '{uuid}'")
+    db.commit()
+
+def GetName():
+    """
+    Description:
+        Donne le nom du joueur.
+    Entrées:
+        Aucune.
+    Sorties:
+        str: nom du joueur.
+    """
+    cursor.execute(f"Select Name From players Where PlayerID = '{uuid}'")
+    return cursor.fetchall()[0][0]
+	
+def GetVolume():
+    """
+    Description:
+        Donne le volume enregistré.
+    Entrées:
+        Aucune.
+    Sorties:
+        float: volume.
+    """
+    cursor.execute(f"Select Volume From players Where PlayerID = '{uuid}'")
+    return cursor.fetchall()[0][0]
+def ChangeVolume(vol):
+    """
+    Description:
+        Met à jour le volume en base.
+    Entrées:
+        vol: nouveau volume.
+    Sorties:
+        Aucune.
+    """
+    cursor.execute(f"Update players Set Volume = {vol} Where PlayerID = '{uuid}'")
+    db.commit()
+
+def GetItems():
+    """
+    Description:
+        Donne les armes enregistrées.
+    Entrées:
+        Aucune.
+    Sorties:
+        List: Armes.
+    """
+    cursor.execute(f"Select Weapons From players Where PlayerID = '{uuid}'")
+    return ast.literal_eval(cursor.fetchall()[0][0])
+
+def GiveItem(item,x,y):
+    """
+    Description:
+        Met à jour les armes.
+    Entrées:
+        item: l'objet donné.
+        x: la coordonnée x
+        y: la coordonnée y
+    Sorties:
+        Aucune.
+    """
+    itms=GetItems()
+    if item==0:
+        if itms[y][x]==3:
+            itms[0][x],itms[1][x] = 0,0
+        else:
+            itms[y][x]=0
+    elif item==3:
+        itms[0][x],itms[1][x] = 3,3
+    elif itms[y][x]==0:
+        itms[y][x]=item
+    if itms!=GetItems():
+        cursor.execute(f"Update players Set Weapons = '{itms}' Where PlayerID = '{uuid}'")
+        db.commit()
+</code></pre>
                 </div>
         </div>
     </section>
@@ -363,7 +694,7 @@ class BDD:
             <p>Vous pouvez accéder au code source du projet sur notre dépôt GitHub.</p>
             <div class="download-buttons">
                 <a href="https://github.com/zakdu13roux-stack/RPGproject/tree/refactor" class="download-button github-btn" target="_blank">
-                    <i class="fas fa-github"></i> Voir sur GitHub
+                    <i class="fas fa-github"></i>Voir sur GitHub
                 </a>
             </div>
             <div class="requirements">
@@ -375,7 +706,7 @@ class BDD:
                 </ul>
                 <h3>Installation dans l'invite de commandes :</h3>
                 <pre><code>pip install arcade
-pip install mysql-connector-python </code></pre>
+pip install mysql.connector </code></pre>
                 <h3>Pour lancer le jeu :</h3>
                 <pre><code>Exécutez le script check_db.py pour initialiser 
 la base de données
@@ -389,11 +720,29 @@ Lancez Main.py pour démarrer le jeu.</code></pre>
         <div class="container">
             <h2>Apprentissages Clés</h2>
             <ul class="learnings-list">
-                <li><strong>Programmation Orientée Objet :</strong> Conception de classes pour les personnages, ennemis et systèmes de jeu</li>
-                <li><strong>Gestion de Bases de Données :</strong> Requêtes SQL pour persister et récupérer les données de progression</li>
+                <li><strong>Programmation Orientée Objet :</strong> Conception de classes tous les systèmes de jeu, notamment obligatoire pour la bibliothèque Arcade</li>
+                <li><strong>Gestion de Bases de Données :</strong> Requêtes SQL pour récupérer les données de progression</li>
                 <li><strong>Travail en Équipe :</strong> Collaboration via Git et résolution de conflits de fusion</li>
                 <li><strong>Gestion de Projet :</strong> Planification et distribution des tâches</li>
             </ul>
+        </div>
+    </section>
+
+    <!-- Galerie Photos -->
+    <section class="gallery-section">
+        <div class="container">
+            <h2>Galerie Photos</h2>
+            <p class="gallery-intro">Captures d'écran et moments du développement</p>
+            <div class="gallery-grid">
+                <div class="gallery-item"><img src="assets/images/Spawn.PNG" alt="Photo 1"></div>
+                <div class="gallery-item"><img src="assets/images/volume.PNG" alt="Photo 2"></div>
+                <div class="gallery-item"><img src="assets/images/Shop_1.PNG" alt="Photo 8"></div>
+                <div class="gallery-item"><img src="assets/images/shop_2.PNG" alt="Photo 3"></div>
+                <div class="gallery-item"><img src="assets/images/Fightscene.PNG" alt="Photo 4"></div>
+                <div class="gallery-item"><img src="assets/images/Bonus_lvl.PNG" alt="Photo 6"></div>
+                <div class="gallery-item"><img src="assets/images/map.jpg" alt="Photo 5"></div>
+                <div class="gallery-item"><video src="assets/images/video_game.mp4" muted controls id="galleryVideo"></video></div>
+            </div>
         </div>
     </section>
 
@@ -412,5 +761,14 @@ Lancez Main.py pour démarrer le jeu.</code></pre>
     </footer>
 
     <script src="script.js"></script>
+    <script>
+        const galleryVideo = document.getElementById('galleryVideo');
+        if (galleryVideo) {
+            galleryVideo.addEventListener('volumechange', () => {
+                galleryVideo.muted = true;
+                galleryVideo.volume = 0;
+            });
+        }
+    </script>
 </body>
 </html>
