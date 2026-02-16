@@ -110,6 +110,96 @@
       font-style: italic;
     }
 
+    @media (max-width: 768px) {
+      .page {
+        max-width: 100%;
+        padding: 1rem 1rem;
+        border: none;
+        margin: 0;
+      }
+
+      body {
+        font-size: 11pt;
+      }
+
+      .title-page {
+        min-height: auto;
+        padding: 2rem 0;
+      }
+
+      .title-page h1 {
+        font-size: 18pt;
+        margin: 0 0 1rem 0;
+      }
+
+      .title-page .subtitle {
+        font-size: 10pt;
+      }
+
+      .divider {
+        margin: 1rem 0 0.5rem 0;
+      }
+
+      .section-label {
+        font-size: 12pt;
+        font-weight: 700;
+        margin: 1.5rem 0 0.5rem 0;
+      }
+
+      .scene {
+        margin-bottom: 1rem;
+      }
+
+      .slugline {
+        font-size: 11pt;
+        font-weight: 700;
+        margin: 1rem 0 0.5rem 0;
+      }
+
+      .character {
+        margin-left: auto;
+        margin-right: auto;
+        width: 80%;
+        text-align: center;
+        font-size: 11pt;
+        font-weight: 700;
+        margin-bottom: 0.25rem;
+      }
+
+      .parenthetical {
+        margin-left: auto;
+        margin-right: auto;
+        width: 80%;
+        text-align: center;
+        font-size: 10pt;
+        color: var(--muted);
+        margin-bottom: 0.25rem;
+      }
+
+      .dialogue {
+        margin-left: auto;
+        margin-right: auto;
+        width: 90%;
+        font-size: 11pt;
+      }
+
+      .dialogue-block {
+        margin: 0.5rem 0;
+      }
+
+      .action {
+        font-size: 11pt;
+        margin: 0 0 0.75rem 0;
+        line-height: 1.5;
+      }
+
+      .center-note {
+        font-size: 11pt;
+        text-align: center;
+        margin: 1rem 0;
+      }
+    }
+
     @media print {
       body {
         background: #fff;
