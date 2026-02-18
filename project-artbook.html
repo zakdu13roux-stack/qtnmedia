@@ -97,31 +97,77 @@
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
-            gap: 1rem;
-            margin: 2rem 0;
-            padding: 0 1rem;
+            gap: 0.8rem;
+            margin: 3rem 0 2.5rem 0;
+            padding: 2rem;
+            background: linear-gradient(135deg, rgba(167, 139, 250, 0.08), rgba(99, 102, 241, 0.08));
+            border-radius: 20px;
+            border: 2px solid rgba(167, 139, 250, 0.25);
         }
 
         .category-tab {
-            padding: 0.8rem 1.5rem;
-            border: 2px solid rgba(167, 139, 250, 0.5);
-            background: rgba(167, 139, 250, 0.1);
-            color: #e2e8f0;
-            border-radius: 8px;
+            padding: 0.9rem 1.8rem;
+            border: 2px solid rgba(167, 139, 250, 0.4);
+            background: rgba(167, 139, 250, 0.08);
+            color: #a78bfa;
+            border-radius: 50px;
             cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s ease;
+            font-weight: 700;
+            font-size: 0.95rem;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+            overflow: hidden;
+            text-transform: capitalize;
+            letter-spacing: 0.8px;
+            white-space: nowrap;
+        }
+
+        .category-tab::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(167, 139, 250, 0.3), rgba(99, 102, 241, 0.2));
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            border-radius: 50px;
         }
 
         .category-tab:hover {
-            background: rgba(167, 139, 250, 0.3);
             border-color: rgba(167, 139, 250, 0.8);
+            color: #ffffff;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(167, 139, 250, 0.3);
+        }
+
+        .category-tab:hover::before {
+            opacity: 1;
         }
 
         .category-tab.active {
-            background: rgba(167, 139, 250, 0.5);
-            border-color: rgba(167, 139, 250, 1);
-            box-shadow: 0 4px 12px rgba(167, 139, 250, 0.4);
+            background: linear-gradient(135deg, #a78bfa 0%, #6366f1 100%);
+            border-color: #a78bfa;
+            color: #ffffff;
+            box-shadow: 0 8px 25px rgba(167, 139, 250, 0.5), 0 0 20px rgba(167, 139, 250, 0.3);
+            transform: translateY(-4px) scale(1.08);
+        }
+
+        .category-tab.active::before {
+            opacity: 1;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
+        }
+
+        @keyframes buttonPulse {
+            0% {
+                transform: scale(0.95);
+                opacity: 0.8;
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
         }
 
         /* Gallery Section */
@@ -130,30 +176,16 @@
             background: rgba(15, 23, 42, 0.04);
         }
 
-        /* Book Display */
+        /* Mosaic Gallery Display */
         .book-display {
-            display: flex;
-            gap: 1.5rem;
-            min-height: 900px;
-            align-items: stretch;
-            justify-content: center;
+            display: grid;
+            grid-template-columns: 1fr;
+            width: 100%;
+            gap: 0;
         }
 
         .book-category-nav-button {
-            background: rgba(167, 139, 250, 0.3);
-            color: #a78bfa;
-            border: 2px solid rgba(167, 139, 250, 0.6);
-            width: 50px;
-            height: 50px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 1.5rem;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            align-self: center;
+            display: none;
         }
 
         .book-category-nav-button:hover:not(:disabled) {
@@ -167,55 +199,816 @@
             cursor: not-allowed;
         }
 
+        /* Masonry Grid Layout */
         .book-category {
-            flex: 0 1 auto;
-            max-width: 95%;
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1rem;
+            padding: 2rem;
+            background: linear-gradient(135deg, rgba(167, 139, 250, 0.03) 0%, rgba(99, 102, 241, 0.03) 100%);
+            border-radius: 12px;
+            border: 2px solid rgba(167, 139, 250, 0.2);
+            animation: galleryFadeIn 0.6s ease-out;
+        }
+
+        /* Style pour "Tous les dessins" - original purple */
+        .book-category.category-all {
+            background: linear-gradient(135deg, rgba(167, 139, 250, 0.03) 0%, rgba(99, 102, 241, 0.03) 100%);
+            border-color: rgba(167, 139, 250, 0.2);
+        }
+
+        .book-category.category-all .book-image-item {
+            box-shadow: 0 4px 15px rgba(167, 139, 250, 0.15);
+        }
+
+        .book-category.category-all .book-image-item:hover {
+            box-shadow: 0 12px 30px rgba(167, 139, 250, 0.25);
+        }
+
+        /* ===== MANGA - Style Audacieux Orange ===== */
+        .book-category.category-manga {
+            background: linear-gradient(135deg, rgba(249, 115, 22, 0.15) 0%, rgba(245, 158, 11, 0.12) 100%);
+            border: 3px solid rgba(249, 115, 22, 0.4);
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .book-category.category-manga::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(249, 115, 22, 0.05) 2px, rgba(249, 115, 22, 0.05) 4px);
+            pointer-events: none;
+        }
+
+        .book-category.category-manga .book-image-item {
+            border: 2px solid rgba(249, 115, 22, 0.5);
+            box-shadow: 
+                0 0 0 1px rgba(249, 115, 22, 0.2),
+                0 8px 20px rgba(249, 115, 22, 0.2),
+                inset 0 0 0 1px rgba(249, 115, 22, 0.1);
+            background: linear-gradient(135deg, #fff8f3, #fffbf0);
+        }
+
+        .book-category.category-manga .book-image-item:hover {
+            transform: translateY(-8px) rotate(1deg);
+            box-shadow: 
+                0 0 0 2px rgba(249, 115, 22, 0.4),
+                0 15px 40px rgba(249, 115, 22, 0.3),
+                inset 0 0 20px rgba(249, 115, 22, 0.15);
+            border-color: rgba(249, 115, 22, 0.8);
+        }
+
+        /* ===== COMPOSITIONS - Style Minimaliste Bleu ===== */
+        .book-category.category-compositions {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.08) 0%, rgba(96, 165, 250, 0.05) 100%);
+            border: 1px solid rgba(59, 130, 246, 0.4);
+            border-radius: 8px;
+            padding: 3rem 2rem;
+        }
+
+        .book-category.category-compositions .book-image-item {
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            box-shadow: 0 2px 8px rgba(59, 130, 246, 0.1);
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 4px;
+        }
+
+        .book-category.category-compositions .book-image-item:hover {
+            border-color: rgba(59, 130, 246, 0.8);
+            box-shadow: 
+                0 8px 24px rgba(59, 130, 246, 0.2),
+                0 0 0 1px rgba(59, 130, 246, 0.5) inset;
+            transform: scale(1.03);
+            background: rgba(255, 255, 255, 0.95);
+        }
+
+        /* ===== NOIR-BLANC - Style Sombre et Dramatique ===== */
+        .book-category.category-noir-blanc {
+            background: linear-gradient(135deg, rgba(20, 25, 35, 0.4) 0%, rgba(35, 45, 60, 0.3) 100%);
+            border: 2px solid rgba(100, 116, 139, 0.6);
+            border-radius: 0;
+        }
+
+        .book-category.category-noir-blanc .book-image-item {
+            border: 1px solid rgba(71, 85, 105, 0.7);
+            box-shadow: 
+                0 10px 30px rgba(0, 0, 0, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            background: linear-gradient(135deg, #1e293b, #0f172a);
+        }
+
+        .book-category.category-noir-blanc .book-image-item:hover {
+            border-color: rgba(148, 163, 184, 0.8);
+            box-shadow: 
+                0 15px 40px rgba(0, 0, 0, 0.6),
+                0 0 1px rgba(148, 163, 184, 0.5) inset;
+            transform: translateY(-6px) scale(1.02);
+            background: linear-gradient(135deg, #0f172a, #0f172a);
+            filter: brightness(1.1);
+        }
+
+        /* ===== INKTOBER - Style Artistique Vibrant ===== */
+        .book-category.category-inktober {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.2) 0%, rgba(168, 85, 247, 0.15) 100%);
+            border: 3px dashed rgba(139, 92, 246, 0.5);
+            border-radius: 12px;
+            position: relative;
+        }
+
+        .book-category.category-inktober::after {
+            content: '✨ Inktober ✨';
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 0.8rem;
+            color: rgba(139, 92, 246, 0.3);
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .book-category.category-inktober .book-image-item {
+            border: 2px solid rgba(139, 92, 246, 0.6);
+            box-shadow: 
+                0 0 0 2px rgba(139, 92, 246, 0.2),
+                0 8px 20px rgba(139, 92, 246, 0.25),
+                0 0 20px rgba(168, 85, 247, 0.1);
+            background: linear-gradient(135deg, #f5f3ff, #faf5ff);
+            position: relative;
+        }
+
+        .book-category.category-inktober .book-image-item::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 2px,
+                rgba(139, 92, 246, 0.02) 2px,
+                rgba(139, 92, 246, 0.02) 4px
+            );
+            pointer-events: none;
+        }
+
+        .book-category.category-inktober .book-image-item:hover {
+            transform: translateY(-10px) rotate(-2deg);
+            border-color: rgba(139, 92, 246, 0.9);
+            box-shadow: 
+                0 0 0 3px rgba(139, 92, 246, 0.4),
+                0 15px 40px rgba(139, 92, 246, 0.35),
+                0 0 30px rgba(168, 85, 247, 0.2);
+        }
+
+        /* ===== REFERENCES - Style Moderne et Clean ===== */
+        .book-category.category-references {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(52, 211, 153, 0.08) 100%);
+            border: 2px solid rgba(16, 185, 129, 0.4);
+            border-radius: 24px;
+            position: relative;
+        }
+
+        .book-category.category-references::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(16, 185, 129, 0.6), transparent);
+        }
+
+        .book-category.category-references .book-image-item {
+            border: 1px solid rgba(16, 185, 129, 0.4);
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.12);
+            background: rgba(240, 253, 250, 0.7);
+            border-radius: 12px;
+        }
+
+        .book-category.category-references .book-image-item:hover {
+            border-color: rgba(16, 185, 129, 0.8);
+            box-shadow: 
+                0 12px 30px rgba(16, 185, 129, 0.2),
+                0 0 0 2px rgba(16, 185, 129, 0.1) inset;
+            transform: translateY(-8px);
+            background: rgba(240, 253, 250, 0.95);
+        }
+
+        @media (max-width: 1400px) {
+            .book-category {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        @media (max-width: 1000px) {
+            .book-category {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .book-category {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .book-category {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Masonry items - dynamisme en hauteur */
+        .book-image-item {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(167, 139, 250, 0.15);
+            transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+            background: white;
+            position: relative;
             display: flex;
             flex-direction: column;
-            gap: 1.5rem;
-            overflow-y: auto;
-            padding: 0.5rem;
-            border-radius: 12px;
-            background: rgba(167, 139, 250, 0.05);
-            border: 2px solid rgba(167, 139, 250, 0.3);
+            cursor: pointer;
+            height: fit-content;
         }
 
-        .book-category::-webkit-scrollbar {
-            width: 8px;
+        /* Certaines images plus hautes pour le dynamisme */
+        .book-image-item:nth-child(4n+1) .book-image-wrapper {
+            min-height: 320px;
         }
 
-        .book-category::-webkit-scrollbar-track {
-            background: rgba(167, 139, 250, 0.1);
-            border-radius: 4px;
+        .book-image-item:nth-child(7n+3) .book-image-wrapper {
+            min-height: 300px;
         }
 
-        .book-category::-webkit-scrollbar-thumb {
-            background: rgba(167, 139, 250, 0.5);
-            border-radius: 4px;
-        }
-
-        .book-category::-webkit-scrollbar-thumb:hover {
-            background: rgba(167, 139, 250, 0.7);
-        }
-
-        .book-image-item {
-            width: 100%;
-            border-radius: 8px;
+        .book-image-wrapper {
             overflow: hidden;
-            box-shadow: 0 4px 12px rgba(167, 139, 250, 0.2);
-            transition: transform 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, rgba(167, 139, 250, 0.1), rgba(99, 102, 241, 0.1));
+            padding: 0.3rem;
         }
 
         .book-image-item img {
             width: 100%;
             height: auto;
             display: block;
-            max-height: 1000px;
             object-fit: contain;
+            transition: transform 0.4s cubic-bezier(0.4, 0.0, 0.2, 1);
+        }
+
+        .book-image-item:hover img {
+            transform: scale(1.08);
+        }
+
+        /* Image hover par catégorie */
+        .book-category.category-manga .book-image-item:hover img {
+            transform: scale(1.15) rotate(2deg);
+        }
+
+        .book-category.category-compositions .book-image-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .book-category.category-noir-blanc .book-image-item:hover img {
+            transform: scale(1.08) brightness(1.15);
+        }
+
+        .book-category.category-inktober .book-image-item:hover img {
+            transform: scale(1.12) rotate(-1deg);
+        }
+
+        .book-category.category-references .book-image-item:hover img {
+            transform: scale(1.08);
         }
 
         .book-image-item:hover {
-            transform: scale(1.02);
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(167, 139, 250, 0.25);
+        }
+
+        .book-image-item:hover .image-description {
+            background: linear-gradient(135deg, rgba(167, 139, 250, 0.15) 0%, rgba(99, 102, 241, 0.15) 100%);
+        }
+
+        /* HOVER STYLES PAR CATÉGORIE */
+        .book-category.category-manga .book-image-item:hover {
+            transform: none;
+            box-shadow: 
+                0 0 0 3px rgba(249, 115, 22, 0.4),
+                0 15px 40px rgba(249, 115, 22, 0.3),
+                inset 0 0 20px rgba(249, 115, 22, 0.15);
+        }
+
+        .book-category.category-manga .book-image-item:hover .image-description {
+            background: linear-gradient(135deg, rgba(249, 115, 22, 0.15) 0%, rgba(245, 158, 11, 0.15) 100%);
+            border-top-color: rgba(249, 115, 22, 0.6);
+        }
+
+        .book-category.category-manga .book-image-item:hover .image-description strong {
+            color: rgba(249, 115, 22, 0.9);
+        }
+
+        .book-category.category-compositions .book-image-item:hover {
+            transform: scale(1.03);
+            box-shadow: 
+                0 8px 24px rgba(59, 130, 246, 0.2),
+                0 0 0 1px rgba(59, 130, 246, 0.5) inset;
+        }
+
+        .book-category.category-compositions .book-image-item:hover .image-description {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.15) 0%, rgba(96, 165, 250, 0.15) 100%);
+            border-top-color: rgba(59, 130, 246, 0.6);
+        }
+
+        .book-category.category-compositions .book-image-item:hover .image-description strong {
+            color: rgba(59, 130, 246, 0.9);
+        }
+
+        .book-category.category-noir-blanc .book-image-item:hover {
+            transform: none;
+            border-color: rgba(148, 163, 184, 0.8);
+            box-shadow: 
+                0 15px 40px rgba(0, 0, 0, 0.6),
+                0 0 1px rgba(148, 163, 184, 0.5) inset;
+            filter: brightness(1.1);
+        }
+
+        .book-category.category-noir-blanc .book-image-item:hover .image-description {
+            background: rgba(71, 85, 105, 0.15);
+            border-top-color: rgba(148, 163, 184, 0.6);
+        }
+
+        .book-category.category-noir-blanc .book-image-item:hover .image-description strong {
+            color: rgba(148, 163, 184, 0.9);
+        }
+
+        .book-category.category-inktober .book-image-item:hover {
+            transform: none;
+            border-color: rgba(139, 92, 246, 0.9);
+            box-shadow: 
+                0 0 0 3px rgba(139, 92, 246, 0.4),
+                0 15px 40px rgba(139, 92, 246, 0.35),
+                0 0 30px rgba(168, 85, 247, 0.2);
+        }
+
+        .book-category.category-inktober .book-image-item:hover .image-description {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.15) 0%, rgba(168, 85, 247, 0.15) 100%);
+            border-top-color: rgba(139, 92, 246, 0.6);
+        }
+
+        .book-category.category-inktober .book-image-item:hover .image-description strong {
+            color: rgba(139, 92, 246, 0.9);
+        }
+
+        .book-category.category-references .book-image-item:hover {
+            transform: none;
+            border-color: rgba(16, 185, 129, 0.8);
+            box-shadow: 
+                0 12px 30px rgba(16, 185, 129, 0.2),
+                0 0 0 2px rgba(16, 185, 129, 0.1) inset;
+        }
+
+        .book-category.category-references .book-image-item:hover .image-description {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(52, 211, 153, 0.15) 100%);
+            border-top-color: rgba(16, 185, 129, 0.6);
+        }
+
+        .book-category.category-references .book-image-item:hover .image-description strong {
+            color: rgba(16, 185, 129, 0.9);
+        }
+
+        /* Description style with better appearance */
+        .image-description {
+            padding: 0.7rem 0.9rem;
+            background: linear-gradient(135deg, rgba(167, 139, 250, 0.05) 0%, rgba(99, 102, 241, 0.05) 100%);
+            border-top: 1px solid rgba(167, 139, 250, 0.2);
+            font-size: 0.8rem;
+            color: #64748b;
+            line-height: 1.4;
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+            transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* DÉCORS MANGA - Trait épais audacieux */
+        .book-category.category-manga .image-description {
+            border-top: 3px solid rgba(249, 115, 22, 0.6);
+            background: linear-gradient(135deg, rgba(249, 115, 22, 0.08) 0%, rgba(245, 158, 11, 0.06) 100%);
+        }
+
+        .book-category.category-manga .image-description::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, rgba(249, 115, 22, 0.8), rgba(245, 158, 11, 0.4));
+        }
+
+        /* DÉCORS COMPOSITIONS - Minimaliste avec ligne fine */
+        .book-category.category-compositions .image-description {
+            border-top: 1px solid rgba(59, 130, 246, 0.5);
+            background: rgba(59, 130, 246, 0.03);
+        }
+
+        /* DÉCORS NOIR-BLANC - Contraste maximal */
+        .book-category.category-noir-blanc .image-description {
+            border-top: 2px solid rgba(148, 163, 184, 0.8);
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.2), rgba(15, 23, 42, 0.2));
+        }
+
+        /* DÉCORS INKTOBER - Pattern diagonal */
+        .book-category.category-inktober .image-description {
+            border-top: 2px dashed rgba(139, 92, 246, 0.6);
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.08) 0%, rgba(168, 85, 247, 0.08) 100%);
+        }
+
+        .book-category.category-inktober .image-description::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 3px,
+                rgba(139, 92, 246, 0.02) 3px,
+                rgba(139, 92, 246, 0.02) 6px
+            );
+            pointer-events: none;
+        }
+
+        /* DÉCORS REFERENCES - Ligne verte top accent */
+        .book-category.category-references .image-description {
+            border-top: 2px solid rgba(16, 185, 129, 0.6);
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.04) 0%, rgba(52, 211, 153, 0.04) 100%);
+        }
+
+        .book-category.category-references .image-description::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(16, 185, 129, 0.8), transparent);
+        }
+
+        .image-description strong {
+            color: #6366f1;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .book-image-item:hover .image-description strong {
+            color: #a78bfa;
+        }
+
+        .image-description p {
+            margin: 0;
+            font-size: 0.75rem;
+            line-height: 1.3;
+        }
+
+        @keyframes textGlow {
+            0%, 100% {
+                text-shadow: 0 0 0px rgba(99, 102, 241, 0);
+                color: #6366f1;
+            }
+            50% {
+                text-shadow: 0 0 8px rgba(99, 102, 241, 0.3);
+                color: #a78bfa;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Stagger effect for mosaic items */
+        .book-image-item {
+            opacity: 0;
+        }
+
+        /* Responsive adjustments */
+        @supports (display: grid) {
+            .book-category {
+                display: grid;
+            }
+        }
+
+        /* Advanced Animations */
+        @keyframes galleryFadeIn {
+            from {
+                opacity: 0;
+                backdrop-filter: blur(0px);
+            }
+            to {
+                opacity: 1;
+                backdrop-filter: blur(10px);
+            }
+        }
+
+        @keyframes itemBounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-5px);
+            }
+        }
+
+        @keyframes itemGlow {
+            0%, 100% {
+                box-shadow: 0 4px 15px rgba(167, 139, 250, 0.15);
+            }
+            50% {
+                box-shadow: 0 8px 25px rgba(167, 139, 250, 0.35);
+            }
+        }
+
+        @keyframes shimmer {
+            0% {
+                background-position: -1000px 0;
+            }
+            100% {
+                background-position: 1000px 0;
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-8px);
+            }
+        }
+
+        @keyframes colorShift {
+            0% {
+                border-color: rgba(167, 139, 250, 0.2);
+            }
+            50% {
+                border-color: rgba(99, 102, 241, 0.4);
+            }
+            100% {
+                border-color: rgba(167, 139, 250, 0.2);
+            }
+        }
+
+        /* ===== ANIMATIONS MANGA - Dynamique et énergique ===== */
+        @keyframes mangaPop {
+            0% {
+                transform: translateY(20px) scale(0.9) rotate(-2deg);
+                opacity: 0;
+            }
+            50% {
+                transform: translateY(-5px) scale(1.05) rotate(1deg);
+            }
+            100% {
+                transform: translateY(0) scale(1) rotate(0deg);
+                opacity: 1;
+            }
+        }
+
+        @keyframes mangaPulse {
+            0%, 100% {
+                box-shadow: 
+                    0 0 0 1px rgba(249, 115, 22, 0.2),
+                    0 8px 20px rgba(249, 115, 22, 0.2),
+                    inset 0 0 0 1px rgba(249, 115, 22, 0.1);
+                filter: brightness(1);
+            }
+            50% {
+                box-shadow: 
+                    0 0 0 3px rgba(249, 115, 22, 0.4),
+                    0 8px 25px rgba(249, 115, 22, 0.35),
+                    inset 0 0 15px rgba(249, 115, 22, 0.15);
+                filter: brightness(1.1);
+            }
+        }
+
+        .book-category.category-manga .book-image-item {
+            animation: mangaPop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+        }
+
+        .book-category.category-manga .book-image-item:hover {
+            animation: mangaPulse 0.6s ease-in-out infinite !important;
+        }
+
+        /* ===== ANIMATIONS COMPOSITIONS - Smooth et sophistiqué ===== */
+        @keyframes compositionSlide {
+            from {
+                opacity: 0;
+                transform: translateX(-20px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0) scale(1);
+            }
+        }
+
+        @keyframes compositionGlow {
+            0%, 100% {
+                box-shadow: 0 2px 8px rgba(59, 130, 246, 0.1);
+                background: rgba(255, 255, 255, 0.8);
+            }
+            50% {
+                box-shadow: 0 8px 24px rgba(59, 130, 246, 0.25);
+                background: rgba(255, 255, 255, 0.95);
+            }
+        }
+
+        .book-category.category-compositions .book-image-item {
+            animation: compositionSlide 0.5s ease-out !important;
+        }
+
+        .book-category.category-compositions .book-image-item:hover {
+            animation: compositionGlow 0.8s ease-in-out infinite !important;
+        }
+
+        /* ===== ANIMATIONS NOIR-BLANC - Dramatique et intense ===== */
+        @keyframes noirBlanBurst {
+            0% {
+                opacity: 0;
+                transform: scale(0.8);
+                filter: brightness(0.3) contrast(0.8);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+                filter: brightness(1) contrast(1);
+            }
+        }
+
+        @keyframes noirBlanLightPass {
+            0% {
+                filter: brightness(1) contrast(1);
+            }
+            50% {
+                filter: brightness(1.1) contrast(1.05);
+            }
+            100% {
+                filter: brightness(1) contrast(1);
+            }
+        }
+
+        .book-category.category-noir-blanc .book-image-item {
+            animation: noirBlanBurst 0.7s ease-out !important;
+        }
+
+        .book-category.category-noir-blanc .book-image-item:hover {
+            animation: noirBlanLightPass 0.6s ease-in-out !important;
+        }
+
+        /* ===== ANIMATIONS INKTOBER - Artistique et fluide ===== */
+        @keyframes inkRotate {
+            from {
+                opacity: 0;
+                transform: translateY(20px) rotate(-5deg);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) rotate(0deg);
+            }
+        }
+
+        @keyframes inkWave {
+            0%, 100% {
+                transform: translateY(-10px) rotate(-2deg);
+                filter: drop-shadow(0 0 15px rgba(139, 92, 246, 0.3));
+            }
+            50% {
+                transform: translateY(-15px) rotate(2deg);
+                filter: drop-shadow(0 8px 25px rgba(139, 92, 246, 0.5));
+            }
+        }
+
+        .book-category.category-inktober .book-image-item {
+            animation: inkRotate 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+        }
+
+        .book-category.category-inktober .book-image-item:hover {
+            animation: inkWave 0.8s ease-in-out infinite !important;
+        }
+
+        /* ===== ANIMATIONS REFERENCES - Flottant et moderne ===== */
+        @keyframes refFloat {
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+                filter: blur(5px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+                filter: blur(0);
+            }
+        }
+
+        @keyframes refFloat-hover {
+            0%, 100% {
+                transform: translateY(-8px);
+            }
+            50% {
+                transform: translateY(-12px);
+            }
+        }
+
+        .book-category.category-references .book-image-item {
+            animation: refFloat 0.5s ease-out !important;
+        }
+
+        .book-category.category-references .book-image-item:hover {
+            animation: refFloat-hover 1.2s ease-in-out infinite !important;
+        }
+
+        /* Loading animation for images */
+        @keyframes imagePulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.85;
+            }
+        }
+
+        /* Enhanced hover animations */
+        .book-image-item {
+            position: relative;
+        }
+
+        .book-image-item::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, 
+                transparent 0%, 
+                rgba(255, 255, 255, 0.15) 50%, 
+                transparent 100%);
+            background-size: 200% 100%;
+            background-position: -200% 0;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+            border-radius: 12px;
+            z-index: 1;
+        }
+
+        .book-image-item:hover::after {
+            opacity: 1;
+            animation: softLight 1.5s ease-in-out forwards;
+        }
+
+        @keyframes softLight {
+            0% {
+                background-position: -200% 0;
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                background-position: 200% 0;
+                opacity: 0;
+            }
+        }
+
+        .book-display {
+            position: relative;
+        }
+
+        /* Smooth hover effect */
+        .book-image-item:hover {
+            box-shadow: 0 12px 30px rgba(167, 139, 250, 0.25);
         }
 
         .gallery-grid {
@@ -246,13 +1039,6 @@
             display: none;
         }
 
-        .category-description {
-            text-align: center;
-            color: #94a3b8;
-            margin-bottom: 1.5rem;
-            font-size: 1.1rem;
-        }
-
         @media (max-width: 768px) {
             .category-tabs {
                 gap: 0.5rem;
@@ -263,9 +1049,202 @@
                 font-size: 0.9rem;
             }
 
-            .gallery-grid {
-                grid-template-columns: repeat(2, 1fr);
+            .book-category {
+                grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+                gap: 1rem;
+                padding: 1rem;
             }
+
+            .book-image-item:nth-child(5n+1) {
+                grid-column: span 1;
+                grid-row: span 1;
+            }
+
+            .book-image-item:nth-child(7n+3) {
+                grid-column: span 1;
+                grid-row: span 1;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .book-category {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+                padding: 0.75rem;
+            }
+
+            .book-image-item:nth-child(5n+1) {
+                grid-column: span 1;
+            }
+
+            .image-description {
+                padding: 0.75rem;
+                font-size: 0.85rem;
+            }
+        }
+
+        /* Modal/Lightbox Styles */
+        .image-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(5px);
+            z-index: 2000;
+            animation: fadeInModal 0.3s ease;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .image-modal.active {
+            display: flex;
+        }
+
+        @keyframes fadeInModal {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .modal-content {
+            position: relative;
+            max-width: 90vw;
+            max-height: 85vh;
+            padding: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: zoomIn 0.3s ease;
+        }
+
+        @keyframes zoomIn {
+            from {
+                transform: scale(0.8) rotateZ(-5deg);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1) rotateZ(0deg);
+                opacity: 1;
+            }
+        }
+
+        .modal-content img {
+            max-width: 100%;
+            max-height: 100%;
+            width: auto;
+            height: auto;
+            display: block;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            object-fit: contain;
+            transform: scale(0.8);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background: rgba(167, 139, 250, 0.3);
+            border: 2px solid rgba(167, 139, 250, 0.6);
+            border-radius: 50%;
+            color: #ffffff;
+            font-size: 28px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 2001;
+        }
+
+        .modal-close:hover {
+            background: rgba(167, 139, 250, 0.6);
+            transform: rotate(90deg) scale(1.1);
+        }
+
+        /* ===== VIDÉO TRANSITION NOIR-BLANC ===== */
+        .video-transition-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: #000000;
+            pointer-events: none;
+            z-index: 3000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .video-transition-overlay.active {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+        }
+
+        .transition-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            filter: saturate(0) brightness(0.5) contrast(4);
+        }
+
+        @keyframes mangaGlow {
+            0% {
+                filter: saturate(0) brightness(1.2) contrast(5) drop-shadow(0 0 15px rgba(255, 255, 255, 0.8));
+            }
+            50% {
+                filter: saturate(0) brightness(1.2) contrast(5) drop-shadow(0 0 50px rgba(255, 255, 255, 1));
+            }
+            100% {
+                filter: saturate(0) brightness(1.2) contrast(5) drop-shadow(0 0 15px rgba(255, 255, 255, 0.8));
+            }
+        }
+
+        .transition-video.manga-filter {
+            animation: mangaGlow 1.5s ease-in-out infinite;
+        }
+
+        .modal-nav {
+            position: absolute;
+            width: 100%;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            justify-content: space-between;
+            padding: 0 20px;
+            pointer-events: none;
+        }
+
+        .modal-nav button {
+            pointer-events: all;
+            background: rgba(167, 139, 250, 0.3);
+            border: 2px solid rgba(167, 139, 250, 0.6);
+            color: #ffffff;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 24px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-nav button:hover {
+            background: rgba(167, 139, 250, 0.6);
+            transform: scale(1.1);
         }
     </style>
 </head>
@@ -401,6 +1380,28 @@
         </div>
     </section>
 
+    <!-- Image Modal for Fullscreen View -->
+    <div class="image-modal" id="imageModal">
+        <div class="modal-nav">
+            <button id="prevImageBtn">❮</button>
+            <button id="nextImageBtn">❯</button>
+        </div>
+        <div class="modal-content">
+            <img id="modalImage" src="" alt="">
+        </div>
+        <div class="modal-close" id="closeModal">✕</div>
+    </div>
+
+    <!-- Vidéo Transition Noir-Blanc -->
+    <div class="video-transition-overlay" id="videoOverlay">
+        <video id="transitionVideo" class="transition-video" src="assets/videos/transition B&W.mp4" muted></video>
+    </div>
+
+    <!-- Audio Transition SFX -->
+    <audio id="transitionSFX" preload="auto">
+        <source src="assets/sons/transition sfx.m4a" type="audio/mp4">
+    </audio>
+
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
@@ -413,13 +1414,17 @@
         const galleryItems = document.querySelectorAll('.gallery-item');
         const categoryDescription = document.getElementById('categoryDescription');
         const bookCategory = document.getElementById('bookCategory');
-        const prevCategoryBtn = document.getElementById('prevCategoryBtn');
-        const nextCategoryBtn = document.getElementById('nextCategoryBtn');
+        const imageModal = document.getElementById('imageModal');
+        const modalImage = document.getElementById('modalImage');
+        const closeModal = document.getElementById('closeModal');
+        const prevImageBtn = document.getElementById('prevImageBtn');
+        const nextImageBtn = document.getElementById('nextImageBtn');
 
-        const categories = ['manga', 'compositions', 'noir-blanc', 'inktober', 'references'];
+        const categories = ['all', 'manga', 'compositions', 'noir-blanc', 'inktober', 'references'];
         
-        let currentCategoryIndex = 0;
-        let currentCategory = categories[0];
+        let currentCategory = 'all';
+        let currentImages = [];
+        let currentImageIndex = 0;
 
         const categoryDescriptions = {
             'all': 'Explorez tous les dessins et créations artistiques',
@@ -430,11 +1435,91 @@
             'references': 'Interprétations et références à d\'autres œuvres artistiques'
         };
 
-        // Load category and display all images
+        // Image descriptions with creative process
+        const imageDescriptions = {
+            'manga_1.PNG': 'Page 1 - Composition de base réalisée au crayon. J\'ai étudié les proportions pendant 2 heures avant de poser les premiers traits.',
+            'manga_2.PNG': 'Page 2 - Développement du dialogue entre les personnages. Travail sur les expressions faciales.',
+            'manga_3.PNG': 'Page 3 - Scène d\'action centrale. Étude des mouvements dynamiques et de la fluidité.',
+            'spiderman.PNG': 'Spider-Man - Technique à l\'encre noire avec jeu de lumière. Inspiré par les comics classiques.',
+            'Hollow Knight.PNG': 'Hollow Knight - Étude sur le contraste et les ombres. Travail au pinceau sec pour créer les textures.',
+            'break_everything.PNG': 'Break Everything - Composition explosive avec jeux de perspective audacieux.',
+            'Tired_eyes.PNG': 'Tired Eyes - Exploration émotionnelle. Focus sur l\'expression des yeux pour transmettre la fatigue.',
+            'Icare.PNG': 'Icare - Mythologie revisitée. Utilisation du clair-obscur pour raconter l\'histoire.',
+            'inktober_1.PNG': 'Inktober - Jour 1. Exploration des textures au stylo fine liner sur papier 90g.',
+            'inktober_2.PNG': 'Inktober - Jour 2. Technique du pointillisme pour créer les zones d\'ombre.',
+            'inktober_3.PNG': 'Inktober - Jour 3. Jeu avec les blancs et les pleins. Encre de Chine diluée.',
+            'compo inazuma_eleven.PNG': 'Composition Inazuma Eleven - Dramatique composition avec perspectives multiples pour créer de la profondeur.',
+            'compo_gwendoline.PNG': 'Portrait Gwendoline - Technique mixte crayon et encre. Focus sur l\'expression du visage et la sensibilité.',
+            'compo_3.PNG': 'Composition abstraite - Étude des formes géométriques et des équilibres visuels.',
+            'reference_1.PNG': 'Référence artistique 1 - Inspiration des maîtres pour améliorer ma technique de base.',
+            'reference_2.PNG': 'Référence artistique 2 - Étude comparative de différents styles artistiques.',
+            'reference_3.PNG': 'Référence artistique 3 - Pratique des techniques classiques revisitées.'
+        };
+
+        // Intersection Observer pour animations au scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '50px'
+        };
+
+        const imageObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.animation = 'fadeInUp 0.6s cubic-bezier(0.4, 0.0, 0.2, 1) forwards';
+                    }, index * 80);
+                }
+            });
+        }, observerOptions);
+
+        // Modal functions
+        function openModal(imgSrc, index) {
+            currentImageIndex = index;
+            modalImage.src = imgSrc;
+            imageModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            updateModalNavigation();
+        }
+
+        function closeModalWindow() {
+            imageModal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        function updateModalNavigation() {
+            prevImageBtn.disabled = currentImageIndex === 0;
+            nextImageBtn.disabled = currentImageIndex === currentImages.length - 1;
+        }
+
+        function nextImage() {
+            if (currentImageIndex < currentImages.length - 1) {
+                currentImageIndex++;
+                const nextImg = currentImages[currentImageIndex].querySelector('img');
+                modalImage.src = nextImg.src;
+                updateModalNavigation();
+            }
+        }
+
+        function prevImage() {
+            if (currentImageIndex > 0) {
+                currentImageIndex--;
+                const prevImg = currentImages[currentImageIndex].querySelector('img');
+                modalImage.src = prevImg.src;
+                updateModalNavigation();
+            }
+        }
+
+        // Load category and display all images with mosaic effect
         function loadCategory(category) {
             currentCategory = category;
-            currentCategoryIndex = categories.indexOf(category);
             bookCategory.innerHTML = '';
+            
+            // Remove all category classes
+            bookCategory.classList.remove('category-all', 'category-manga', 'category-compositions', 'category-noir-blanc', 'category-inktober', 'category-references');
+            
+            // Add the current category class
+            bookCategory.classList.add(`category-${category}`);
 
             let categoryItems;
             if (category === 'all') {
@@ -443,13 +1528,55 @@
                 categoryItems = Array.from(galleryItems).filter(item => item.dataset.category === category);
             }
 
+            currentImages = categoryItems; // Store current images for modal navigation
+
             if (categoryItems.length > 0) {
-                categoryItems.forEach(item => {
+                categoryItems.forEach((item, index) => {
                     const img = item.querySelector('img');
+                    const fileName = img.src.split('/').pop();
+                    const description = imageDescriptions[fileName];
+
                     const imageWrapper = document.createElement('div');
                     imageWrapper.className = 'book-image-item';
-                    imageWrapper.innerHTML = `<img src="${img.src}" alt="${img.alt}">`;
+                    imageWrapper.style.opacity = '0';
+                    
+                    // Create image wrapper
+                    const imgWrapperDiv = document.createElement('div');
+                    imgWrapperDiv.className = 'book-image-wrapper';
+                    imgWrapperDiv.innerHTML = `<img src="${img.src}" alt="${img.alt}" loading="lazy">`;
+                    imageWrapper.appendChild(imgWrapperDiv);
+
+                    // Add description if available
+                    if (description) {
+                        const descDiv = document.createElement('div');
+                        descDiv.className = 'image-description';
+                        descDiv.innerHTML = `<strong>💭 Processus créatif :</strong><p>${description}</p>`;
+                        imageWrapper.appendChild(descDiv);
+                    } else {
+                        // Add empty space with hover hint for items without description
+                        const hintDiv = document.createElement('div');
+                        hintDiv.className = 'image-description';
+                        hintDiv.style.opacity = '0.5';
+                        hintDiv.innerHTML = `<p style="font-style: italic; font-size: 0.85rem;">Créé avec passion ✨</p>`;
+                        imageWrapper.appendChild(hintDiv);
+                    }
+
+                    // Click to open modal
+                    imgWrapperDiv.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        openModal(img.src, index);
+                    });
+
+                    // Add click interaction for extra details
+                    imageWrapper.addEventListener('click', () => {
+                        imageWrapper.style.animation = 'itemBounce 0.6s ease-in-out';
+                        setTimeout(() => {
+                            imageWrapper.style.animation = '';
+                        }, 600);
+                    });
+
                     bookCategory.appendChild(imageWrapper);
+                    imageObserver.observe(imageWrapper);
                 });
                 
                 categoryDescription.textContent = categoryDescriptions[category];
@@ -462,51 +1589,99 @@
                         tab.classList.remove('active');
                     }
                 });
-
-                // Scroll to top
-                bookCategory.scrollTop = 0;
-                
-                // Update buttons
-                updateCategoryButtons();
-            }
-        }
-
-        function updateCategoryButtons() {
-            prevCategoryBtn.disabled = currentCategoryIndex === 0;
-            nextCategoryBtn.disabled = currentCategoryIndex === categories.length - 1;
-        }
-
-        function goToPreviousCategory() {
-            if (currentCategoryIndex > 0) {
-                loadCategory(categories[currentCategoryIndex - 1]);
-            }
-        }
-
-        function goToNextCategory() {
-            if (currentCategoryIndex < categories.length - 1) {
-                loadCategory(categories[currentCategoryIndex + 1]);
             }
         }
 
         // Event listeners for category tabs
         categoryTabs.forEach(tab => {
+            console.log('Attaching listener to tab:', tab.dataset.category);
             tab.addEventListener('click', () => {
-                loadCategory(tab.dataset.category);
+                console.log('Tab clicked:', tab.dataset.category);
+                // Jouer la vidéo de transition pour certaines catégories
+                const category = tab.dataset.category;
+                const videosMap = {
+                    'noir-blanc': 'assets/videos/transition B&W.mp4',
+                    'manga': 'assets/videos/transition manga.mp4'
+                };
+                
+                console.log('Checking video for category:', category, 'Has video?', !!videosMap[category]);
+                
+                if (videosMap[category]) {
+                    const videoOverlay = document.getElementById('videoOverlay');
+                    const transitionVideo = document.getElementById('transitionVideo');
+                    
+                    console.log('Lancement vidéo:', videosMap[category]);
+                    
+                    // Appliquer le filtre approprié
+                    transitionVideo.classList.remove('manga-filter');
+                    if (category === 'manga') {
+                        transitionVideo.classList.add('manga-filter');
+                    }
+                    
+                    videoOverlay.classList.add('active');
+                    transitionVideo.src = videosMap[category];
+                    transitionVideo.load();
+                    
+                    // Attendre un peu que la vidéo se charge, puis jouer
+                    setTimeout(() => {
+                        const transitionSFX = document.getElementById('transitionSFX');
+                        
+                        transitionVideo.currentTime = 0;
+                        transitionVideo.playbackRate = 2;
+                        transitionVideo.play().catch(err => console.error('Erreur play:', err));
+                        
+                        // Jouer le son en même temps avec volume réduit
+                        transitionSFX.volume = 0.3;
+                        transitionSFX.currentTime = 0;
+                        transitionSFX.play().catch(err => console.error('Erreur audio:', err));
+                    }, 500);
+                    
+                    // Arrêter 0.2s avant la fin
+                    transitionVideo.ontimeupdate = () => {
+                        if (transitionVideo.currentTime >= transitionVideo.duration - 0.2) {
+                            transitionVideo.pause();
+                            videoOverlay.classList.remove('active');
+                        }
+                    };
+                }
+                // Charger la catégorie 1 seconde plus tard
+                setTimeout(() => {
+                    loadCategory(tab.dataset.category);
+                }, 1000);
             });
         });
 
-        // Event listeners for category navigation buttons
-        prevCategoryBtn.addEventListener('click', goToPreviousCategory);
-        nextCategoryBtn.addEventListener('click', goToNextCategory);
+        // Modal controls
+        closeModal.addEventListener('click', closeModalWindow);
+        imageModal.addEventListener('click', (e) => {
+            if (e.target === imageModal) {
+                closeModalWindow();
+            }
+        });
+        prevImageBtn.addEventListener('click', prevImage);
+        nextImageBtn.addEventListener('click', nextImage);
 
-        // Keyboard navigation
+        // Keyboard controls
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowLeft') goToPreviousCategory();
-            if (e.key === 'ArrowRight') goToNextCategory();
+            if (imageModal.classList.contains('active')) {
+                if (e.key === 'ArrowLeft') prevImage();
+                if (e.key === 'ArrowRight') nextImage();
+                if (e.key === 'Escape') closeModalWindow();
+            } else {
+                if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
+                    const currentIndex = categories.indexOf(currentCategory);
+                    if (e.key === 'ArrowLeft' && currentIndex > 0) {
+                        categoryTabs[categories.indexOf(categories[currentIndex - 1])].click();
+                    }
+                    if (e.key === 'ArrowRight' && currentIndex < categories.length - 1) {
+                        categoryTabs[categories.indexOf(categories[currentIndex + 1])].click();
+                    }
+                }
+            }
         });
 
-        // Initialize with manga category
-        loadCategory('manga');
+        // Initialize with all category
+        loadCategory('all');
     </script>
 </body>
 </html>
