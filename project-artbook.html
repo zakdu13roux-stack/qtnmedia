@@ -1601,7 +1601,8 @@
                 const category = tab.dataset.category;
                 const videosMap = {
                     'noir-blanc': 'assets/videos/transition B&W.mp4',
-                    'manga': 'assets/videos/transition manga.mp4'
+                    'manga': 'assets/videos/transition manga.mp4',
+                    'compositions': 'assets/videos/transition compositions.mp4'
                 };
                 
                 console.log('Checking video for category:', category, 'Has video?', !!videosMap[category]);
@@ -1625,15 +1626,23 @@
                     // Attendre un peu que la vidéo se charge, puis jouer
                     setTimeout(() => {
                         const transitionSFX = document.getElementById('transitionSFX');
-                        
+
                         transitionVideo.currentTime = 0;
-                        transitionVideo.playbackRate = 2;
+                        transitionVideo.playbackRate = (category === 'compositions') ? 1 : 2;
                         transitionVideo.play().catch(err => console.error('Erreur play:', err));
-                        
-                        // Jouer le son en même temps avec volume réduit
-                        transitionSFX.volume = 0.3;
-                        transitionSFX.currentTime = 0;
-                        transitionSFX.play().catch(err => console.error('Erreur audio:', err));
+
+                        // Audio handling: only use SFX for manga; for noir-blanc and compositions use video's own audio
+                        if (category === 'manga') {
+                            transitionVideo.muted = true;
+                            if (transitionSFX) {
+                                transitionSFX.volume = 0.3;
+                                transitionSFX.currentTime = 0;
+                                transitionSFX.play().catch(err => console.error('Erreur audio:', err));
+                            }
+                        } else {
+                            transitionVideo.muted = false;
+                            transitionVideo.volume = 1;
+                        }
                     }, 500);
                     
                     // Arrêter 0.2s avant la fin
