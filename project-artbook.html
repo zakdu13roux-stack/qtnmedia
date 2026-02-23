@@ -365,39 +365,7 @@
                 0 0 30px rgba(168, 85, 247, 0.2);
         }
 
-        /* ===== REFERENCES - Style Moderne et Clean ===== */
-        .book-category.category-references {
-            background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(52, 211, 153, 0.08) 100%);
-            border: 2px solid rgba(16, 185, 129, 0.4);
-            border-radius: 24px;
-            position: relative;
-        }
-
-        .book-category.category-references::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, rgba(16, 185, 129, 0.6), transparent);
-        }
-
-        .book-category.category-references .book-image-item {
-            border: 1px solid rgba(16, 185, 129, 0.4);
-            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.12);
-            background: rgba(240, 253, 250, 0.7);
-            border-radius: 12px;
-        }
-
-        .book-category.category-references .book-image-item:hover {
-            border-color: rgba(16, 185, 129, 0.8);
-            box-shadow: 
-                0 12px 30px rgba(16, 185, 129, 0.2),
-                0 0 0 2px rgba(16, 185, 129, 0.1) inset;
-            transform: translateY(-8px);
-            background: rgba(240, 253, 250, 0.95);
-        }
+        
 
         @media (max-width: 1400px) {
             .book-category {
@@ -484,9 +452,7 @@
             transform: scale(1.12) rotate(-1deg);
         }
 
-        .book-category.category-references .book-image-item:hover img {
-            transform: scale(1.08);
-        }
+        
 
         .book-image-item:hover {
             transform: translateY(-8px);
@@ -567,22 +533,7 @@
             color: rgba(139, 92, 246, 0.9);
         }
 
-        .book-category.category-references .book-image-item:hover {
-            transform: none;
-            border-color: rgba(16, 185, 129, 0.8);
-            box-shadow: 
-                0 12px 30px rgba(16, 185, 129, 0.2),
-                0 0 0 2px rgba(16, 185, 129, 0.1) inset;
-        }
-
-        .book-category.category-references .book-image-item:hover .image-description {
-            background: linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(52, 211, 153, 0.15) 100%);
-            border-top-color: rgba(16, 185, 129, 0.6);
-        }
-
-        .book-category.category-references .book-image-item:hover .image-description strong {
-            color: rgba(16, 185, 129, 0.9);
-        }
+        
 
         /* Description style with better appearance */
         .image-description {
@@ -651,21 +602,7 @@
             pointer-events: none;
         }
 
-        /* DÉCORS REFERENCES - Ligne verte top accent */
-        .book-category.category-references .image-description {
-            border-top: 2px solid rgba(16, 185, 129, 0.6);
-            background: linear-gradient(135deg, rgba(16, 185, 129, 0.04) 0%, rgba(52, 211, 153, 0.04) 100%);
-        }
-
-        .book-category.category-references .image-description::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, rgba(16, 185, 129, 0.8), transparent);
-        }
+        
 
         .image-description strong {
             color: #6366f1;
@@ -940,13 +877,7 @@
             }
         }
 
-        .book-category.category-references .book-image-item {
-            animation: refFloat 0.5s ease-out !important;
-        }
-
-        .book-category.category-references .book-image-item:hover {
-            animation: refFloat-hover 1.2s ease-in-out infinite !important;
-        }
+        
 
         /* Loading animation for images */
         @keyframes imagePulse {
@@ -1283,7 +1214,7 @@
                 <button class="category-tab" data-category="compositions">Compositions</button>
                 <button class="category-tab" data-category="noir-blanc">Noir et Blanc</button>
                 <button class="category-tab" data-category="inktober">Inktober</button>
-                <button class="category-tab" data-category="references">Références artistiques</button>
+                
             </div>
         </div>
     </section>
@@ -1332,10 +1263,7 @@
                     <img src="assets/images_dessins/compo inazuma_eleven.PNG" alt="Composition 1">
                 </div>
                 <div class="gallery-item" data-category="compositions">
-                    <img src="assets/images_dessins/compo_gwendoline.PNG" alt="Composition 2">
-                </div>
-                <div class="gallery-item" data-category="compositions">
-                    <img src="assets/images_dessins/compo_3.PNG" alt="Composition 3">
+                    <img src="assets/images_dessins/compo_pinterest.PNG" alt="Composition 2">
                 </div>
 
                 <!-- Noir et Blanc -->
@@ -1362,20 +1290,7 @@
                 <div class="gallery-item" data-category="inktober">
                     <img src="assets/images_dessins/inktober_2.PNG" alt="Inktober 2">
                 </div>
-                <div class="gallery-item" data-category="inktober">
-                    <img src="assets/images_dessins/inktober_3.PNG" alt="Inktober 3">
-                </div>
-
-                <!-- Références artistiques -->
-                <div class="gallery-item" data-category="references">
-                    <img src="assets/images_dessins/reference_1.PNG" alt="Référence 1">
-                </div>
-                <div class="gallery-item" data-category="references">
-                    <img src="assets/images_dessins/reference_2.PNG" alt="Référence 2">
-                </div>
-                <div class="gallery-item" data-category="references">
-                    <img src="assets/images_dessins/reference_3.PNG" alt="Référence 3">
-                </div>
+                
             </div>
         </div>
     </section>
@@ -1420,7 +1335,7 @@
         const prevImageBtn = document.getElementById('prevImageBtn');
         const nextImageBtn = document.getElementById('nextImageBtn');
 
-        const categories = ['all', 'manga', 'compositions', 'noir-blanc', 'inktober', 'references'];
+        const categories = ['all', 'manga', 'compositions', 'noir-blanc', 'inktober'];
         
         let currentCategory = 'all';
         let currentImages = [];
@@ -1431,29 +1346,28 @@
             'manga': 'Un manga complet avec 5 pages - une histoire visuelle captivante',
             'compositions': 'Études de compositions et arrangements visuels savamment pensés',
             'noir-blanc': 'Dessins en noir et blanc explorant le contraste et les textures',
-            'inktober': 'Créations de l\'Inktober - défi artistique d\'un dessin par jour',
-            'references': 'Interprétations et références à d\'autres œuvres artistiques'
+            'inktober': 'Créations de l\'Inktober - défi artistique d\'un dessin par jour'
         };
 
         // Image descriptions with creative process
         const imageDescriptions = {
-            'manga_1.PNG': 'Page 1 - Composition de base réalisée au crayon. J\'ai étudié les proportions pendant 2 heures avant de poser les premiers traits.',
-            'manga_2.PNG': 'Page 2 - Développement du dialogue entre les personnages. Travail sur les expressions faciales.',
+            'manga_1.PNG': 'Page 1 - Composition de base réalisée au crayon. Plas de situation pour expliquer les personnages et le contexte.',
+            'manga_2.PNG': 'Page 2 - Mise en place d\'un monde fantastique aérien. Travail sur les détails architecturaux et les nuages.',
             'manga_3.PNG': 'Page 3 - Scène d\'action centrale. Étude des mouvements dynamiques et de la fluidité.',
+            'manga_4.PNG': 'Page 4 - Développement des interactions entre les personnages. Focus sur les expressions et les gestes.',
+            'manga_5.PNG': 'Page 5 - Conclusion de l\'histoire en 5 pages. Travail sur la composition et l\'impact visuel.',
+            'compo inazuma_eleven.PNG': 'Composition Inazuma Eleven - Composition avec perspectives multiples pour créer de la profondeur et exprimer les personnalités des personnages.',
+            'compo_pinterest.PNG': 'Entraînement à partir d\'images Pinterest prises comme référence. Technique mixte crayon et encre. Focus sur l\'expression du visage et la sensibilité.',
+            'compo_3.PNG': 'Composition abstraite - Étude des formes géométriques et des équilibres visuels.',
             'spiderman.PNG': 'Spider-Man - Technique à l\'encre noire avec jeu de lumière. Inspiré par les comics classiques.',
-            'Hollow Knight.PNG': 'Hollow Knight - Étude sur le contraste et les ombres. Travail au pinceau sec pour créer les textures.',
+            'Hollow Knight.PNG': 'Hollow Knight - Étude sur le contraste et les ombres. Utilisation de textures pour créer une atmosphère sombre.',
             'break_everything.PNG': 'Break Everything - Composition explosive avec jeux de perspective audacieux.',
             'Tired_eyes.PNG': 'Tired Eyes - Exploration émotionnelle. Focus sur l\'expression des yeux pour transmettre la fatigue.',
-            'Icare.PNG': 'Icare - Mythologie revisitée. Utilisation du clair-obscur pour raconter l\'histoire.',
+            'Icare.PNG': 'Icare - Mythologie revisitée. Utilisation du clair-obscur pour raconter l\'histoire et inspiration à partir d\'une chanson "I Won\'t Beg For You"',
             'inktober_1.PNG': 'Inktober - Jour 1. Exploration des textures au stylo fine liner sur papier 90g.',
             'inktober_2.PNG': 'Inktober - Jour 2. Technique du pointillisme pour créer les zones d\'ombre.',
-            'inktober_3.PNG': 'Inktober - Jour 3. Jeu avec les blancs et les pleins. Encre de Chine diluée.',
-            'compo inazuma_eleven.PNG': 'Composition Inazuma Eleven - Dramatique composition avec perspectives multiples pour créer de la profondeur.',
-            'compo_gwendoline.PNG': 'Portrait Gwendoline - Technique mixte crayon et encre. Focus sur l\'expression du visage et la sensibilité.',
-            'compo_3.PNG': 'Composition abstraite - Étude des formes géométriques et des équilibres visuels.',
-            'reference_1.PNG': 'Référence artistique 1 - Inspiration des maîtres pour améliorer ma technique de base.',
-            'reference_2.PNG': 'Référence artistique 2 - Étude comparative de différents styles artistiques.',
-            'reference_3.PNG': 'Référence artistique 3 - Pratique des techniques classiques revisitées.'
+            'inktober_3.PNG': 'Inktober - Jour 3. Jeu avec les blancs et les pleins.',
+            
         };
 
         // Intersection Observer pour animations au scroll
@@ -1533,8 +1447,11 @@
             if (categoryItems.length > 0) {
                 categoryItems.forEach((item, index) => {
                     const img = item.querySelector('img');
-                    const fileName = img.src.split('/').pop();
-                    const description = imageDescriptions[fileName];
+                    // Use the original src attribute (relative path) and decode URI components
+                    const srcAttr = img.getAttribute('src') || img.src;
+                    const fileName = decodeURIComponent(srcAttr.split('/').pop().split('?')[0]);
+                    // Try exact match, fallback to lowercase key match
+                    const description = imageDescriptions[fileName] || imageDescriptions[fileName.toLowerCase()];
 
                     const imageWrapper = document.createElement('div');
                     imageWrapper.className = 'book-image-item';
@@ -1613,10 +1530,21 @@
                     
                     console.log('Lancement vidéo:', videosMap[category]);
                     
-                    // Appliquer le filtre approprié
+                    // Appliquer le filtre approprié : garder les couleurs pour "compositions"
                     transitionVideo.classList.remove('manga-filter');
+                    // Par défaut on réinitialise le style inline
+                    transitionVideo.style.filter = '';
+
                     if (category === 'manga') {
                         transitionVideo.classList.add('manga-filter');
+                        // garder l'effet manga (désaturation + contraste)
+                        transitionVideo.style.filter = 'saturate(0) brightness(0.5) contrast(4)';
+                    } else if (category === 'noir-blanc') {
+                        // forcer noir et blanc pour cette catégorie
+                        transitionVideo.style.filter = 'saturate(0) brightness(0.5) contrast(4)';
+                    } else if (category === 'compositions') {
+                        // conserver les couleurs originales de la vidéo
+                        transitionVideo.style.filter = 'none';
                     }
                     
                     videoOverlay.classList.add('active');
