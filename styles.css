@@ -461,6 +461,69 @@ a.project-card, a.project-card * {
     border-color: #c084fc;
 }
 
+/* Extra prominent halo specifically for the Artbook card (3rd card) */
+.project-card:nth-child(3) {
+    position: relative;
+}
+.project-card:nth-child(3) {
+    box-shadow: 0 14px 48px rgba(0,0,0,0.14), 0 0 90px rgba(192,132,252,0.22), 0 0 24px rgba(192,132,252,0.08) inset;
+}
+.project-card:nth-child(3):hover {
+    box-shadow: 0 30px 120px rgba(0,0,0,0.18), 0 0 220px rgba(192,132,252,0.55), 0 0 48px rgba(192,132,252,0.18) inset;
+    transform: translateY(-14px) scale(1.01);
+}
+
+/* Halo around the image area to emphasize art/gallery */
+.project-card:nth-child(3) .project-image {
+    position: relative;
+    z-index: 2;
+    overflow: visible;
+}
+.project-card:nth-child(3) .project-image::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 120%;
+    height: 120%;
+    background: radial-gradient(circle at 50% 40%, rgba(192,132,252,0.45), rgba(192,132,252,0.16) 30%, rgba(192,132,252,0.04) 55%, transparent 70%);
+    filter: blur(36px);
+    pointer-events: none;
+    z-index: 1;
+    border-radius: 12px;
+}
+.project-card:nth-child(3) .project-image img { position: relative; z-index: 3; }
+
+@media (prefers-reduced-motion: reduce), (prefers-reduced-transparency: reduce) {
+    .project-card:nth-child(3), .project-card:nth-child(3) .project-image::after { box-shadow: 0 8px 18px rgba(0,0,0,0.08) !important; filter:none !important; }
+}
+
+/* Outer halo extending beyond the card for Artbook (3rd card) */
+.project-card:nth-child(3) {
+    overflow: visible;
+}
+.project-card:nth-child(3)::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 10%;
+    transform: translateX(-50%);
+    width: 260%;
+    height: 140%;
+    background: radial-gradient(circle at 50% 30%, rgba(192,132,252,0.55) 0%, rgba(192,132,252,0.38) 18%, rgba(192,132,252,0.20) 36%, rgba(192,132,252,0.06) 56%, transparent 72%);
+    filter: blur(56px);
+    pointer-events: none;
+    z-index: 0;
+    border-radius: 24px;
+}
+.project-card:nth-child(3) > * { position: relative; z-index: 2; }
+
+/* Hide the large outer halo on very small screens to avoid overflow */
+@media (max-width: 420px) {
+    .project-card:nth-child(3)::before { display: none !important; }
+}
+
 .project-card:nth-child(4) {
     box-shadow: 0 8px 30px rgba(0,0,0,0.10), 0 0 30px rgba(146,64,14,0.12);
     transition: box-shadow 0.25s ease, transform 0.25s ease, border-color 0.25s ease;
@@ -1115,6 +1178,86 @@ a.project-card, a.project-card * {
 
     .competence-category {
         padding: 1.5rem;
+    }
+}
+
+/* Extra safeguards for very small / vertical screens (phones) to avoid layout breaking */
+@media (max-width: 420px) {
+    html, body {
+        -webkit-text-size-adjust: 100% !important;
+        text-size-adjust: 100% !important;
+        min-width: 0 !important;
+        overflow-x: hidden !important;
+    }
+
+    .container {
+        padding-left: 12px !important;
+        padding-right: 12px !important;
+    }
+
+    /* Category tabs become horizontally scrollable and compact */
+    .category-tabs {
+        padding: 8px 6px !important;
+        gap: 0.5rem !important;
+        overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch !important;
+        justify-content: flex-start !important;
+    }
+    .category-tab {
+        padding: 0.6rem 1rem !important;
+        font-size: 0.85rem !important;
+        white-space: nowrap !important;
+        flex: 0 0 auto !important;
+    }
+
+    /* Book gallery: force single column and ensure pairs stack vertically */
+    .book-category {
+        grid-template-columns: 1fr !important;
+        padding: 12px !important;
+        gap: 0.6rem !important;
+    }
+    .book-image-pair {
+        display: flex !important;
+        flex-direction: column !important;
+        width: 100% !important;
+    }
+    .book-image-pair .book-image-item {
+        flex: 1 1 100% !important;
+        max-width: 100% !important;
+    }
+
+    .book-image-item {
+        min-width: 0 !important;
+    }
+    .book-image-wrapper img {
+        width: 100% !important;
+        height: auto !important;
+        max-height: 60vh !important;
+        object-fit: contain !important;
+    }
+
+    /* Projects: avoid decorative ::after overflowing and reduce image height */
+    .project-card::after {
+        display: none !important;
+    }
+    .project-image {
+        height: 180px !important;
+    }
+
+    /* Ensure clickable cards and other elements don't overflow */
+    .project-card, .book-image-item, .gallery-grid, .projects-grid {
+        min-width: 0 !important;
+    }
+
+    /* Reduce large paddings that cause horizontal scroll */
+    .hero, .about, .projects, .competences, .gallery-section {
+        padding-left: 12px !important;
+        padding-right: 12px !important;
+    }
+
+    /* Disable heavy drop-shadows that can cause rendering shifts on low-end devices */
+    .project-card, .book-image-item {
+        box-shadow: 0 6px 18px rgba(0,0,0,0.06) !important;
     }
 }
 
@@ -1860,3 +2003,90 @@ a {
 
 /* Force consistent box-sizing (already present but reinforce for pseudo-elements) */
 *, *::before, *::after { box-sizing: border-box; }
+
+/* Specific fixes for 1920x1080 displays to avoid layout breakage on all pages */
+@media screen and (width: 1920px) and (height: 1080px),
+       screen and (min-width: 1880px) and (max-width: 1920px) and (min-height: 1040px) {
+    /* Prevent accidental horizontal scroll */
+    html, body { overflow-x: hidden; }
+
+    /* Slightly constrain the central container to avoid elements touching edges */
+    .container { max-width: 1600px; margin-left: auto; margin-right: auto; }
+
+    /* Tighter grid rules to avoid overflowing cards */
+    .projects-grid { grid-template-columns: repeat(3, minmax(320px, 1fr)); gap: 2rem; }
+    .book-category { grid-template-columns: repeat(5, minmax(220px, 1fr)); gap: 1rem; }
+
+    /* Reduce large decorative pseudo-elements to prevent overflow at high resolutions */
+    .project-card::after { right: -40px; bottom: -20px; width: 160px; height: 160px; }
+    .about .container::after { left: -40px; bottom: -80px; width: 180px; height: 180px; }
+    .image-placeholder::before { width: 320px; height: 320px; }
+
+    /* Ensure large images do not exceed viewport height */
+    .project-image { max-height: 45vh; height: auto; }
+    .book-image-wrapper img { max-height: 75vh; object-fit: contain; }
+
+    /* Avoid extreme shadows and large transforms that can create layout shifts */
+    .project-card, .book-image-item { box-shadow: 0 10px 30px rgba(0,0,0,0.08); transform: none; }
+
+    /* Ensure hero and sections have comfortable paddings on large screens */
+    .hero, .about, .projects, .competences, .gallery-section { padding-left: 40px; padding-right: 40px; }
+
+    /* Force reflow after applying changes on some browsers to avoid stale layout */
+    .container { will-change: auto; }
+}
+
+/* Stronger colored glow overrides for project cards (more visible but tasteful) */
+.project-card {
+    transition: box-shadow 0.25s ease, transform 0.25s ease, border-color 0.25s ease, filter 0.25s ease;
+}
+
+.project-card:nth-child(1) {
+    box-shadow: 0 12px 40px rgba(0,0,0,0.12), 0 0 60px rgba(8,145,178,0.18), 0 0 18px rgba(8,145,178,0.06) inset;
+}
+.project-card:nth-child(1):hover {
+    box-shadow: 0 22px 70px rgba(0,0,0,0.16), 0 0 140px rgba(8,145,178,0.42), 0 0 30px rgba(8,145,178,0.12) inset;
+    filter: saturate(1.05) brightness(1.02);
+    border-color: #0891b2;
+}
+
+.project-card:nth-child(2) {
+    box-shadow: 0 12px 40px rgba(0,0,0,0.12), 0 0 60px rgba(67,56,202,0.18), 0 0 18px rgba(67,56,202,0.06) inset;
+}
+.project-card:nth-child(2):hover {
+    box-shadow: 0 22px 70px rgba(0,0,0,0.16), 0 0 140px rgba(67,56,202,0.42), 0 0 30px rgba(67,56,202,0.12) inset;
+    filter: saturate(1.05) brightness(1.02);
+    border-color: #4338ca;
+}
+
+.project-card:nth-child(3) {
+    box-shadow: 0 12px 40px rgba(0,0,0,0.12), 0 0 60px rgba(192,132,252,0.18), 0 0 18px rgba(192,132,252,0.06) inset;
+}
+.project-card:nth-child(3):hover {
+    box-shadow: 0 22px 70px rgba(0,0,0,0.16), 0 0 140px rgba(192,132,252,0.42), 0 0 30px rgba(192,132,252,0.12) inset;
+    filter: saturate(1.05) brightness(1.02);
+    border-color: #c084fc;
+}
+
+.project-card:nth-child(4) {
+    box-shadow: 0 12px 40px rgba(0,0,0,0.12), 0 0 60px rgba(146,64,14,0.18), 0 0 18px rgba(146,64,14,0.06) inset;
+}
+.project-card:nth-child(4):hover {
+    box-shadow: 0 22px 70px rgba(0,0,0,0.16), 0 0 140px rgba(146,64,14,0.42), 0 0 30px rgba(146,64,14,0.12) inset;
+    filter: saturate(1.05) brightness(1.02);
+    border-color: #92400e;
+}
+
+.project-card:nth-child(5) {
+    box-shadow: 0 12px 40px rgba(0,0,0,0.12), 0 0 60px rgba(153,27,27,0.18), 0 0 18px rgba(153,27,27,0.06) inset;
+}
+.project-card:nth-child(5):hover {
+    box-shadow: 0 22px 70px rgba(0,0,0,0.16), 0 0 140px rgba(153,27,27,0.42), 0 0 30px rgba(153,27,27,0.12) inset;
+    filter: saturate(1.05) brightness(1.02);
+    border-color: #991b1b;
+}
+
+/* Accessibility: reduce glow intensity when user has 'prefers-reduced-motion' or 'prefers-reduced-transparency' */
+@media (prefers-reduced-motion: reduce), (prefers-reduced-transparency: reduce) {
+    .project-card, .project-card:hover { box-shadow: 0 8px 18px rgba(0,0,0,0.08) !important; filter: none !important; }
+}
