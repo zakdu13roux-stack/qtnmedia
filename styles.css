@@ -343,6 +343,27 @@ body {
     position: relative;
 }
 
+/* Make project cards clickable when they are anchors */
+a.project-card {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Ensure no underline appears on any text inside linked cards (some browsers show underlines).
+   Use !important to override browser UA styles or other rules. */
+a.project-card, a.project-card * {
+    text-decoration: none !important;
+    color: inherit !important;
+}
+
+/* hide legacy buttons inside cards (we use the whole card as the link)
+   keep them hidden so layout/spacing is preserved */
+.project-card .video-button {
+    display: none;
+}
+
 /* Allow the first project card (Projet ALC) to overflow so the montage image can overlap
    the card and the surrounding projects grid. */
 .project-card:nth-child(1) {
@@ -410,6 +431,52 @@ body {
     transform: translateY(-10px);
     box-shadow: var(--shadow-lg);
     border-color: var(--primary-color);
+}
+
+/* Subtle colored glows matching the old buttons' colors */
+.project-card:nth-child(1) {
+    box-shadow: 0 8px 30px rgba(0,0,0,0.10), 0 0 30px rgba(8,145,178,0.12);
+    transition: box-shadow 0.25s ease, transform 0.25s ease, border-color 0.25s ease;
+}
+.project-card:nth-child(1):hover {
+    box-shadow: var(--shadow-lg), 0 0 80px rgba(8,145,178,0.28);
+    border-color: #0891b2;
+}
+
+.project-card:nth-child(2) {
+    box-shadow: 0 8px 30px rgba(0,0,0,0.10), 0 0 30px rgba(67,56,202,0.12);
+    transition: box-shadow 0.25s ease, transform 0.25s ease, border-color 0.25s ease;
+}
+.project-card:nth-child(2):hover {
+    box-shadow: var(--shadow-lg), 0 0 80px rgba(67,56,202,0.28);
+    border-color: #4338ca;
+}
+
+.project-card:nth-child(3) {
+    box-shadow: 0 8px 30px rgba(0,0,0,0.10), 0 0 30px rgba(192,132,252,0.12);
+    transition: box-shadow 0.25s ease, transform 0.25s ease, border-color 0.25s ease;
+}
+.project-card:nth-child(3):hover {
+    box-shadow: var(--shadow-lg), 0 0 80px rgba(192,132,252,0.28);
+    border-color: #c084fc;
+}
+
+.project-card:nth-child(4) {
+    box-shadow: 0 8px 30px rgba(0,0,0,0.10), 0 0 30px rgba(146,64,14,0.12);
+    transition: box-shadow 0.25s ease, transform 0.25s ease, border-color 0.25s ease;
+}
+.project-card:nth-child(4):hover {
+    box-shadow: var(--shadow-lg), 0 0 80px rgba(146,64,14,0.28);
+    border-color: #92400e;
+}
+
+.project-card:nth-child(5) {
+    box-shadow: 0 8px 30px rgba(0,0,0,0.10), 0 0 30px rgba(153,27,27,0.12);
+    transition: box-shadow 0.25s ease, transform 0.25s ease, border-color 0.25s ease;
+}
+.project-card:nth-child(5):hover {
+    box-shadow: var(--shadow-lg), 0 0 80px rgba(153,27,27,0.28);
+    border-color: #991b1b;
 }
 
 .project-image {
