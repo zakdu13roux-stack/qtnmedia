@@ -459,6 +459,50 @@
             box-shadow: 0 12px 30px rgba(167, 139, 250, 0.25);
         }
 
+        /* Strong rule: use flex and force each child to 50% width (important)
+           so the two selected images each take half the row. Falls back to
+           stacking below 768px. */
+        .book-image-pair {
+            grid-column: 1 / -1;
+            display: flex !important;
+            flex-direction: row !important;
+            gap: 1rem !important;
+            width: 100% !important;
+            box-sizing: border-box !important;
+            align-items: stretch !important;
+        }
+
+        .book-image-pair > .book-image-item {
+            flex: 0 0 50% !important;
+            max-width: 50% !important;
+            box-sizing: border-box !important;
+            display: flex !important;
+            flex-direction: column !important;
+        }
+
+        .book-image-pair .book-image-wrapper {
+            width: 100% !important;
+            display: block !important;
+        }
+
+        .book-image-pair .book-image-item img {
+            width: 100% !important;
+            height: auto !important;
+            display: block !important;
+            object-fit: contain !important;
+        }
+
+        @media (max-width: 768px) {
+            .book-image-pair {
+                flex-direction: column !important;
+            }
+
+            .book-image-pair > .book-image-item {
+                flex: 1 1 100% !important;
+                max-width: 100% !important;
+            }
+        }
+
         .book-image-item:hover .image-description {
             background: linear-gradient(135deg, rgba(167, 139, 250, 0.15) 0%, rgba(99, 102, 241, 0.15) 100%);
         }
@@ -1468,10 +1512,10 @@
         function loadCategory(category) {
             currentCategory = category;
             bookCategory.innerHTML = '';
-            
+
             // Remove all category classes
             bookCategory.classList.remove('category-all', 'category-manga', 'category-compositions', 'category-noir-blanc', 'category-inktober', 'category-references');
-            
+
             // Add the current category class
             bookCategory.classList.add(`category-${category}`);
 
@@ -1484,68 +1528,126 @@
 
             currentImages = categoryItems; // Store current images for modal navigation
 
+            // Files to display together as a special 2-per-row pair
+            const pairFiles = ['Sketch_5.jpg', 'sketch_fanart_marino.jpg'];
+
+            // Helper to build an item element
+            function buildItem(item, index) {
+                const img = item.querySelector('img');
+                const srcAttr = img.getAttribute('src') || img.src;
+                const fileName = decodeURIComponent(srcAttr.split('/').pop().split('?')[0]);
+                const description = imageDescriptions[fileName] || imageDescriptions[fileName.toLowerCase()];
+
+                const imageWrapper = document.createElement('div');
+                imageWrapper.className = 'book-image-item';
+                imageWrapper.style.opacity = '0';
+                imageWrapper.setAttribute('data-filename', fileName);
+
+                const imgWrapperDiv = document.createElement('div');
+                imgWrapperDiv.className = 'book-image-wrapper';
+                imgWrapperDiv.innerHTML = `<img src="${img.src}" alt="${img.alt}" loading="lazy">`;
+                imageWrapper.appendChild(imgWrapperDiv);
+
+                if (description) {
+                    const descDiv = document.createElement('div');
+                    descDiv.className = 'image-description';
+                    descDiv.innerHTML = `<strong>💭 Processus créatif :</strong><p>${description}</p>`;
+                    imageWrapper.appendChild(descDiv);
+                } else {
+                    const hintDiv = document.createElement('div');
+                    hintDiv.className = 'image-description';
+                    hintDiv.style.opacity = '0.5';
+                    hintDiv.innerHTML = `<p style="font-style: italic; font-size: 0.85rem;">Créé avec passion ✨</p>`;
+                    imageWrapper.appendChild(hintDiv);
+                }
+
+                imgWrapperDiv.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    openModal(img.src, index);
+                });
+
+                imageWrapper.addEventListener('click', () => {
+                    imageWrapper.style.animation = 'itemBounce 0.6s ease-in-out';
+                    setTimeout(() => imageWrapper.style.animation = '', 600);
+                });
+
+                return { el: imageWrapper, fileName };
+            }
+
             if (categoryItems.length > 0) {
-                categoryItems.forEach((item, index) => {
-                    const img = item.querySelector('img');
-                    // Use the original src attribute (relative path) and decode URI components
-                    const srcAttr = img.getAttribute('src') || img.src;
-                    const fileName = decodeURIComponent(srcAttr.split('/').pop().split('?')[0]);
-                    // Try exact match, fallback to lowercase key match
-                    const description = imageDescriptions[fileName] || imageDescriptions[fileName.toLowerCase()];
+                const normal = [];
+                const pair = [];
 
-                    const imageWrapper = document.createElement('div');
-                    imageWrapper.className = 'book-image-item';
-                    imageWrapper.style.opacity = '0';
-                    
-                    // Create image wrapper
-                    const imgWrapperDiv = document.createElement('div');
-                    imgWrapperDiv.className = 'book-image-wrapper';
-                    imgWrapperDiv.innerHTML = `<img src="${img.src}" alt="${img.alt}" loading="lazy">`;
-                    imageWrapper.appendChild(imgWrapperDiv);
-
-                    // Add description if available
-                    if (description) {
-                        const descDiv = document.createElement('div');
-                        descDiv.className = 'image-description';
-                        descDiv.innerHTML = `<strong>💭 Processus créatif :</strong><p>${description}</p>`;
-                        imageWrapper.appendChild(descDiv);
-                    } else {
-                        // Add empty space with hover hint for items without description
-                        const hintDiv = document.createElement('div');
-                        hintDiv.className = 'image-description';
-                        hintDiv.style.opacity = '0.5';
-                        hintDiv.innerHTML = `<p style="font-style: italic; font-size: 0.85rem;">Créé avec passion ✨</p>`;
-                        imageWrapper.appendChild(hintDiv);
-                    }
-
-                    // Click to open modal
-                    imgWrapperDiv.addEventListener('click', (e) => {
-                        e.stopPropagation();
-                        openModal(img.src, index);
-                    });
-
-                    // Add click interaction for extra details
-                    imageWrapper.addEventListener('click', () => {
-                        imageWrapper.style.animation = 'itemBounce 0.6s ease-in-out';
-                        setTimeout(() => {
-                            imageWrapper.style.animation = '';
-                        }, 600);
-                    });
-
-                    bookCategory.appendChild(imageWrapper);
-                    imageObserver.observe(imageWrapper);
+                categoryItems.forEach((it, i) => {
+                    const built = buildItem(it, i);
+                    if (pairFiles.includes(built.fileName)) pair.push(built.el);
+                    else normal.push(built.el);
                 });
-                
+
+                // Compute number of columns from CSS
+                const computed = window.getComputedStyle(bookCategory);
+                const cols = Math.max((computed.gridTemplateColumns || '').split(' ').filter(Boolean).length, 1);
+
+                // Default insertion: at end
+                let insertAt = normal.length;
+
+                // If last row would have exactly 1 item and we have both pair images, insert pair before last normal
+                if (cols > 1 && (normal.length % cols) === 1 && pair.length === 2) {
+                    insertAt = Math.max(0, normal.length - 1);
+                }
+
+                // Build final sequence with pair inserted
+                const finalSeq = [];
+                for (let i = 0; i < normal.length; i++) {
+                    if (i === insertAt && pair.length === 2) {
+                        const pairContainer = document.createElement('div');
+                        pairContainer.className = 'book-image-pair';
+                        // Inline styles to enforce exact 50% per child
+                        pairContainer.style.display = 'flex';
+                        pairContainer.style.flexDirection = 'row';
+                        pairContainer.style.width = '100%';
+                        pair.forEach(p => {
+                            p.style.flex = '0 0 50%';
+                            p.style.maxWidth = '50%';
+                            const wrapper = p.querySelector('.book-image-wrapper');
+                            if (wrapper) wrapper.style.width = '100%';
+                            pairContainer.appendChild(p);
+                        });
+                        finalSeq.push(pairContainer);
+                    }
+                    finalSeq.push(normal[i]);
+                }
+                if (insertAt >= normal.length) {
+                    if (pair.length === 2) {
+                        const pairContainer = document.createElement('div');
+                        pairContainer.className = 'book-image-pair';
+                        pairContainer.style.display = 'flex';
+                        pairContainer.style.flexDirection = 'row';
+                        pairContainer.style.width = '100%';
+                        pair.forEach(p => {
+                            p.style.flex = '0 0 50%';
+                            p.style.maxWidth = '50%';
+                            const wrapper = p.querySelector('.book-image-wrapper');
+                            if (wrapper) wrapper.style.width = '100%';
+                            pairContainer.appendChild(p);
+                        });
+                        finalSeq.push(pairContainer);
+                    } else {
+                        pair.forEach(p => finalSeq.push(p));
+                    }
+                }
+
+                // Append to DOM and observe
+                finalSeq.forEach(node => {
+                    bookCategory.appendChild(node);
+                    if (node.classList && node.classList.contains('book-image-item')) imageObserver.observe(node);
+                    else if (node.querySelectorAll) node.querySelectorAll('.book-image-item').forEach(c => imageObserver.observe(c));
+                });
+
                 categoryDescription.textContent = categoryDescriptions[category];
-                
+
                 // Update active tab
-                categoryTabs.forEach(tab => {
-                    if (tab.dataset.category === category) {
-                        tab.classList.add('active');
-                    } else {
-                        tab.classList.remove('active');
-                    }
-                });
+                categoryTabs.forEach(tab => tab.classList.toggle('active', tab.dataset.category === category));
             }
         }
 
