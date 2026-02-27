@@ -156,6 +156,20 @@
             background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
         }
 
+        /* Restore explicit active styling for 'Tous les dessins' (data-category="all") */
+        .category-tab[data-category="all"].active {
+            background: linear-gradient(135deg, #a78bfa 0%, #6366f1 100%) !important;
+            border-color: #a78bfa !important;
+            color: #ffffff !important;
+            box-shadow: 0 8px 25px rgba(167, 139, 250, 0.5), 0 0 20px rgba(167, 139, 250, 0.3) !important;
+            transform: translateY(-4px) scale(1.08) !important;
+        }
+
+        .category-tab[data-category="all"].active::before {
+            opacity: 1 !important;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1)) !important;
+        }
+
         @keyframes buttonPulse {
             0% {
                 transform: scale(0.95);
@@ -363,6 +377,57 @@
                 0 0 0 3px rgba(139, 92, 246, 0.4),
                 0 15px 40px rgba(139, 92, 246, 0.35),
                 0 0 30px rgba(168, 85, 247, 0.2);
+        }
+
+        /* ===== PORTRAITS - Style doux et centré sur le visage ===== */
+        .category-tab[data-category="portraits"].active {
+            background: linear-gradient(135deg,#ffdbe6,#ffeef6) !important;
+            border-color: #f472b6 !important;
+            color: #4b102b !important;
+            box-shadow: 0 8px 24px rgba(244,114,182,0.08) !important;
+            transform: translateY(-3px) scale(1.02) !important;
+        }
+
+        .book-category.category-portraits {
+            background: linear-gradient(135deg, rgba(255, 250, 252, 1), rgba(255, 244, 249, 1));
+            border: 1px solid rgba(244,114,182,0.12);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 8px 30px rgba(16,24,40,0.02);
+        }
+
+        .book-category.category-portraits .book-image-item {
+            background: linear-gradient(180deg,#fff #fffefc);
+            border: 1px solid rgba(244,114,182,0.06);
+            box-shadow: 0 6px 20px rgba(244,114,182,0.04);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .book-category.category-portraits .book-image-item:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 18px 40px rgba(16,24,40,0.06);
+        }
+
+        .book-category.category-portraits .image-description {
+            background: rgba(255,242,247,0.9);
+            border-top: 1px solid rgba(244,114,182,0.08);
+            color: #6b2940;
+        }
+
+        .book-category.category-portraits .image-description strong {
+            color: #7a2b46;
+        }
+
+        /* Petite icône caméra/portrait sur les vignettes */
+        .book-category.category-portraits .book-image-item::before {
+            content: '🖼️';
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            font-size: 14px;
+            opacity: 0.9;
+            transform: rotate(-6deg);
+            pointer-events: none;
         }
 
         
@@ -577,6 +642,363 @@
             color: rgba(139, 92, 246, 0.9);
         }
 
+        /* ===== SKETCHES - Dedicated style and matching active tab ===== */
+        .category-tab[data-category="sketches"].active {
+            background: linear-gradient(135deg,#ffd9b3,#ffe6cc);
+            border-color: #ffb86b;
+            color: #5a3000;
+            box-shadow: 0 8px 24px rgba(255, 184, 108, 0.15);
+            transform: translateY(-3px) scale(1.02);
+        }
+
+        .book-category.category-sketches {
+            background: linear-gradient(135deg,#fffaf2,#fff3e6);
+            border: 1px solid rgba(255, 184, 108, 0.18);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 8px 30px rgba(16,24,40,0.03);
+        }
+
+        .book-category.category-sketches .book-image-item {
+            background: linear-gradient(180deg,#ffffff,#fffdf9);
+            border: 1px solid rgba(16,24,40,0.04);
+            box-shadow: 0 6px 20px rgba(16,24,40,0.03);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .book-category.category-sketches .book-image-item:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 18px 40px rgba(16,24,40,0.08);
+        }
+
+        .book-category.category-sketches .image-description {
+            background: rgba(255,246,236,0.9);
+            border-top: 1px solid rgba(255,184,108,0.12);
+            color: #6b4a2a;
+        }
+
+        .book-category.category-sketches .image-description strong {
+            color: #7a4b1e;
+        }
+
+        /* Décorations légères pour rappeler le mot "sketch" : crayon, griffonnage, coin */
+        .book-category.category-sketches {
+            position: relative;
+            overflow: visible;
+        }
+
+        .book-category.category-sketches::before {
+            content: '';
+            position: absolute;
+            top: -8px;
+            right: 18px;
+            width: 64px;
+            height: 64px;
+            background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><g fill='none' stroke='%235a3000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M45 6l13 13-33 33-13 3 3-13z'/><path d='M45 6l8 8' stroke-opacity='0.9'/></g></svg>");
+            background-size: contain;
+            background-repeat: no-repeat;
+            opacity: 0.28;
+            transform: rotate(-20deg);
+            pointer-events: none;
+        }
+
+        .book-category.category-sketches::after {
+            content: '';
+            position: absolute;
+            left: 12px;
+            bottom: 12px;
+            width: 140px;
+            height: 40px;
+            background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 140 40'><path d='M6 26c18-22 44 10 72-6 24-14 46 22 56 6' fill='none' stroke='%238b5a2b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' stroke-opacity='0.18'/></svg>");
+            background-repeat: no-repeat;
+            background-size: contain;
+            opacity: 0.34;
+            pointer-events: none;
+        }
+
+        /* Petit pictogramme crayon sur chaque vignette dans la catégorie sketches */
+        .book-category.category-sketches .book-image-item::before {
+            content: '✏️';
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 16px;
+            opacity: 0.75;
+            transform: rotate(-12deg);
+            pointer-events: none;
+            filter: drop-shadow(0 1px 0 rgba(0,0,0,0.05));
+        }
+
+        /* Indicateur discret sur l'onglet actif sketches */
+        .category-tab[data-category="sketches"].active::after {
+            content: '✎';
+            position: absolute;
+            right: 10px;
+            top: 8px;
+            font-size: 14px;
+            color: #7a4b1e;
+            opacity: 0.95;
+            transform: rotate(-8deg);
+            pointer-events: none;
+        }
+
+        /* ===== MANGA - petit coin pinceau + emoji sur vignettes + onglet ===== */
+        .book-category.category-manga::before {
+            content: '';
+            position: absolute;
+            left: 14px;
+            top: -6px;
+            width: 68px;
+            height: 68px;
+            background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><path d='M6 46c18-22 40-8 52-2 0 0-10 14-22 18-12 4-26-2-30-16z' fill='%23fff3eb' stroke='%23f97316' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+            background-repeat: no-repeat;
+            background-size: contain;
+            opacity: 0.18;
+            pointer-events: none;
+            transform: rotate(-8deg);
+        }
+
+        .book-category.category-manga .book-image-item::before {
+            content: '✦';
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            font-size: 14px;
+            color: #f97316;
+            opacity: 0.9;
+            transform: rotate(-6deg);
+            pointer-events: none;
+        }
+
+        .category-tab[data-category="manga"].active::after {
+            content: '★';
+            position: absolute;
+            right: 10px;
+            top: 8px;
+            font-size: 13px;
+            color: #f97316;
+            opacity: 0.95;
+            transform: rotate(-6deg);
+            pointer-events: none;
+        }
+
+        /* ===== COMPOSITIONS - motif règle/grille léger + onglet ===== */
+        .book-category.category-compositions::before {
+            content: '';
+            position: absolute;
+            right: 12px;
+            bottom: -6px;
+            width: 140px;
+            height: 36px;
+            background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 140 36'><g stroke='%233b82f6' stroke-width='1' stroke-linecap='round' stroke-linejoin='round' fill='none' opacity='0.14'><path d='M2 28h136'/><path d='M12 4v24M28 4v24M44 4v24M60 4v24M76 4v24M92 4v24M108 4v24M124 4v24' /></g></svg>");
+            background-repeat: no-repeat;
+            background-size: contain;
+            opacity: 0.22;
+            pointer-events: none;
+            transform: rotate(0deg);
+        }
+
+        .book-category.category-compositions .book-image-item::before {
+            content: '▭';
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            font-size: 14px;
+            color: #1e3a8a;
+            opacity: 0.85;
+            pointer-events: none;
+            transform: rotate(-4deg);
+        }
+
+        .category-tab[data-category="compositions"].active::after {
+            content: '⋄';
+            position: absolute;
+            right: 10px;
+            top: 8px;
+            font-size: 13px;
+            color: #2563eb;
+            opacity: 0.95;
+            pointer-events: none;
+        }
+
+        /* ===== NOIR-BLANC - tache d'encre subtile + onglet ===== */
+        .book-category.category-noir-blanc::before {
+            content: '';
+            position: absolute;
+            left: -8px;
+            top: 8px;
+            width: 80px;
+            height: 80px;
+            background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 80'><g fill='%230b1220' opacity='0.12'><path d='M10 50c10-20 30-10 44-18 12-6 18 12 26 8 0 0-6 22-28 26-22 4-34-10-42-16z'/></g></svg>");
+            background-repeat: no-repeat;
+            background-size: contain;
+            pointer-events: none;
+        }
+
+        .book-category.category-noir-blanc .book-image-item::before {
+            content: '•';
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 12px;
+            color: rgba(255,255,255,0.85);
+            opacity: 0.9;
+            pointer-events: none;
+        }
+
+        .category-tab[data-category="noir-blanc"].active::after {
+            content: '☾';
+            position: absolute;
+            right: 10px;
+            top: 8px;
+            font-size: 13px;
+            color: #ffffff;
+            opacity: 0.95;
+            pointer-events: none;
+        }
+
+        /* ===== INKTOBER - plume + taches d'encre + onglet ===== */
+        .book-category.category-inktober::before {
+            content: '';
+            position: absolute;
+            right: 18px;
+            top: -10px;
+            width: 64px;
+            height: 64px;
+            background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><g fill='none' stroke='%238b5cf6' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' opacity='0.16'><path d='M12 44c10-16 30-12 40-6'/><path d='M44 8l8 8-16 16-8 4 4-8z'/></g></svg>");
+            background-repeat: no-repeat;
+            background-size: contain;
+            pointer-events: none;
+        }
+
+        .book-category.category-inktober .book-image-item::before {
+            content: '✒️';
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            font-size: 14px;
+            opacity: 0.9;
+            transform: rotate(-6deg);
+            pointer-events: none;
+        }
+
+        .category-tab[data-category="inktober"].active::after {
+            content: '✒';
+            position: absolute;
+            right: 10px;
+            top: 8px;
+            font-size: 13px;
+            color: #7c3aed;
+            opacity: 0.95;
+            pointer-events: none;
+        }
+
+        /* Restore original distinct backgrounds for each category (higher specificity) */
+        .book-category.category-all {
+            background: linear-gradient(135deg, rgba(167, 139, 250, 0.03) 0%, rgba(99, 102, 241, 0.03) 100%) !important;
+            border-color: rgba(167, 139, 250, 0.2) !important;
+        }
+
+        .book-category.category-manga {
+            background: linear-gradient(135deg, rgba(249, 115, 22, 0.15) 0%, rgba(245, 158, 11, 0.12) 100%) !important;
+            border: 3px solid rgba(249, 115, 22, 0.4) !important;
+        }
+
+        .book-category.category-compositions {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.08) 0%, rgba(96, 165, 250, 0.05) 100%) !important;
+            border: 1px solid rgba(59, 130, 246, 0.4) !important;
+        }
+
+        .book-category.category-noir-blanc {
+            background: linear-gradient(135deg, rgba(20, 25, 35, 0.4) 0%, rgba(35, 45, 60, 0.3) 100%) !important;
+            border: 2px solid rgba(100, 116, 139, 0.6) !important;
+        }
+
+        .book-category.category-inktober {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.2) 0%, rgba(168, 85, 247, 0.15) 100%) !important;
+            border: 3px dashed rgba(139, 92, 246, 0.5) !important;
+        }
+
+        /* Make sketches less yellow and more 'notebook' while keeping it distinct */
+        .book-category.category-sketches {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 1) 0%, rgba(250, 248, 244, 1) 100%) !important;
+            border: 1px solid rgba(16,24,40,0.04) !important;
+            box-shadow: 0 8px 30px rgba(16,24,40,0.03) !important;
+        }
+
+        /* Strong overrides to ensure each category keeps its original styled background and tab look */
+        .category-tab[data-category="manga"].active {
+            background: linear-gradient(135deg, #ffd9c0, #ffb892) !important;
+            border-color: rgba(249,115,22,0.9) !important;
+            color: #5a2b00 !important;
+            box-shadow: 0 8px 24px rgba(249,115,22,0.12) !important;
+        }
+
+        .book-category.category-manga {
+            background: linear-gradient(135deg, rgba(249, 115, 22, 0.12) 0%, rgba(254, 236, 221, 0.06) 100%) !important;
+            border: 3px solid rgba(249, 115, 22, 0.35) !important;
+        }
+
+        .book-category.category-manga .book-image-item {
+            background: linear-gradient(135deg, #fff8f3, #fffbf0) !important;
+            border: 2px solid rgba(249, 115, 22, 0.5) !important;
+            box-shadow: 0 8px 20px rgba(249,115,22,0.18) !important;
+        }
+
+        .category-tab[data-category="compositions"].active {
+            background: linear-gradient(135deg,#dbeafe,#bfdbfe) !important;
+            border-color: rgba(59,130,246,0.8) !important;
+            color: #08306b !important;
+            box-shadow: 0 8px 24px rgba(59,130,246,0.08) !important;
+        }
+
+        .book-category.category-compositions {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.08) 0%, rgba(96, 165, 250, 0.05) 100%) !important;
+            border: 1px solid rgba(59, 130, 246, 0.4) !important;
+        }
+
+        .book-category.category-compositions .book-image-item {
+            background: rgba(255,255,255,0.85) !important;
+            border: 1px solid rgba(59,130,246,0.28) !important;
+            box-shadow: 0 6px 18px rgba(59,130,246,0.06) !important;
+        }
+
+        .category-tab[data-category="noir-blanc"].active {
+            background: linear-gradient(135deg,#111827,#0b1220) !important;
+            border-color: rgba(100,116,139,0.9) !important;
+            color: #fff !important;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.45) !important;
+        }
+
+        .book-category.category-noir-blanc {
+            background: linear-gradient(135deg, rgba(20, 25, 35, 0.4) 0%, rgba(35, 45, 60, 0.3) 100%) !important;
+            border: 2px solid rgba(100, 116, 139, 0.6) !important;
+        }
+
+        .book-category.category-noir-blanc .book-image-item {
+            background: linear-gradient(135deg, #1e293b, #0f172a) !important;
+            border: 1px solid rgba(71,85,105,0.75) !important;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.45) !important;
+        }
+
+        .category-tab[data-category="inktober"].active {
+            background: linear-gradient(135deg,#f3e8ff,#ede9fe) !important;
+            border-color: rgba(139,92,246,0.8) !important;
+            color: #3c1361 !important;
+            box-shadow: 0 8px 24px rgba(139,92,246,0.12) !important;
+        }
+
+        .book-category.category-inktober {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.2) 0%, rgba(168, 85, 247, 0.15) 100%) !important;
+            border: 3px dashed rgba(139, 92, 246, 0.5) !important;
+        }
+
+        .book-category.category-inktober .book-image-item {
+            background: linear-gradient(135deg, #f5f3ff, #faf5ff) !important;
+            border: 2px solid rgba(139,92,246,0.6) !important;
+            box-shadow: 0 8px 20px rgba(139,92,246,0.18) !important;
+        }
+
         
 
         /* Description style with better appearance */
@@ -621,6 +1043,15 @@
         .book-category.category-noir-blanc .image-description {
             border-top: 2px solid rgba(148, 163, 184, 0.8);
             background: linear-gradient(135deg, rgba(30, 41, 59, 0.2), rgba(15, 23, 42, 0.2));
+        }
+
+        /* Force readable white text for noir-blanc category */
+        .book-category.category-noir-blanc,
+        .book-category.category-noir-blanc .book-image-item,
+        .book-category.category-noir-blanc .image-description,
+        .book-category.category-noir-blanc .image-description p,
+        .book-category.category-noir-blanc .image-description strong {
+            color: #ffffff !important;
         }
 
         /* DÉCORS INKTOBER - Pattern diagonal */
@@ -1091,7 +1522,7 @@
             position: relative;
             max-width: 90vw;
             max-height: 85vh;
-            padding: 2rem;
+            padding: 1rem;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -1110,15 +1541,23 @@
         }
 
         .modal-content img {
-            max-width: 100%;
-            max-height: 100%;
+            /* Limit modal image so it never feels too large on desktop */
+            max-width: min(80vw, 1200px);
+            max-height: 80vh;
             width: auto;
             height: auto;
             display: block;
             border-radius: 12px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
             object-fit: contain;
-            transform: scale(0.8);
+            transform: translateZ(0);
+        }
+
+        @media (max-width: 480px) {
+            .modal-content img {
+                max-width: 95vw;
+                max-height: 85vh;
+            }
         }
 
         .modal-close {
@@ -1258,6 +1697,7 @@
                 <button class="category-tab" data-category="manga">Manga (5 pages)</button>
                 <button class="category-tab" data-category="noir-blanc">Noir et Blanc</button>
                 <button class="category-tab" data-category="compositions">Compositions</button>
+                    <button class="category-tab" data-category="portraits">Portraits</button>
                 <button class="category-tab" data-category="inktober">Inktober</button>
             </div>
         </div>
@@ -1290,31 +1730,31 @@
                     <img src="assets/images_dessins/Sketch_1.jpg" alt="Sketch 1">
                 </div>
                 <div class="gallery-item" data-category="sketches">
-                    <img src="assets/images_dessins/Sketch_2.jpg" alt="Sketch 2">
+                    <img src="assets/images_dessins/sketch_2.jpg" alt="Sketch 2">
                 </div>
                 <div class="gallery-item" data-category="sketches">
-                    <img src="assets/images_dessins/Sketch_3.jpg" alt="Sketch 3">
+                    <img src="assets/images_dessins/sketch_3.jpg" alt="Sketch 3">
                 </div>
                 <div class="gallery-item" data-category="sketches">
-                    <img src="assets/images_dessins/Sketch_4.jpg" alt="Sketch 4">
+                    <img src="assets/images_dessins/sketch_4.jpg" alt="Sketch 4">
                 </div>
                 <div class="gallery-item" data-category="sketches">
-                    <img src="assets/images_dessins/Sketch_6.jpg" alt="Sketch 6">
+                    <img src="assets/images_dessins/sketch_6.jpg" alt="Sketch 6">
                 </div>
                 <div class="gallery-item" data-category="sketches">
-                    <img src="assets/images_dessins/Sketch_7.jpg" alt="Sketch 7">
+                    <img src="assets/images_dessins/sketch_7.jpg" alt="Sketch 7">
                 </div>
                 <div class="gallery-item" data-category="sketches">
-                    <img src="assets/images_dessins/Sketch_8.jpg" alt="Sketch 8">
+                    <img src="assets/images_dessins/sketch_8.jpg" alt="Sketch 8">
                 </div>
                 <div class="gallery-item" data-category="sketches">
-                    <img src="assets/images_dessins/Sketch_5.jpg" alt="Sketch 5">
+                    <img src="assets/images_dessins/sketch_5.jpg" alt="Sketch 5">
                 </div>
                 <div class="gallery-item" data-category="sketches">
                     <img src="assets/images_dessins/sketch_fanart_marino.jpg" alt="Sketch Fanart Marino">
                 </div>
                 <div class="gallery-item" data-category="sketches">
-                    <img src="assets/images_dessins/Sketch Frieren.jpg" alt="Sketch Frieren">
+                    <img src="assets/images_dessins/sketch_frieren.jpg" alt="Sketch Frieren">
                 </div>
                 
 
@@ -1343,10 +1783,22 @@
                     <img src="assets/images_dessins/compo_pinterest.PNG" alt="Composition 2">
                 </div>
                 <div class="gallery-item" data-category="compositions">
-                    <img src="assets/images_dessins/Luffy.PNG" alt="Composition 3">
+                    <img src="assets/images_dessins/Luffy.jpg" alt="Composition 3">
                 </div>
                 <div class="gallery-item" data-category="compositions">
                     <img src="assets/images_dessins/lance_robe.PNG" alt="Composition 4">
+                </div>
+                <div class="gallery-item" data-category="compositions">
+                    <img src="assets/images_dessins/compo_haikyuu.jpg" alt="Composition 2">
+                </div>
+                <div class="gallery-item" data-category="compositions">
+                    <img src="assets/images_dessins/compo_mononoke princess.jpg" alt="Composition 3">
+                </div>
+                <div class="gallery-item" data-category="compositions">
+                    <img src="assets/images_dessins/compo_Nazuna X Kou.jpg" alt="Composition 4">
+                </div>
+                 <div class="gallery-item" data-category="compositions">
+                    <img src="assets/images_dessins/compo_aqua_hoshino_1.jpg" alt="Composition 4">
                 </div>
 
                 <!-- Noir et Blanc -->
@@ -1373,7 +1825,29 @@
                 <div class="gallery-item" data-category="inktober">
                     <img src="assets/images_dessins/inktober_2.PNG" alt="Inktober 2">
                 </div>
-                
+                <!-- Portraits (auto-inserted) -->
+                <div class="gallery-item" data-category="portraits">
+                    <img src="assets/images_dessins/Portrait Aqua.jpg" alt="Portrait Aqua">
+                </div>
+                <div class="gallery-item" data-category="portraits">
+                    <img src="assets/images_dessins/Portrait Dragon.jpg" alt="Portrait Dragon">
+                </div>
+                <div class="gallery-item" data-category="portraits">
+                    <img src="assets/images_dessins/Portrait Knight.jpg" alt="Portrait Knight">
+                </div>
+                <div class="gallery-item" data-category="portraits">
+                    <img src="assets/images_dessins/Portrait Link.jpg" alt="Portrait Link">
+                </div>
+                <div class="gallery-item" data-category="portraits">
+                    <img src="assets/images_dessins/Portrait Magic Lizard.jpg" alt="Portrait Magic Lizard">
+                </div>
+                <div class="gallery-item" data-category="portraits">
+                    <img src="assets/images_dessins/Portrait Sword.jpg" alt="Portrait Sword">
+                </div>
+                <div class="gallery-item" data-category="portraits">
+                    <img src="assets/images_dessins/Portrait_Kirua.jpg" alt="Portrait Kirua">
+                </div>
+
             </div>
         </div>
     </section>
@@ -1418,7 +1892,7 @@
         const prevImageBtn = document.getElementById('prevImageBtn');
         const nextImageBtn = document.getElementById('nextImageBtn');
 
-        const categories = ['all', 'manga', 'compositions', 'noir-blanc', 'inktober'];
+        const categories = ['all', 'sketches', 'manga', 'noir-blanc', 'compositions', 'portraits', 'inktober'];
         
         let currentCategory = 'all';
         let currentImages = [];
@@ -1429,6 +1903,7 @@
             'manga': 'Un manga complet avec 5 pages - une histoire visuelle captivante',
             'compositions': 'Études de compositions et arrangements visuels savamment pensés',
             'noir-blanc': 'Dessins en noir et blanc explorant le contraste et les textures',
+            'portraits': 'Études de visages et portraits — expressions, lumière et détails',
             'inktober': 'Créations de l\'Inktober - défi artistique d\'un dessin par jour'
         };
 
@@ -1450,8 +1925,12 @@
             'manga_4.PNG': 'Page 4 - Développement des interactions entre les personnages. Focus sur les expressions et les gestes.',
             'manga_5.PNG': 'Page 5 - Conclusion de l\'histoire en 5 pages. Travail sur la composition et l\'impact visuel.',
             'compo inazuma_eleven.PNG': 'Composition Inazuma Eleven - Composition avec perspectives multiples pour créer de la profondeur et exprimer les personnalités des personnages.',
+            'compo_haikyuu.jpg': 'Composition Haikyuu - Étude de composition dynamique inspirée du manga Haikyuu et principalement du personnage Nishinoya Yuu. Travail sur les angles de vue et la mise en scène.',
+            'compo_mononoke princess.jpg': 'Composition Mononoke Princess - Étude de composition inspirée du film d\'animation "Mononoke Princess". Travail sur la physique et la composition équilibrée.',
+            'compo_Nazuna X Kou.jpg': 'Composition Nazuna X Kou - Étude de composition inspirée du manga "Call of the Night". Travail sur les expressions des personnages.',
+            'compo_aqua_hoshino_1.jpg': 'Composition Aqua Hoshino - Étude de composition inspirée du personnage "Aqua Hoshino" du manga "Oshi no Ko". Travail sur les éléments naturels et la composition équilibrée.',
             'compo_pinterest.PNG': 'Entraînement à partir d\'images Pinterest prises comme référence. Technique mixte crayon et encre. Focus sur l\'expression du visage et la sensibilité.',
-            'Luffy.PNG': 'Luffy - Étude de personnage inspirée du manga One Piece. Travail sur les proportions et les expressions faciales.',
+            'Luffy.jpg': 'Luffy - Étude de personnage inspirée du manga One Piece. Travail sur les proportions et les expressions faciales.',
             'lance_robe.PNG': 'Personnage original - Étude de costume et de posture. Utilisation de références historiques pour la lance et la robe.',
             'spiderman.PNG': 'Spider-Man - Technique à l\'encre noire avec jeu de lumière. Inspiré par les comics classiques.',
             'Hollow Knight.PNG': 'Hollow Knight - Étude sur le contraste et les ombres. Utilisation de textures pour créer une atmosphère sombre.',
