@@ -1671,7 +1671,8 @@
                 const videosMap = {
                     'noir-blanc': 'assets/videos/transition B&W.mp4',
                     'manga': 'assets/videos/transition manga.mp4',
-                    'compositions': 'assets/videos/transition compositions.mp4'
+                    'compositions': 'assets/videos/transition compositions.mp4',
+                    'sketches': 'assets/videos/transition sketch.mp4'
                 };
                 
                 console.log('Checking video for category:', category, 'Has video?', !!videosMap[category]);
@@ -1696,6 +1697,10 @@
                         transitionVideo.style.filter = 'saturate(0) brightness(0.5) contrast(4)';
                     } else if (category === 'compositions') {
                         // conserver les couleurs originales de la vidéo
+                        transitionVideo.style.filter = 'none';
+                    } else if (category === 'sketches') {
+                        // sketches: garder la vidéo en couleur (pas de noir et blanc)
+                        transitionVideo.classList.remove('manga-filter');
                         transitionVideo.style.filter = 'none';
                     }
                     
