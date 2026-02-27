@@ -2090,3 +2090,4 @@ a {
 @media (prefers-reduced-motion: reduce), (prefers-reduced-transparency: reduce) {
     .project-card, .project-card:hover { box-shadow: 0 8px 18px rgba(0,0,0,0.08) !important; filter: none !important; }
 }
+
