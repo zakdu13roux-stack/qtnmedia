@@ -2053,8 +2053,8 @@
             currentCategory = category;
             bookCategory.innerHTML = '';
 
-            // Remove all category classes
-            bookCategory.classList.remove('category-all', 'category-manga', 'category-compositions', 'category-noir-blanc', 'category-inktober', 'category-references');
+            // Remove any existing category-* classes to avoid leftover styles
+            categories.forEach(cat => bookCategory.classList.remove(`category-${cat}`));
 
             // Add the current category class
             bookCategory.classList.add(`category-${category}`);
