@@ -2053,11 +2053,34 @@
             currentCategory = category;
             bookCategory.innerHTML = '';
 
-            // Remove any existing category-* classes to avoid leftover styles
-            categories.forEach(cat => bookCategory.classList.remove(`category-${cat}`));
+            // Remove any existing category-* classes to avoid leftover styles (robust across browsers)
+            Array.from(bookCategory.classList).forEach(c => {
+                if (c.startsWith('category-')) bookCategory.classList.remove(c);
+            });
+
+            // Remove any inline styles that might persist across devices/ratios
+            bookCategory.removeAttribute('style');
 
             // Add the current category class
             bookCategory.classList.add(`category-${category}`);
+
+            // Force a reflow to ensure styles are recalculated immediately
+            void bookCategory.offsetHeight;
+
+            // If switching to 'all', force-reset the transition video and overlay to avoid lingering filters/overlays
+            if (category === 'all') {
+                const videoOverlay = document.getElementById('videoOverlay');
+                const transitionVideo = document.getElementById('transitionVideo');
+                if (videoOverlay) videoOverlay.classList.remove('active');
+                if (transitionVideo) {
+                    try { transitionVideo.pause(); } catch (e) {}
+                    transitionVideo.removeAttribute('src');
+                    try { transitionVideo.load(); } catch (e) {}
+                    transitionVideo.className = 'transition-video';
+                    transitionVideo.style.filter = '';
+                    transitionVideo.muted = false;
+                }
+            }
 
             let categoryItems;
             if (category === 'all') {
@@ -2206,7 +2229,21 @@
                 };
                 
                 console.log('Checking video for category:', category, 'Has video?', !!videosMap[category]);
-                
+
+                // If there's no transition video for this category, ensure the overlay/video are stopped and cleared
+                if (!videosMap[category]) {
+                    const videoOverlay = document.getElementById('videoOverlay');
+                    const transitionVideo = document.getElementById('transitionVideo');
+                    if (videoOverlay) videoOverlay.classList.remove('active');
+                    if (transitionVideo) {
+                        try { transitionVideo.pause(); } catch(e) {}
+                        transitionVideo.removeAttribute('src');
+                        try { transitionVideo.load(); } catch(e) {}
+                        transitionVideo.className = 'transition-video';
+                        transitionVideo.style.filter = '';
+                    }
+                }
+
                 if (videosMap[category]) {
                     const videoOverlay = document.getElementById('videoOverlay');
                     const transitionVideo = document.getElementById('transitionVideo');

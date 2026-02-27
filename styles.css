@@ -1816,3 +1816,47 @@ a.project-card, a.project-card * {
     -webkit-animation: floatText 6s ease-in-out infinite;
     will-change: transform;
 }
+
+/* Global stability rules to prevent layout "casse" across browsers/devices/ratios */
+html, body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+    min-width: 320px;
+}
+
+/* Prevent horizontal overflow caused by elements that exceed viewport */
+body {
+    overflow-x: hidden;
+}
+
+/* Make media elements always scale down to container to avoid overflow */
+img, picture, video, canvas, svg, iframe {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Avoid long words or unbroken text causing overflow */
+body, p, h1, h2, h3, h4, h5, h6, li, a, button {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+    hyphens: auto;
+}
+
+/* Normalize form/control appearance across browsers */
+button, input, select, textarea {
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+/* Ensure anchors don't cause unexpected underline/render differences */
+a {
+    text-decoration-skip-ink: none;
+}
+
+/* Force consistent box-sizing (already present but reinforce for pseudo-elements) */
+*, *::before, *::after { box-sizing: border-box; }
