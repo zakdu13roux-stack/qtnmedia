@@ -632,9 +632,12 @@ a.project-card, a.project-card * {
 .project-card:nth-child(2) .project-image img {
     width: 100% !important;
     height: 100% !important;
+    /* Fill the entire .project-image frame while keeping aspect ratio; crop if necessary */
     object-fit: cover;
     object-position: top center;
     display: block;
+    transform: none;
+    will-change: auto;
 }
 
 .project-card:nth-child(3) {
