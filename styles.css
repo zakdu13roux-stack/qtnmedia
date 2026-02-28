@@ -141,6 +141,9 @@ body {
     margin-bottom: 2rem;
 }
 
+/* Small safeguards only: don't change layout or grid defaults here */
+/* (intentionally empty placeholder kept for future small tweaks) */
+
 .cta-button {
     display: inline-block;
     padding: 15px 40px;
@@ -343,6 +346,12 @@ body {
     position: relative;
 }
 
+/* Ensure card interior sits above decorative pseudo-elements */
+.project-card > * {
+    position: relative;
+    z-index: 2;
+}
+
 /* Make project cards clickable when they are anchors */
 a.project-card {
     display: flex;
@@ -382,7 +391,7 @@ a.project-card, a.project-card * {
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
-    z-index: 6;
+    z-index: 0;
     pointer-events: none;
     filter: drop-shadow(0 10px 30px rgba(0,0,0,0.25));
 }
@@ -545,12 +554,15 @@ a.project-card, a.project-card * {
 .project-image {
     width: 100%;
     height: 300px;
+    max-height: 45vh;
     background: linear-gradient(135deg, rgba(var(--primary-rgb), 0.2), rgba(var(--accent-rgb), 0.2));
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 4rem;
     color: var(--primary-color);
+    flex: 0 0 auto; /* don't let this area flex-grow and push other content */
+    overflow: hidden; /* clip any oversized image */
 }
 
 .steps-grid {
@@ -559,14 +571,15 @@ a.project-card, a.project-card * {
 
 /* Ensure images inside project-image keep their aspect ratio and fit the box */
 .project-image img {
-    max-width: 110%;
+    /* Keep intrinsic aspect ratio and fit inside the .project-image box.
+       Use !important for width to override any inline width attributes. */
+    max-width: 100%;
     max-height: 100%;
-    width: auto;
-    height: auto;
+    width: auto !important;
+    height: auto !important;
     object-fit: contain;
     display: block;
-    transform: scaleX(1.12);
-    transform-origin: center;
+    margin: 0 auto;
 }
 
 .project-card:nth-child(1) .project-image {
@@ -606,10 +619,22 @@ a.project-card, a.project-card * {
 }
 
 .project-card:nth-child(2) .project-image {
-    background: url('assets/images/Map%2001_02_2026%2017_48_57.png') center/contain no-repeat;
+    /* Use the same frame as other project images; image placed via <img> inside.
+       Keep background-color but remove background-image to avoid overlap. */
+    background: none;
     background-color: rgba(var(--primary-rgb), 0.08);
-    height: 400px;
+    height: 300px; /* same height as default .project-image */
     color: var(--primary-color);
+    overflow: hidden;
+}
+
+/* Ensure the inline image fills the project-image box and is cropped from the top */
+.project-card:nth-child(2) .project-image img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover;
+    object-position: top center;
+    display: block;
 }
 
 .project-card:nth-child(3) {
@@ -2089,5 +2114,37 @@ a {
 /* Accessibility: reduce glow intensity when user has 'prefers-reduced-motion' or 'prefers-reduced-transparency' */
 @media (prefers-reduced-motion: reduce), (prefers-reduced-transparency: reduce) {
     .project-card, .project-card:hover { box-shadow: 0 8px 18px rgba(0,0,0,0.08) !important; filter: none !important; }
+}
+
+/* Large / Ultra-wide screens (4K and above) */
+@media (min-width: 2560px) {
+    /* Only increase container padding on ultra-wide displays to avoid edge-clipping;
+       do NOT change grid columns, base heights or typography here. */
+    :root { --container-padding-large: 48px; }
+    .container {
+        padding-left: var(--container-padding-large);
+        padding-right: var(--container-padding-large);
+    }
+
+    /* Scale decorative pseudo-elements to avoid overflow without changing layout */
+    .project-card:nth-child(1)::after { right: -60px; bottom: -30px; width: 260px; height: 260px; }
+    .project-card:nth-child(3)::before { width: 320%; height: 160%; filter: blur(80px); }
+    .image-placeholder::before { width: 420px; height: 420px; }
+}
+
+/* Ultra 4K / 8K displays */
+@media (min-width: 3840px) {
+    /* Keep layout/typography as-is; only increase outer padding and scale decorations */
+    .container { padding-left: 80px; padding-right: 80px; }
+
+    .project-card:nth-child(1)::after { right: -100px; bottom: -60px; width: 360px; height: 360px; }
+    .project-card:nth-child(3)::before { width: 380%; height: 200%; filter: blur(120px); }
+    .image-placeholder::before { width: 520px; height: 520px; }
+}
+
+/* Ensure media won't exceed viewport height on very large screens */
+@supports (height: 100vh) {
+    .project-image img, .book-image-wrapper img { max-height: 75vh; height: auto; }
+    video.project-video { max-height: 75vh; }
 }
 
