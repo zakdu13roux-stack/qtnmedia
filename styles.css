@@ -219,6 +219,32 @@ body {
     filter: drop-shadow(0 10px 30px rgba(0,0,0,0.25));
 }
 
+/* place montage image at top-right corner overlapping the about section */
+.about .container::before {
+    content: '';
+    position: absolute;
+    right: -80px;
+    top: -50px;
+    width: 360px;
+    height: 360px;
+    background-image: url('assets/images_dessins/Me_montage_no_bg.png');
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-size: contain;
+    z-index: 6;
+    pointer-events: none;
+    filter: drop-shadow(0 16px 32px rgba(0,0,0,0.24));
+}
+
+@media (max-width: 900px) {
+    .about .container::before {
+        right: -30px;
+        top: -25px;
+        width: 200px;
+        height: 200px;
+    }
+}
+
 @media (max-width: 900px) {
     .about .container::after {
         left: -50px;
@@ -256,10 +282,19 @@ body {
 }
 
 .about-text p {
-    font-size: 1.1rem;
+    font-size: 1.18rem;
     color: var(--text-light);
     margin-bottom: 1.5rem;
     line-height: 1.8;
+    hyphens: none;
+    word-break: normal;
+    overflow-wrap: normal;
+}
+
+@media (max-width: 900px) {
+    .about-text p {
+        font-size: 1.05rem;
+    }
 }
 
 .image-placeholder {
@@ -275,6 +310,21 @@ body {
     box-shadow: var(--shadow-lg);
     animation: float 3s ease-in-out infinite;
     border: 4px solid rgba(15,23,42,0.08);
+}
+
+/* move the whole logo (circle + inner image) to the right within the about column */
+.about-image {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding-left: 35px;
+}
+
+@media (max-width: 900px) {
+    .about-image {
+        padding-left: 35px;
+        justify-content: center;
+    }
 }
 
 .icon-img {
@@ -306,6 +356,7 @@ body {
 
 @media (max-width: 900px) {
     .image-placeholder::before {
+        left: 50%;
         width: 260px;
         height: 260px;
     }
@@ -379,31 +430,7 @@ a.project-card, a.project-card * {
     overflow: visible;
 }
 
-/* Add the montage image overlapping bottom-right of the first project card */
-.project-card:nth-child(1)::after {
-    content: '';
-    position: absolute;
-    right: -80px;
-    bottom: -40px;
-    width: 220px;
-    height: 220px;
-    background-image: url('assets/images_dessins/Me_montage_no_bg.png');
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
-    z-index: 0;
-    pointer-events: none;
-    filter: drop-shadow(0 10px 30px rgba(0,0,0,0.25));
-}
-
-@media (max-width: 900px) {
-    .project-card:nth-child(1)::after {
-        right: -30px;
-        bottom: -20px;
-        width: 120px;
-        height: 120px;
-    }
-}
+/* montage image moved to the about section (see .about .container::before) */
 
 .project-card:nth-child(1) {
     background: linear-gradient(135deg, rgba(6, 182, 212, 0.3), rgba(34, 197, 94, 0.3));
