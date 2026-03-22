@@ -218,6 +218,66 @@
             background: rgba(15, 23, 42, 0.04);
         }
 
+        /* Presentation section: only the Canva button text should be white */
+        .presentation-section .download-button {
+            color: #ffffff !important;
+            background: linear-gradient(135deg, #6366f1, #3b82f6) !important;
+            border: none !important;
+        }
+
+        .presentation-section .download-button:hover {
+            opacity: 0.95 !important;
+        }
+
+        /* Center the "Voir le projet" and "Présentation" sections */
+        .download-section .container,
+        .presentation-section .container {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.6rem;
+            max-width: 1000px;
+            width: 100%;
+        }
+
+        .download-section .download-buttons,
+        .presentation-section .download-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 0.6rem;
+        }
+
+        /* Center the Apprentissages section (next section) */
+        .learnings-section .container {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.6rem;
+            max-width: 1000px;
+            width: 100%;
+        }
+
+        .learnings-section .learnings-list {
+            text-align: center;
+            padding-left: 0;
+            list-style-position: inside;
+            max-width: 720px;
+        }
+
+        @media (min-width: 1200px) {
+            .download-section .container,
+            .presentation-section .container,
+            .learnings-section .container {
+                max-width: 1200px;
+            }
+
+            .learnings-section .learnings-list {
+                max-width: 1000px;
+            }
+        }
+
         .gallery-section h2 {
             font-size: 2.5rem;
             text-align: center;
@@ -453,39 +513,35 @@ if __name__ == '__main__':
                                     arcade.Sprite(os.path.join(os.path.dirname(__file__), "..", "Images", "ours.png"), scale=0.4),
                                     False]</code></pre>
                 </div>
+        </div>
+</section>
 
-                    </section>
-
-    <!-- Téléchargement -->
+    <!-- Voir le projet -->
     <section class="project-section download-section">
         <div class="container">
-            <h2>Télécharger le Projet</h2>
+            <h2>Voir le projet</h2>
             <p>Vous pouvez accéder au code source du projet sur notre dépôt GitHub.</p>
             <div class="download-buttons">
                 <a href="https://github.com/zakdu13roux-stack/RPGproject/tree/refactor" class="download-button github-btn" target="_blank">
                     <i class="fas fa-github"></i>Voir sur GitHub
                 </a>
             </div>
-            <div class="requirements">
-                <h3>Prérequis</h3>
-                <ul>
-                    <li>Python 3.8 ou supérieur</li>
-                    <li>Bibliothèque Python Arcade (pour l'affichage graphique)</li>
-                    <li>MySQL (pour la gestion de la base de données)</li>
-                </ul>
-                <h3>Installation dans l'invite de commandes :</h3>
-                <pre><code>pip install arcade
-pip install mysql.connector </code></pre>
-                <h3>Pour lancer le jeu :</h3>
-                <pre><code>Exécutez le script check_db.py pour initialiser 
-la base de données
-Lancez Main.py pour démarrer le jeu.</code></pre>
+        </div>
+    </section>
+
+    <!-- Présentation Canva -->
+    <section class="project-section presentation-section">
+        <div class="container">
+            <h2>Présentation du projet (Canva)</h2>
+            <p>Consultez notre présentation synthétique du jeu :</p>
+            <div class="download-buttons">
+                <a href="https://www.canva.com/design/DAHAjrV52SM/Wd1vWyoPDYO4WV45FFUgAA/view?utm_content=DAHAjrV52SM&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h445fcc1426" class="download-button" target="_blank" rel="noopener noreferrer">Voir la présentation Canva</a>
             </div>
         </div>
     </section>
 
     <!-- Apprentissages -->
-    <section class="project-section">
+    <section class="project-section learnings-section">
         <div class="container">
             <h2>Apprentissages Clés</h2>
             <ul class="learnings-list">
