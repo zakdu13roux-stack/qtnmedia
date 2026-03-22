@@ -125,6 +125,27 @@ body {
     animation: fadeInUp 1s ease;
 }
 
+/* Center the back button below the hero title */
+.project-hero {
+    position: relative;
+}
+
+.project-hero .back-button {
+    position: relative;
+    display: inline-block;
+    margin: 1rem auto 0;
+    left: auto;
+    top: auto;
+    z-index: 20;
+}
+
+@media (max-width: 640px) {
+    .project-hero .back-button {
+        margin-top: 0.6rem;
+        padding: 0.6rem 1rem !important;
+    }
+}
+
 .hero h1 {
     font-size: 4rem;
     font-weight: 800;
