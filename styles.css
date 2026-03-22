@@ -474,16 +474,23 @@ a.project-card, a.project-card * {
     flex: 1;
 }
 
-.project-card:nth-child(1) .project-date {
-    padding: 0;
-    margin: 0;
-    white-space: nowrap;
+.project-card:nth-child(1) .project-image {
+    /* Preserve the image aspect ratio and avoid squashing.
+       Use background-size: contain and a padding-top to set an aspect ratio (16:9).
+       The image will be centered and won't be stretched. */
+    background-image: url('assets/images/caméra%20qui%20filme.jpg');
+    background-size: contain;
+    background-position: center center;
+    background-repeat: no-repeat;
+    color: #06b6d4;
+    width: 100%;
+    height: auto;
+    padding-top: 56.25%; /* 16:9 ratio to avoid squash */
+    max-height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
-
-.project-card:nth-child(1) p {
-    color: #1e293b;
-}
-
 .project-card:hover {
     transform: translateY(-10px);
     box-shadow: var(--shadow-lg);
@@ -614,8 +621,8 @@ a.project-card, a.project-card * {
 
 .project-image {
     width: 100%;
-    height: 300px;
-    max-height: 45vh;
+    height: 220px;
+    max-height: 35vh;
     background: linear-gradient(135deg, rgba(var(--primary-rgb), 0.2), rgba(var(--accent-rgb), 0.2));
     display: flex;
     align-items: center;
@@ -644,8 +651,17 @@ a.project-card, a.project-card * {
 }
 
 .project-card:nth-child(1) .project-image {
-    background: url('assets/images/caméra%20qui%20filme.jpg') center/cover no-repeat;
+    /* Show the ALC image fully without cropping; keep a compact height
+       using a width-based aspect container (padding-top). */
+    background-image: url('assets/images/caméra%20qui%20filme.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
     color: #06b6d4;
+    /* Use a compact aspect-ratio container so the image isn't too tall */
+    height: auto;
+    max-height: none;
+    padding-top: 32%;
 }
 
 .project-card:nth-child(2) {
@@ -680,25 +696,21 @@ a.project-card, a.project-card * {
 }
 
 .project-card:nth-child(2) .project-image {
-    /* Use the same frame as other project images; image placed via <img> inside.
-       Keep background-color but remove background-image to avoid overlap. */
-    background: none;
-    background-color: rgba(var(--primary-rgb), 0.08);
-    height: 300px; /* same height as default .project-image */
+    /* Use a single background-image like the ALC card (no colored square). */
+    background-image: url('assets/images/TITLE.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
     color: var(--primary-color);
+    height: auto;
+    max-height: none;
+    padding-top: 32%;
     overflow: hidden;
 }
 
 /* Ensure the inline image fills the project-image box and is cropped from the top */
 .project-card:nth-child(2) .project-image img {
-    width: 100% !important;
-    height: 100% !important;
-    /* Fill the entire .project-image frame while keeping aspect ratio; crop if necessary */
-    object-fit: cover;
-    object-position: top center;
-    display: block;
-    transform: none;
-    will-change: auto;
+    display: none !important; /* background-image used instead for full, un-cropped display */
 }
 
 .project-card:nth-child(3) {
@@ -736,8 +748,15 @@ a.project-card, a.project-card * {
 }
 
 .project-card:nth-child(3) .project-image {
-    background: linear-gradient(135deg, rgba(196, 132, 252, 0.5), rgba(167, 139, 250, 0.5));
+    /* Subtle decorative gradient placed behind the image so colors remain natural */
+    background-image: url('assets/images/drawing_hand.png'), linear-gradient(135deg, rgba(196, 132, 252, 0.06), rgba(167, 139, 250, 0.06));
+    background-repeat: no-repeat, no-repeat;
+    background-position: center, center;
+    background-size: contain, cover;
     color: #c084fc;
+    height: auto;
+    max-height: none;
+    padding-top: 32%;
 }
 
 .project-card:nth-child(4) {
@@ -845,7 +864,7 @@ a.project-card, a.project-card * {
 .project-card p {
     padding: 1rem 1.5rem;
     color: var(--text-light);
-    font-size: 0.95rem;
+    font-size: 1.15rem;
 }
 
 .project-tags {
@@ -853,6 +872,39 @@ a.project-card, a.project-card * {
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem;
+}
+
+/* Center headers, dates, tags and description text inside project cards */
+.project-card .project-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 0.4rem;
+    padding: 1rem 1.5rem;
+}
+
+.project-date {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.project-tags {
+    justify-content: center;
+    padding-bottom: 1rem;
+}
+
+.project-card p {
+    text-align: center;
+}
+
+/* Make description text of the first two project cards bolder */
+.project-card:nth-child(1) p,
+.project-card:nth-child(2) p {
+    font-weight: 600;
 }
 
 .tag {
@@ -880,9 +932,9 @@ a.project-card, a.project-card * {
 }
 
 .tag-image {
-    height: 2.5rem;
+    height: 3.5rem;
     width: auto;
-    max-width: 3.5rem;
+    max-width: 5rem;
     display: inline-block;
     vertical-align: middle;
     transition: all 0.3s ease;
@@ -1262,7 +1314,7 @@ a.project-card, a.project-card * {
 
     .about-text p,
     .project-card p {
-        font-size: 0.95rem;
+        font-size: 1.05rem;
     }
 
     .competence-category {
@@ -1966,11 +2018,16 @@ a.project-card, a.project-card * {
 
 @media (min-width: 760px) {
     .projects-grid {
-        grid-template-columns: repeat(2, 1fr) !important;
+        grid-template-columns: 1fr !important;
     }
     .steps-grid {
         grid-template-columns: repeat(2, 1fr) !important;
     }
+}
+
+/* Force single stacked column for project cards on all screen sizes */
+.projects-grid {
+    grid-template-columns: 1fr !important;
 }
 
 /* Dynamic title for gallery description */
@@ -2211,4 +2268,29 @@ a {
     .project-image img, .book-image-wrapper img { max-height: 75vh; height: auto; }
     video.project-video { max-height: 75vh; }
 }
+
+/* FINAL OVERRIDES: make cards slightly less tall than before */
+.project-card {
+    min-height: 48vh !important;
+}
+.project-card:nth-child(1) { min-height: calc(44vh + 90px) !important; }
+.project-card:nth-child(2) { min-height: calc(40vh + 90px) !important; }
+.project-card:nth-child(3) { min-height: calc(38vh + 90px) !important; }
+
+@media (max-width: 800px) {
+    .project-card { min-height: 45vh !important; }
+    .project-card:nth-child(1), .project-card:nth-child(2), .project-card:nth-child(3) {
+        min-height: calc(26vh + 90px) !important;
+    }
+}
+
+/* Reduce card width globally and center cards without changing other layouts */
+.project-card {
+    max-width: 4000px;
+    width: 75vw;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
 
