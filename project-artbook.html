@@ -1660,6 +1660,64 @@
             background: rgba(167, 139, 250, 0.6);
             transform: scale(1.1);
         }
+        /* Category explanation box - will receive the category class too */
+        .category-intro {
+            padding: 1rem 1.2rem;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+            line-height: 1.4;
+            display: block;
+        }
+
+        .category-intro .title {
+            font-weight: 700;
+            margin-bottom: 0.35rem;
+            font-size: 1.05rem;
+        }
+
+        /* Per-category variants (subtle, matching the main category feel) */
+        .category-intro.category-all {
+            background: linear-gradient(135deg, rgba(167, 139, 250, 0.03), rgba(99,102,241,0.02));
+            border: 1px solid rgba(167,139,250,0.12);
+            color: #0f172a; /* darker for readable contrast on light background */
+        }
+
+        .category-intro.category-manga {
+            background: linear-gradient(135deg, rgba(249,115,22,0.08), rgba(255,251,240,0.02));
+            border: 2px solid rgba(249,115,22,0.22);
+            color: #4b2a00;
+        }
+
+        .category-intro.category-compositions {
+            background: linear-gradient(135deg, rgba(59,130,246,0.04), rgba(96,165,250,0.02));
+            border: 1px solid rgba(59,130,246,0.14);
+            color: #06204b;
+        }
+
+        .category-intro.category-noir-blanc {
+            background: linear-gradient(135deg, rgba(20,25,35,0.6), rgba(35,45,60,0.45));
+            border: 1px solid rgba(148,163,184,0.12);
+            color: #ffffff;
+        }
+
+        .category-intro.category-inktober {
+            background: linear-gradient(135deg, rgba(139,92,246,0.08), rgba(168,85,247,0.04));
+            border: 1px dashed rgba(139,92,246,0.24);
+            color: #2b0b3a;
+        }
+
+        .category-intro.category-sketches {
+            background: linear-gradient(135deg, rgba(255,250,245,1), rgba(250,248,244,1));
+            border: 1px solid rgba(16,24,40,0.04);
+            color: #2d1600;
+        }
+
+        .category-intro.category-portraits {
+            background: linear-gradient(135deg, rgba(255,244,249,1), rgba(255,250,252,1));
+            border: 1px solid rgba(244,114,182,0.08);
+            color: #4b102b;
+        }
     </style>
 </head>
 <body>
@@ -1939,7 +1997,29 @@
             'compositions': 'compositions et arrangements visuels',
             'noir-blanc': 'Dessins en noir et blanc explorant le contraste et la dualité',
             'portraits': 'Visages et portraits — expressions, lumière et détails',
-            'inktober': 'Inktober - défi artistique d\'un dessin par jour'
+            'inktober': 'Inktober - défi artistique d\'un dessin par jour',
+            'sketches': 'Sketches - études, croquis et dessins spontanés'
+        };
+
+        // Titles for the category intro box (editable separately from the tab labels)
+        const categoryIntroTitles = {
+            'all': 'Explorez tous les dessins que j\'ai réalisés, de mes premiers essais à mes créations les plus récentes. Chaque dessin raconte une histoire et reflète mon évolution artistique sur 3 ans.',
+            'manga': 'Manga Réalisé lors d\'une colonie de vacances dont c\'était le thème, en 2 semaines. Processus de création complet, de la création de l\'histoire à la composition des pages.',
+            'compositions': 'Compositions visuelles mettant en valeur un ou plusieurs éléments. Travail sur la perspective, les couleurs et l\'équilibre visuel.',
+            'noir-blanc': 'Noir & Blanc — Dessins explorant le contraste, la lumière et les ombres pour créer des atmosphères profondes et renvoyer des émotions fortes.',
+            'portraits': 'Portraits & Études de visages ou d\'élément précis',
+            'inktober': 'Inktober — Défis consistant à un dessin par jour pendant le mois d\'octobre, avec des thèmes variés pour stimuler la créativité.',
+            'sketches': 'Sketches — Dessins sans couleurs ou uniquement dans un style crayonné.'
+        };
+
+        // Descriptions for the category intro box (separate from categoryDescriptions)
+        const categoryIntroDescriptions = {
+            'all': '',
+            'manga': '',
+            'compositions': '',
+            'noir-blanc': '',
+            'portraits': '',
+            'sketches': ''
         };
 
         // Image descriptions with creative process
@@ -2070,6 +2150,24 @@
 
             // Force a reflow to ensure styles are recalculated immediately
             void bookCategory.offsetHeight;
+
+            // Insert a category explanation box (styled with the category class)
+            const prevIntro = document.querySelector('.category-intro');
+            if (prevIntro) prevIntro.remove();
+            const introBox = document.createElement('div');
+            introBox.className = `category-intro category-${category}`;
+            const activeTab = document.querySelector(`.category-tab[data-category="${category}"]`);
+            const titleText = categoryIntroTitles[category] || (activeTab ? activeTab.textContent.trim() : category);
+            const descText = (typeof categoryIntroDescriptions !== 'undefined') ? (categoryIntroDescriptions[category] || '') : '';
+            introBox.innerHTML = `<div class="title">${titleText}</div><div class="desc">${descText}</div>`;
+            // Insert before the book display so it appears under the tabs and above the images
+            const bookDisplayEl = document.getElementById('bookDisplay');
+            if (bookDisplayEl && bookDisplayEl.parentNode) {
+                bookDisplayEl.parentNode.insertBefore(introBox, bookDisplayEl);
+            } else {
+                // fallback: append into the category container
+                bookCategory.appendChild(introBox);
+            }
 
             // If switching to 'all', force-reset the transition video and overlay to avoid lingering filters/overlays
             if (category === 'all') {
