@@ -531,6 +531,19 @@ a.project-card, a.project-card * {
 }
 .project-card:nth-child(3) .project-image img { position: relative; z-index: 3; }
 
+/* Override generic img rule to allow the art thumbnail to be 85% width
+   but constrain it so it doesn't expand to fill the entire card. */
+.project-card:nth-child(3) .project-image img {
+    width: 85% !important;
+    height: auto !important;
+    max-width: 400px !important;
+    object-fit: contain !important;
+    display: block !important;
+    margin: -50px auto -30px auto !important;
+    position: relative;
+    z-index: 3;
+}
+
 @media (prefers-reduced-motion: reduce), (prefers-reduced-transparency: reduce) {
     .project-card:nth-child(3), .project-card:nth-child(3) .project-image::after { box-shadow: 0 8px 18px rgba(0,0,0,0.08) !important; filter:none !important; }
 }
