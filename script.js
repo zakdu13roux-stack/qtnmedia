@@ -68,9 +68,59 @@ competenceCategories.forEach(category => {
 // Gestion du scroll - modifier la navbar au scroll
 window.addEventListener('scroll', () => {
     const navbar = document.querySelector('.navbar');
-    if (window.scrollY > 50) {
-        navbar.style.boxShadow = '0 4px 30px rgba(0, 0, 0, 0.1)';
+    if (navbar && navbar.classList.contains('transparent')) {
+        navbar.style.boxShadow = 'none';
     } else {
-        navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.08)';
+        if (window.scrollY > 50) {
+            navbar.style.boxShadow = '0 4px 30px rgba(0, 0, 0, 0.1)';
+        } else {
+            navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.08)';
+        }
     }
 });
+
+// Toggle navbar transparency when the hero (video) is behind it
+const heroSection = document.getElementById('accueil');
+const navbarEl = document.querySelector('.navbar');
+if (heroSection && navbarEl) {
+    const heroObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                navbarEl.classList.add('transparent');
+            } else {
+                navbarEl.classList.remove('transparent');
+            }
+        });
+    }, { root: null, threshold: 0, rootMargin: '-60px 0px 0px 0px' });
+
+    heroObserver.observe(heroSection);
+}
+
+// Mute / Unmute toggle for hero video
+const heroVideo = document.getElementById('heroVideo');
+const muteToggle = document.getElementById('muteToggle');
+if (heroVideo && muteToggle) {
+    heroVideo.volume = 0.25;
+    const updateMuteButton = () => {
+        if (heroVideo.muted) {
+            muteToggle.textContent = '🔈';
+            muteToggle.title = 'Activer le son';
+            muteToggle.setAttribute('aria-pressed', 'true');
+        } else {
+            muteToggle.textContent = '🔊';
+            muteToggle.title = 'Désactiver le son';
+            muteToggle.setAttribute('aria-pressed', 'false');
+        }
+    };
+
+    // Initialize state
+    updateMuteButton();
+
+    muteToggle.addEventListener('click', () => {
+        heroVideo.muted = !heroVideo.muted;
+        updateMuteButton();
+        if (!heroVideo.muted) {
+            heroVideo.play().catch(() => {});
+        }
+    });
+}

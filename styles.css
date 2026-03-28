@@ -48,6 +48,17 @@ body {
     z-index: 1000;
 }
 
+/* Make navbar transparent when it's over the hero/video */
+.navbar.transparent {
+    background: transparent !important;
+    backdrop-filter: none !important;
+    box-shadow: none !important;
+}
+
+.navbar {
+    transition: background 200ms ease, box-shadow 200ms ease, backdrop-filter 200ms ease;
+}
+
 .navbar .container {
     display: flex;
     justify-content: space-between;
@@ -104,6 +115,43 @@ body {
     position: relative;
     overflow: hidden;
     background: linear-gradient(135deg, rgba(var(--primary-rgb), 0.05), rgba(var(--accent-rgb), 0.05));
+}
+
+/* Full-bleed background video */
+.hero-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+}
+
+/* Mute toggle button overlay */
+.mute-toggle {
+    position: absolute;
+    right: 20px;
+    bottom: 24px;
+    z-index: 3;
+    background: rgba(0,0,0,0.6);
+    color: #fff;
+    border: none;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    cursor: pointer;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.3);
+}
+
+.mute-toggle:focus { outline: 2px solid rgba(var(--primary-rgb),0.6); }
+
+@media (max-width: 640px) {
+    .mute-toggle { right: 12px; bottom: 16px; width: 40px; height: 40px; }
 }
 
 .hero::before {
