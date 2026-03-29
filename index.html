@@ -27,11 +27,16 @@
 
     <!-- Section Accueil -->
     <section id="accueil" class="hero">
-        <video id="heroVideo" class="hero-video" autoplay muted loop playsinline>
-            <source src="assets/videos/video_page_de_garde.mp4" type="video/mp4">
-            Votre navigateur ne supporte pas la balise vidéo.
-        </video>
-        <button id="muteToggle" class="mute-toggle" aria-pressed="true" title="Activer le son">🔈</button>
+        <div class="video-wrapper video-card">
+            <div class="video-inner">
+                <video id="heroVideo" class="hero-video" autoplay muted loop playsinline>
+                    <source src="assets/videos/video_page_de_garde.webm" type="video/webm">
+                    <source src="assets/videos/video_page_de_garde.mp4" type="video/mp4">
+                    Votre navigateur ne supporte pas la balise vidéo.
+                </video>
+                <button id="muteToggle" class="mute-toggle" aria-pressed="true" title="Activer le son">🔈</button>
+            </div>
+        </div>
     </section>
 
     <!-- Section Présentation -->
