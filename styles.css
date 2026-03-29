@@ -164,6 +164,22 @@ body {
     position: relative;
 }
 
+/* Ensure any video inside a rounded container is clipped to its corners */
+.video-container,
+.video-card,
+.video-inner {
+    overflow: hidden;
+}
+
+.video-container video,
+.project-video,
+.hero-video {
+    display: block;
+    width: 100%;
+    height: auto !important;
+    border-radius: 12px;
+}
+
 /* Video card: match the visual frame of .project-card
    Use a full interior gradient and extra padding so the gradient
    is visible across the whole card interior (not only as a halo). */
@@ -1346,7 +1362,8 @@ a.project-card, a.project-card * {
 
 .competences-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    /* allow more categories per row by reducing the minimum column width */
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 2rem;
 }
 

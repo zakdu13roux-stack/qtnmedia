@@ -155,7 +155,19 @@
         
         .video-container {
             border: 2px solid rgba(8, 145, 178, 0.3) !important;
-            border-radius: 12px !important;
+            border-radius: 15px !important;
+            overflow: hidden !important;
+        }
+
+        /* Ensure the actual video element follows the container rounding */
+        .project-video {
+            border-radius: inherit !important;
+            display: block !important;
+        }
+
+        /* Add spacing below descriptions so video sits a bit lower */
+        .video-description {
+            margin-bottom: 1.25rem !important;
         }
         
         .step-card {
@@ -429,10 +441,8 @@ connaissances du monde du cinéma.</p>
                     <img src="assets/icons/Projection_icon.png" alt="Projection" class="tag-in-card-top-left">
                     <div class="step-number">05</div>
                     <h3>Projection</h3>
-                    <p>Les films sous leurs formes finales sont projetés sur grand écran dans la salle des fêtes d'Artannes sur Indre, puis plus tard au cinéma "Le Générique" de Montbazon.</p>
+                    <p>Les films sous leurs formes finales sont projetés sur grand écran dans la salle des fêtes d'Artannes-sur-Indre, puis plus tard au cinéma "Le Générique" de Montbazon.</p>
                     <div class="step-tags">
-                        <span class="tag">Événement</span>
-                        <span class="tag">Festival</span>
                     </div>
                     <div class="step-photos">
                         <div class="photo-box">
@@ -465,21 +475,18 @@ connaissances du monde du cinéma.</p>
                     Votre navigateur ne supporte pas la vidéo HTML5.
                 </video>
         </div>
-    </section>
-
-    <section class="video-section">
         <div class="container">
             <h2>Le Making-Of</h2>
+            <div class="video-description">
+                <p>Les encadrants des Tontons Filmeurs ont créé ce making-of pour retracer le parcours
+                    des ateliers et des quelques mois du projet. Il a été diffusé lors de la projection à la suite des 
+                    3 courts métrages.</p>
+            </div>
             <div class="video-container">
                 <video controls width="100%" class="project-video">
                     <source src="assets/videos/Making_of_alc.mp4" type="video/mp4">
                     Votre navigateur ne supporte pas la vidéo HTML5.
                 </video>
-            </div>
-            <div class="video-description">
-                <p>Les encadrants des Tontons-Filmeurs ont également créé ce making-of pour retracer le parcours
-                    des ateliers et des quelques mois du projet. Il a été diffusé lors de la séance en suivant les 
-                    3 courts métrages.</p>
             </div>
         </div>
     </section>
@@ -508,7 +515,7 @@ connaissances du monde du cinéma.</p>
     <!-- Détails Techniques -->
     <section class="technical-details">
         <div class="container">
-            <h2>Détails Techniques</h2>
+            <h2>Synthèse</h2>
             <div class="details-grid">
                 <div class="detail-item">
                     <h3>Année</h3>
