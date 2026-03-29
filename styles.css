@@ -1666,9 +1666,9 @@ a.project-card, a.project-card * {
 }
 
 .video-description {
-    max-width: 600px;
+    max-width: 1000px;
     margin: 0 auto;
-    text-align: center;
+    text-align: justify;
 }
 
 .video-description p {
