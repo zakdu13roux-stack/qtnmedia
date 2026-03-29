@@ -306,7 +306,7 @@
         .book-category.category-noir-blanc {
             background: linear-gradient(135deg, rgba(20, 25, 35, 0.4) 0%, rgba(35, 45, 60, 0.3) 100%);
             border: 2px solid rgba(100, 116, 139, 0.6);
-            border-radius: 0;
+            border-radius: 12px;
         }
 
         .book-category.category-noir-blanc .book-image-item {
@@ -1712,6 +1712,13 @@
             border: 1px solid rgba(16,24,40,0.04);
             color: #2d1600;
         }
+
+        .category-intro.category-portraits {
+            background: linear-gradient(135deg, rgba(255, 250, 252, 0.95), rgba(255, 244, 249, 0.95));
+            border: 1px solid rgba(244, 114, 182, 0.08);
+            color: #6b2940;
+            box-shadow: 0 6px 20px rgba(16,24,40,0.03);
+        }
     </style>
 </head>
 <body>
@@ -1744,7 +1751,7 @@
         <div class="container">
             <h2 style="text-align: center; margin-bottom: 1.5rem; background: linear-gradient(135deg, #c084fc, #a78bfa); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Catégories</h2>
             <div class="category-tabs">
-                <button class="category-tab active" data-category="all">Tous les dessins</button>
+                <button class="category-tab active" data-category="all">Tous mes dessins</button>
                 <button class="category-tab" data-category="sketches">Sketches</button>
                 <button class="category-tab" data-category="manga">Manga (5 pages)</button>
                 <button class="category-tab" data-category="noir-blanc">Noir et Blanc</button>
@@ -1759,7 +1766,6 @@
     <section class="gallery-section">
         <div class="container">
             <div class="category-description dynamic-title" id="categoryDescription">
-                <span class="float-text">Explorez tous les dessins et créations artistiques</span>
             </div>
             
             <!-- Book Display -->
@@ -1986,11 +1992,11 @@
         let currentImageIndex = 0;
 
         const categoryDescriptions = {
-            'all': 'Explorez tous les dessins et créations artistiques',
-            'manga': 'Un manga complet avec 5 pages - une histoire visuelle captivante',
+            'all': 'Explorez tous mes dessins et créations artistiques',
+            'manga': 'Un manga complet en 5 pages - une histoire visuelle',
             'compositions': 'Compositions et arrangements visuels',
             'noir-blanc': 'Dessins en noir et blanc explorant le contraste et la dualité',
-            'portraits': 'Visages et portraits — expressions, lumière et détails',
+            'portraits': 'Visages et portraits - expressions, lumière et détails',
             'inktober': 'Inktober - défi artistique d\'un dessin par jour',
             'sketches': 'Sketches - études, croquis et dessins spontanés'
         };
@@ -1998,12 +2004,12 @@
         // Titles for the category intro box (editable separately from the tab labels)
         const categoryIntroTitles = {
             'all': 'Explorez tous les dessins que j\'ai réalisés, de mes premiers essais à mes créations les plus récentes. Chaque dessin raconte une histoire et reflète mon évolution artistique sur 3 ans.',
-            'manga': 'Manga Réalisé lors d\'une colonie de vacances dont c\'était le thème, en 2 semaines. Processus de création complet, de la création de l\'histoire à la composition des pages.',
+            'manga': 'Manga réalisé lors d\'une colonie de vacances dont c\'était le thème, en 2 semaines. Processus de création complet, de l\'invention de l\'histoire à la composition des pages.',
             'compositions': 'Compositions visuelles mettant en valeur un ou plusieurs éléments. Travail sur la perspective, les couleurs et l\'équilibre visuel.',
-            'noir-blanc': 'Noir & Blanc — Dessins explorant le contraste, la lumière et les ombres pour créer des atmosphères profondes et renvoyer des émotions fortes.',
+            'noir-blanc': 'Noir & Blanc - Dessins explorant le contraste, la lumière et les ombres pour créer des atmosphères profondes et renvoyer des émotions fortes.',
             'portraits': 'Portraits & Études de visages ou d\'élément précis',
-            'inktober': 'Inktober — Défis consistant à un dessin par jour pendant le mois d\'octobre, avec des thèmes variés pour stimuler la créativité.',
-            'sketches': 'Sketches — Dessins sans couleurs ou uniquement dans un style crayonné.'
+            'inktober': 'Inktober - Défis consistant à réaliser un dessin par jour pendant le mois d\'octobre, avec des thèmes variés pour stimuler la créativité.',
+            'sketches': 'Sketches - Dessins sans couleurs ou uniquement dans un style crayonné.'
         };
 
         // Descriptions for the category intro box (separate from categoryDescriptions)
@@ -2028,7 +2034,7 @@
             'sketch_8.jpg': 'Sketch 8 - Composition d\'une scène de Your Name, un film d\'animation japonais. Travail sur les angles de vue et la dynamique des personnages.',
             'sketch_fanart_marino.jpg': 'Sketch Fanart Marino - Étude de personnage inspirée du chanteur "Marino". Travail sur les proportions et la ressemblance avec l\'artiste et l\'image qu\'il renvoie.',
             'sketch_frieren.jpg': 'Sketch Frieren - Étude de personnage inspirée du manga "Frieren". Travail sur la simplification du personnage et de son environnement.',
-            'manga_1.jpg': 'Page 1 - Composition de base réalisée au crayon. Plas de situation pour expliquer les personnages et le contexte.',
+            'manga_1.jpg': 'Page 1 - Composition de base réalisée au crayon. Plan de situation pour expliquer les personnages et le contexte.',
             'manga_2.jpg': 'Page 2 - Mise en place d\'un monde fantastique aérien. Travail sur les détails architecturaux et les nuages.',
             'manga_3.jpg': 'Page 3 - Scène d\'action centrale. Étude des mouvements dynamiques et de la fluidité.',
             'manga_4.jpg': 'Page 4 - Développement des interactions entre les personnages. Focus sur les expressions et les gestes.',
@@ -2055,17 +2061,17 @@
             'Portrait Sword.jpg': 'Portrait Sword - Essai de dessin sur un objet inanimé et le fantastique.',
             'Portrait_Kirua.jpg': 'Portrait Kirua - Étude de personnage inspirée du manga "Hunter x Hunter". Travail sur les couleurs et la dynamique pour refléter ses capacités.',
             '1er dessin numérique.jpg': 'Killjoy - Portrait d\'un personnage issu du jeu VALORANT, aussi mon premier dessin numérique réalisé sur clip studio paint.',
-            'inktober_1.jpg': 'Moustache - Jour 1. Exploration des textures au stylo fine liner sur papier 90g.',
-            'inktober_2.jpg': 'Magie - Jour 2. Exploration des ombre, des jeux de lumières et de textures pour créer un effet de magie.',
-            'inktober_3.jpg': 'Lien - Jour 3. Référence à une scène du film "Your Name".',
-            'inktober_4.jpg': 'Fantôme - Jour 4. Travail du mouvement et de la fluidité d\'un corps.',
-            'inktober_5.jpg': 'Couronne - Jour 5. Travail sur un objet et ses textures, ainsi que les impacts pour montrer sa composition.',
-            'inktober_6.jpg': 'Trouble - Jour 6. Mise en avant des Yeux pour exprimer une émotion de trouble et de confusion.',
-            'inktober_7.jpg': 'Cerf - Jour 7. Référence au cerf de Princesse Mononoké.',
-            'inktober_8.jpg': 'Percer - Jour 8. Référence au personnage Hornet du jeu "Hollow Knight" et "Hollow Knight: Silksong" et à son arme emblématique.',
-            'inktober_9.jpg': 'Étoile de mer - Jour 9. Référence à Patrick dans Bob l\'éponge.',
-            'inktober_10.jpg': 'Imprudent - Jour 10. Composition d\'une scène avec un personnage en situation risquée et tout dessiné en noir pour montrer une silhouette peu précise qui représente le mot et pas quelqu\'un en particulier.',
-            'inktober_11.jpg': 'Lourd - Jour 11. Travail sur un personnage et son mouvement avec une arme lourde.',
+            'inktober_1.jpg': 'Moustache - Exploration des textures au stylo fine liner sur papier 90g.',
+            'inktober_2.jpg': 'Magie - Exploration des ombre, des jeux de lumières et de textures pour créer un effet de magie.',
+            'inktober_3.jpg': 'Lien - Référence à une scène du film "Your Name".',
+            'inktober_4.jpg': 'Fantôme - Travail du mouvement et de la fluidité d\'un corps.',
+            'inktober_5.jpg': 'Couronne - Travail sur un objet et ses textures, ainsi que les impacts pour montrer sa composition.',
+            'inktober_6.jpg': 'Trouble - Mise en avant des Yeux pour exprimer une émotion de trouble et de confusion.',
+            'inktober_7.jpg': 'Cerf - Référence au cerf de Princesse Mononoké.',
+            'inktober_8.jpg': 'Percer - Référence au personnage Hornet du jeu "Hollow Knight" et "Hollow Knight: Silksong" et à son arme emblématique.',
+            'inktober_9.jpg': 'Étoile de mer - Référence à Patrick dans Bob l\'éponge.',
+            'inktober_10.jpg': 'Imprudent - Composition d\'une scène avec un personnage en situation risquée et tout dessiné en noir pour montrer une silhouette peu précise qui représente le mot et pas quelqu\'un en particulier.',
+            'inktober_11.jpg': 'Lourd - Travail sur un personnage et son mouvement avec une arme lourde.',
         };
 
         // Intersection Observer pour animations au scroll

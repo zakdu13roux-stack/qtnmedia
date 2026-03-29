@@ -232,7 +232,7 @@
         /* Center the "Voir le projet" and "Présentation" sections */
         .download-section .container,
         .presentation-section .container {
-            text-align: center;
+            text-align: left;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -248,9 +248,9 @@
             gap: 0.6rem;
         }
 
-        /* Center the Apprentissages section (next section) */
+        /* Align the Apprentissages section to the left */
         .learnings-section .container {
-            text-align: center;
+            text-align: justify;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -258,9 +258,8 @@
             max-width: 1000px;
             width: 100%;
         }
-
         .learnings-section .learnings-list {
-            text-align: center;
+            text-align: justify;
             padding-left: 0;
             list-style-position: inside;
             max-width: 720px;
@@ -283,9 +282,9 @@
             text-align: center;
             margin-bottom: 0.25rem;
             background: linear-gradient(135deg, #6366f1, #3b82f6);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+               color: #000000 !important;
+            -webkit-text-fill-color: #000000 !important;
+            background: none !important;
         }
 
         .gallery-intro {
@@ -372,27 +371,32 @@
             <div class="project-logo">
                 <img src="assets/images/TitleScreen.png" alt="Title Screen Logo">
             </div>
-            <p>Ce projet est un jeu RPG 2D développé en Python en groupe de 3 pour le cours 
-                de Numérique et Sciences Informatiques (NSI) de terminale. Le jeu combine 
-                des mécaniques classiques de RPG avec une base de données SQL pour la gestion 
-                des données des joueurs et du monde du jeu. Nous avions une limite d'un mois et
-                 demi pour le concevoir, le coder et préparer une présentation orale sur Canva de 10 minutes
-                  évaluée. Nous devions réaliser un cahier des charges du projet et son analyse 
-                  fonctionnelle complète.</p>
+            <p align="left">Ce projet est un jeu de type RPG (Role Playing Game) en 2D, développé en 
+                Python en groupe de 3, pour le cours de Numérique et Sciences Informatiques
+                 (NSI) de terminale. Le jeu combine des mécaniques classiques de RPG
+                  avec une base de données SQL pour la gestion des données des joueurs
+                   et du monde du jeu. Nous avions une limite d'un mois et demi pour le concevoir, le coder et préparer une présentation orale de 10 minutes évaluée. Nous devions réaliser le cahier des charges du projet et son analyse fonctionnelle complète.</p>
         </div>
     </section>
 
     <!-- Visuels et Explications -->
     <section class="project-section">
         <div class="container">
-            <h2>Visuels et Fonctionnalités</h2>
+            <h2>Fonctionnalités</h2>
             <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <img class="github-icon" src="assets/icons/GitHub-Logo.png" alt="GitHub">
+                    </div>
+                    <h3>Collaboration</h3>
+                    <p>Travail en équipe via GitHub avec gestion de versions et organisation des tâches.</p>
+                </div>
                 <div class="feature-card">
                     <div class="feature-icon">
                         <img class="arcade-icon" src="assets/icons/Arcade_python.png" alt="Arcade Python" />
                     </div>
                     <h3>Gameplay</h3>
-                    <p>Monde 2D avec système de combat au tour par tour, amélioration des statistiques du personnage et difficulté progressive</p>
+                    <p>Monde 2D avec système de combat au tour par tour, amélioration des statistiques du personnage et difficulté progressive.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">
@@ -402,16 +406,9 @@
                     <p>Utilisation de SQL pour stocker les données des joueurs, des monstres, des armes et de la progression avec un identifiant unique par joueur.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">
-                        <img class="github-icon" src="assets/icons/GitHub-Logo.png" alt="GitHub">
-                    </div>
-                    <h3>Collaboration</h3>
-                    <p>Travail en équipe via GitHub avec gestion de versions et organisation des tâches</p>
-                </div>
-                <div class="feature-card">
                     <div class="feature-icon">📊</div>
                     <h3>Statistiques</h3>
-                    <p>Système complet de progression avec niveaux, expérience et amélioration de statistiques</p>
+                    <p>Système complet de progression avec niveaux, expérience et amélioration de statistiques.</p>
                 </div>
             </div>
         </div>
@@ -520,7 +517,7 @@ if __name__ == '__main__':
     <section class="project-section download-section">
         <div class="container">
             <h2>Voir le projet</h2>
-            <p>Vous pouvez accéder au code source du projet sur notre dépôt GitHub.</p>
+            <p>Vous pouvez accéder au code source du projet sur notre dépôt GitHub :</p>
             <div class="download-buttons">
                 <a href="https://github.com/zakdu13roux-stack/RPGproject/tree/refactor" class="download-button github-btn" target="_blank">
                     <i class="fas fa-github"></i>Voir sur GitHub
@@ -544,11 +541,11 @@ if __name__ == '__main__':
     <section class="project-section learnings-section">
         <div class="container">
             <h2>Apprentissages Clés</h2>
-            <ul class="learnings-list">
-                <li><strong>Programmation Orientée Objet :</strong> Conception de classes pour tous les systèmes de jeu, notamment obligatoire pour la bibliothèque Arcade</li>
-                <li><strong>Gestion de Bases de Données :</strong> Requêtes SQL pour récupérer les données de progression</li>
-                <li><strong>Travail en Équipe :</strong> Collaboration via Git et résolution de conflits de fusion</li>
-                <li><strong>Gestion de Projet :</strong> Planification et distribution des tâches</li>
+            <ul class="learnings-list" >
+                <li align="left"><strong>Programmation Orientée Objet :</strong> Conception de classes pour tous les systèmes de jeu, notamment obligatoire pour la bibliothèque Arcade.</li>
+                <li align="left"><strong>Gestion de Bases de Données :</strong> Requêtes SQL pour récupérer les données de progression.</li>
+                <li align="left"><strong>Travail en Équipe :</strong> Collaboration via Git et résolution de conflits de fusion.</li>
+                <li align="left"><strong>Gestion de Projet :</strong> Planification et distribution des tâches.</li>
             </ul>
         </div>
     </section>
