@@ -461,11 +461,9 @@ body {
     }
 }
 
-/* .about::after removed — images are handled via container and project-card pseudo-elements */
-
 .about .container h2 {
     font-size: 2.5rem;
-    margin-bottom: 3rem;
+    margin-bottom: 1.8rem;
     text-align: center;
     color: var(--text-dark);
 }
@@ -485,11 +483,19 @@ body {
     hyphens: none;
     word-break: normal;
     overflow-wrap: normal;
+    padding-left: 200px;
 }
 
 @media (max-width: 900px) {
     .about-text p {
         font-size: 1.05rem;
+        padding-left: 200px;
+    }
+}
+
+@media (max-width: 640px) {
+    .about-text p {
+        padding-left: 150px;
     }
 }
 
