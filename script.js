@@ -99,6 +99,8 @@ if (heroSection && navbarEl) {
 // Mute / Unmute toggle for hero video
 const heroVideo = document.getElementById('heroVideo');
 const muteToggle = document.getElementById('muteToggle');
+const playToggle = document.getElementById('playToggle');
+
 if (heroVideo && muteToggle) {
     heroVideo.volume = 0.25;
     const updateMuteButton = () => {
@@ -123,4 +125,34 @@ if (heroVideo && muteToggle) {
             heroVideo.play().catch(() => {});
         }
     });
+}
+
+// Play / Pause toggle for hero video
+if (heroVideo && playToggle) {
+    const updatePlayButton = () => {
+        if (heroVideo.paused) {
+            playToggle.textContent = '▶️';
+            playToggle.title = 'Lire la vidéo';
+            playToggle.setAttribute('aria-pressed', 'false');
+        } else {
+            playToggle.textContent = '⏸️';
+            playToggle.title = 'Pause';
+            playToggle.setAttribute('aria-pressed', 'true');
+        }
+    };
+
+    // Initialize state
+    updatePlayButton();
+
+    playToggle.addEventListener('click', () => {
+        if (heroVideo.paused) {
+            heroVideo.play().catch(() => {});
+        } else {
+            heroVideo.pause();
+        }
+    });
+
+    // Update button state when video state changes
+    heroVideo.addEventListener('play', updatePlayButton);
+    heroVideo.addEventListener('pause', updatePlayButton);
 }
