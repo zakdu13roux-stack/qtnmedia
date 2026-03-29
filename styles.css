@@ -741,30 +741,20 @@ a.project-card, a.project-card * {
     overflow: visible;
 }
 .project-card:nth-child(3) .project-image::after {
-    content: '';
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    width: 120%;
-    height: 120%;
-    background: radial-gradient(circle at 50% 40%, rgba(192,132,252,0.45), rgba(192,132,252,0.16) 30%, rgba(192,132,252,0.04) 55%, transparent 70%);
-    filter: blur(36px);
-    pointer-events: none;
-    z-index: 1;
-    border-radius: 12px;
+    display: none;
 }
 .project-card:nth-child(3) .project-image img { position: relative; z-index: 3; }
 
 /* Override generic img rule to allow the art thumbnail to be 85% width
    but constrain it so it doesn't expand to fill the entire card. */
 .project-card:nth-child(3) .project-image img {
-    width: 85% !important;
+    width: 120% !important;
     height: auto !important;
-    max-width: 400px !important;
+    max-width: 900px !important;
     object-fit: contain !important;
     display: block !important;
-    margin: -50px auto -30px auto !important;
+    margin: -10px auto -10px auto !important;
+    transform: translateY(-6px) !important;
     position: relative;
     z-index: 3;
 }
@@ -945,12 +935,11 @@ a.project-card, a.project-card * {
 }
 
 .project-card:nth-child(3) .project-image {
-    /* Subtle decorative gradient placed behind the image so colors remain natural */
-    background-image: url('assets/images/drawing_hand.png'), linear-gradient(135deg, rgba(196, 132, 252, 0.06), rgba(167, 139, 250, 0.06));
-    background-repeat: no-repeat, no-repeat;
-    background-position: center, center;
-    background-size: contain, cover;
-    color: #c084fc;
+    background-image: url('assets/images/image_card.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    color: inherit;
     height: auto;
     max-height: none;
     padding-top: 32%;
